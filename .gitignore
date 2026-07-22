@@ -1,0 +1,10 @@
+# MATLAB and Simulink generated artifacts
+slprj/
+**/slprj/
+*.slxc
+*.autosave
+*.asv
+
+# Local MATLAB settings
+*.m~
+*.mat
