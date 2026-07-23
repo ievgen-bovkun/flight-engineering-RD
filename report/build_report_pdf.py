@@ -13,7 +13,7 @@ from reportlab.lib.styles import ParagraphStyle
 from reportlab.lib.units import mm
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
-from reportlab.platypus import Image, Paragraph, SimpleDocTemplate, Spacer, Table, TableStyle
+from reportlab.platypus import KeepTogether, Image, Paragraph, SimpleDocTemplate, Spacer, Table, TableStyle
 
 
 REPORT_DIR = Path(__file__).resolve().parent
@@ -133,7 +133,11 @@ def formula_box(markup: str, styles: dict[str, ParagraphStyle]) -> Table:
 
 def image_flowable(path: Path) -> Image:
     image = Image(str(path))
-    image._restrictSize(CONTENT_WIDTH, 205 * mm)
+    # Response plots remain legible while leaving room for their heading and explanation.
+    if path.name.endswith("_response.png"):
+        image._restrictSize(158 * mm, 135 * mm)
+    else:
+        image._restrictSize(CONTENT_WIDTH, 205 * mm)
     return image
 
 
@@ -202,7 +206,21 @@ def build_story(markdown: str, styles: dict[str, ParagraphStyle]) -> list:
             index += 1
             continue
         if line.startswith("### "):
-            story.append(Paragraph(inline_markup(line[4:]), styles["h3"]))
+            heading = Paragraph(inline_markup(line[4:]), styles["h3"])
+            next_index = index + 1
+            while next_index < len(lines) and not lines[next_index].strip():
+                next_index += 1
+            next_image = (
+                re.fullmatch(r"!\[([^\]]*)\]\(([^)]+)\)", lines[next_index].strip())
+                if next_index < len(lines) else None
+            )
+            if next_image:
+                image = image_flowable(REPORT_DIR / next_image.group(2))
+                caption = Paragraph(next_image.group(1), styles["caption"])
+                story.append(KeepTogether([heading, Spacer(1, 1.2 * mm), image, caption]))
+                index = next_index + 1
+                continue
+            story.append(heading)
             index += 1
             continue
 
