@@ -102,6 +102,7 @@ def math_markup(value: str) -> str:
 
 def inline_markup(value: str) -> str:
     value = html.escape(value)
+    value = value.replace("{{BR}}", "<br/>")
     value = re.sub(r"`([^`]+)`", r'<font name="TimesNewRoman">\1</font>', value)
     value = re.sub(r"\*\*([^*]+)\*\*", r"<b>\1</b>", value)
     value = re.sub(r"\*([^*]+)\*", r"<i>\1</i>", value)
@@ -168,7 +169,8 @@ def build_story(markdown: str, styles: dict[str, ParagraphStyle]) -> list:
     first_heading = True
 
     while index < len(lines):
-        line = lines[index].strip()
+        raw_line = lines[index]
+        line = raw_line.strip()
         if not line:
             index += 1
             continue
@@ -224,14 +226,14 @@ def build_story(markdown: str, styles: dict[str, ParagraphStyle]) -> list:
             index += 1
             continue
 
-        paragraph = [line]
+        paragraph = [line + ("{{BR}}" if raw_line.endswith("  ") else " ")]
         index += 1
         while index < len(lines) and lines[index].strip() and not lines[index].startswith(("#", "!", "|", "- ")):
             if re.match(r"^\d+\.\s+", lines[index].strip()) or lines[index].strip() == "$$":
                 break
-            paragraph.append(lines[index].strip())
+            paragraph.append(lines[index].strip() + ("{{BR}}" if lines[index].endswith("  ") else " "))
             index += 1
-        story.append(Paragraph(inline_markup(" ".join(paragraph)), styles["body"]))
+        story.append(Paragraph(inline_markup("".join(paragraph)), styles["body"]))
 
     return story
 
