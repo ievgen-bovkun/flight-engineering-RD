@@ -145,13 +145,8 @@ $$
 
 Великі кути та переміщення у каналах крену й тангажу є очікуваними для об'єкта без зворотного зв'язку. Наступним кроком для повноцінної системи керування є лінеаризація біля точки висіння та підключення регуляторів.
 
-## Вихідні матеріали
+## Додаткові матеріали
 
-- `simulink/quadrotor_params.m` — параметри моделі.
-- `simulink/quadrotor_nonlinear.slx` — Simulink-модель.
-- `simulink/run_simulink_channel.m` — запуск окремих каналів.
-- `simulink/tests/` — автоматичні перевірки.
-
-## Джерело
-
-Tomas Jirinec. *Stabilization and control of unmanned quadcopter*. Master's thesis, 2011. Надана українська версія роботи використана як допоміжний переклад.
+- Репозиторій із кодом, Simulink-моделлю, тестами та звітом: [github.com/ievgen-bovkun/flight-engineering-RD](https://github.com/ievgen-bovkun/flight-engineering-RD)
+- Вихідні файли: `simulink/quadrotor_params.m`, `simulink/quadrotor_nonlinear.slx`, `simulink/run_simulink_channel.m`, `simulink/tests/`.
+- Джерело: Tomas Jirinec. *Stabilization and control of unmanned quadcopter*. Master's thesis, 2011. Надана українська версія роботи використана як допоміжний переклад.

@@ -8,3 +8,8 @@ slprj/
 # Local MATLAB settings
 *.m~
 *.mat
+
+# Local PDF validation artifacts
+report/rendered/
+report/Formula_Typesetting_Test.pdf
+report/Formula_Typesetting_Test-1.png
