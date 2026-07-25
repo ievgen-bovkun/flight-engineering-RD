@@ -9,4 +9,5 @@ open_system(modelName);
 simulationResult = sim(modelName, 'ReturnWorkspaceOutputs', 'on');
 assignin('base', 'pendulum_simulink_output', ...
     simulationResult.get('pendulum_simulink_output'));
+open_system([modelName '/Response scope']);
 end
