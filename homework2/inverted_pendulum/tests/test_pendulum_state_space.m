@@ -20,6 +20,6 @@ function testCtmsMatrixCoefficients(testCase)
 
 verifyEqual(testCase, P.M, 0.5, 'AbsTol', 1e-12);
 verifyEqual(testCase, P.m, 0.2, 'AbsTol', 1e-12);
-verifyEqual(testCase, P.A(2, 3), -(P.m^2 * P.g * P.l^2) / P.p, 'AbsTol', 1e-12);
+verifyEqual(testCase, P.A(2, 3), (P.m^2 * P.g * P.l^2) / P.p, 'AbsTol', 1e-12);
 verifyEqual(testCase, P.A(4, 3), P.m * P.g * P.l * (P.M + P.m) / P.p, 'AbsTol', 1e-12);
 end
