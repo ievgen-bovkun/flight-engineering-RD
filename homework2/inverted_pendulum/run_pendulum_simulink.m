@@ -7,7 +7,8 @@ assignin('base', 'P', pendulum_params());
 modelName = build_pendulum_simulink(false);
 open_system(modelName);
 simulationResult = sim(modelName, 'ReturnWorkspaceOutputs', 'on');
-assignin('base', 'pendulum_simulink_output', ...
-    simulationResult.get('pendulum_simulink_output'));
+output = simulationResult.get('pendulum_simulink_output');
+assignin('base', 'pendulum_simulink_output', output);
+plot_pendulum_response(output);
 open_system([modelName '/Response scope']);
 end
