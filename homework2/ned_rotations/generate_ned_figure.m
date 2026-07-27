@@ -10,4 +10,8 @@ end
 plot_ned_rotations();
 outputPath = fullfile(assetDir, 'ned_yaw_pitch_roll_sequence.png');
 exportgraphics(gcf, outputPath, 'Resolution', 180);
+
+plot_ned_rotation_steps();
+stepOutputPath = fullfile(assetDir, 'ned_yaw_pitch_roll_steps.png');
+exportgraphics(gcf, stepOutputPath, 'Resolution', 180);
 end
