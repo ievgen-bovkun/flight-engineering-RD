@@ -5,6 +5,8 @@ tests = functiontests(localfunctions);
 end
 
 function testLinearizationMatchesNumericModel(testCase)
+assumeTrue(testCase, exist('syms', 'file') == 2, ...
+    'Symbolic Math Toolbox is not installed in this MATLAB environment.');
 model = derive_pendulum_model();
 P = pendulum_params();
 
