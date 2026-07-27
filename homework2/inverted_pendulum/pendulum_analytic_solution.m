@@ -19,7 +19,7 @@ if numel(force) ~= numel(time)
     error('Force must be a scalar or have one value for each time sample.');
 end
 
-[~, P] = pendulum_state_space();
+P = pendulum_params();
 state = zeros(numel(time), 4);
 state(1, :) = initialState(:).';
 

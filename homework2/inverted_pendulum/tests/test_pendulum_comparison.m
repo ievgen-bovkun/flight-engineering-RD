@@ -7,7 +7,7 @@ end
 function testAnalyticalMatlabAndSimulinkAgree(testCase)
 result = run_pendulum_comparison(false);
 
-verifyLessThan(testCase, result.maxError.analyticVsLsim, 1e-3);
+verifyLessThan(testCase, result.maxError.analyticVsRk4, 1e-6);
 verifyLessThan(testCase, result.maxError.analyticVsSimulink, 1e-3);
 verifyEqual(testCase, size(result.analytic.output, 2), 2);
 end

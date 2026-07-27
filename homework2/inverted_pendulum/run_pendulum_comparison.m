@@ -5,7 +5,7 @@ if nargin < 1
     showFigure = true;
 end
 
-[sys, P] = pendulum_state_space();
+P = pendulum_params();
 config.duration = 1.5;
 config.stepTime = 0.5;
 config.stepAmplitude = 0.01;
@@ -15,7 +15,8 @@ config.initialState = zeros(4, 1);
 time = (0:config.sampleTime:config.duration).';
 force = config.stepAmplitude * double(time >= config.stepTime);
 analytic = pendulum_analytic_solution(time, force, config.initialState);
-matlabOutput = lsim(sys, force, time, config.initialState);
+matlabResponse = pendulum_rk4_solution(time, force, config.initialState);
+matlabOutput = matlabResponse.output;
 
 assignin('base', 'P', P);
 modelName = build_pendulum_simulink(false);
@@ -49,9 +50,9 @@ result.analytic = analytic;
 result.matlabOutput = matlabOutput;
 result.simulink.time = simulinkTime;
 result.simulink.output = simulinkValues;
-result.maxError.analyticVsLsim = max(abs(analytic.output - matlabOutput), [], 'all');
+result.maxError.analyticVsRk4 = max(abs(analytic.output - matlabOutput), [], 'all');
 result.maxError.analyticVsSimulink = max(abs(analyticAtSimulink.output - simulinkValues), [], 'all');
-result.maxError.lsimVsSimulink = max(abs(matlabAtSimulink - simulinkValues), [], 'all');
+result.maxError.rk4VsSimulink = max(abs(matlabAtSimulink - simulinkValues), [], 'all');
 
 if showFigure
     plot_pendulum_comparison(result);

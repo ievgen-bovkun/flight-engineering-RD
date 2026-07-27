@@ -5,6 +5,8 @@ tests = functiontests(localfunctions);
 end
 
 function testZeroInputKeepsUprightEquilibrium(testCase)
+assumeTrue(testCase, exist('ss', 'file') == 2, ...
+    'Control System Toolbox is not installed in this MATLAB environment.');
 [sys, P] = pendulum_state_space();
 t = linspace(0, 1, 11).';
 y = lsim(sys, zeros(size(t)), t, zeros(4, 1));
@@ -16,7 +18,7 @@ verifySize(testCase, P.C, [2 4]);
 end
 
 function testCtmsMatrixCoefficients(testCase)
-[~, P] = pendulum_state_space();
+P = pendulum_params();
 
 verifyEqual(testCase, P.M, 0.5, 'AbsTol', 1e-12);
 verifyEqual(testCase, P.m, 0.2, 'AbsTol', 1e-12);

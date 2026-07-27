@@ -13,7 +13,7 @@ verifyEqual(testCase, response.output, zeros(numel(time), 2), 'AbsTol', 1e-12);
 end
 
 function testInitialStateMatchesHomogeneousSolution(testCase)
-[~, P] = pendulum_state_space();
+P = pendulum_params();
 time = [0; 0.2];
 initialState = [0.1; -0.2; 0.01; 0.3];
 response = pendulum_analytic_solution(time, [0; 0], initialState);
