@@ -26,3 +26,13 @@
 `Unit force step` -> `Linearized pendulum` -> `Response scope` і `Simulation output`.
 
 На цьому кроці ми перевіряємо, що базова лінійна модель та Simulink працюють. Наступним кроком буде додано аналітичний розв'язок і порівняльні графіки.
+
+## Додаткові перевірки
+
+`generate_task1_results` формує три графіки в папці `assets`:
+
+- `task1_method_comparison.png` — аналітичний розв'язок, RK4 та Simulink;
+- `task1_linear_vs_nonlinear.png` — межа застосовності лінеаризації;
+- `task1_impulse_validation.png` — збіг `impulse(ss)` і `expm(A*t)B`.
+
+Остання перевірка потребує Control System Toolbox.

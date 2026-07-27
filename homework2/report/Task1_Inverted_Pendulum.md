@@ -118,3 +118,25 @@ run_pendulum_simulink
 - [CTMS: Inverted Pendulum - Simulink Modeling](https://ctms.engin.umich.edu/CTMS/index.php/Content/Animations/Content/Activities/Content/Extras/InvertedPendulum/Simulink/Modeling/Basics/?example=InvertedPendulum&section=SimulinkModeling)
 - [Cureus: Modeling and Balancing Control of Inverted Pendulum](https://www.cureusjournals.com/articles/8517-modeling-and-balancing-control-of-inverted-pendulum)
 - [Додатковий відеоприклад](https://www.youtube.com/watch?v=fi54Hz5TiWI&t=252s)
+
+## 9. Додаткова валідація моделі
+
+### 9.1. Лінійна та повна нелінійна моделі
+
+![Порівняння лінійної та нелінійної моделей](../inverted_pendulum/assets/task1_linear_vs_nonlinear.png)
+
+Для початкового відхилення `phi(0) = 3 deg` побудовано вільну реакцію
+двома способами: лінеаризованою моделлю `X_dot = A X` та повними
+нелінійними рівняннями, інтегрованими `ode45`. На початку криві близькі.
+Після перетину межі близько `12 deg` вони розходяться: лінійна модель
+перебільшує зростання, тому її не слід застосовувати для великих кутів.
+
+### 9.2. Незалежна перевірка Control System Toolbox
+
+![Імпульсна реакція та аналітичний розв'язок](../inverted_pendulum/assets/task1_impulse_validation.png)
+
+Для моделі `ss(A,B,C,D)` побудовано реакцію на одиничний імпульс командою
+`impulse`. Її порівняно з аналітичною формулою `C exp(A t) B`.
+Максимальна абсолютна розбіжність становить `2.132e-12`, тобто методи
+чисельно збігаються. Різке зростання реакції є очікуваним: маятник
+розглядається без регулятора і має нестійку верхню точку рівноваги.

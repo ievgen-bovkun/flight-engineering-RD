@@ -17,4 +17,6 @@ rotations.initial = eye(3);
 rotations.roll = Rx;
 rotations.rollPitch = Ry * Rx;
 rotations.full = Rz * Ry * Rx;
+rotations.yaw = Rz;
+rotations.yawPitch = Rz * Ry;
 end

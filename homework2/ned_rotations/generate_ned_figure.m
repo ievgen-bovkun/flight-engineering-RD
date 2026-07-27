@@ -8,6 +8,6 @@ if ~isfolder(assetDir)
 end
 
 plot_ned_rotations();
-outputPath = fullfile(assetDir, 'ned_roll_pitch_yaw.png');
+outputPath = fullfile(assetDir, 'ned_yaw_pitch_roll_sequence.png');
 exportgraphics(gcf, outputPath, 'Resolution', 180);
 end
