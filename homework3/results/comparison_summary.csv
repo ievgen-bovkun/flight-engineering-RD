@@ -1,0 +1,12 @@
+test_family,scenario,max_state_error,final_position_error_m
+canonical_force_moment,surge_force,0,0
+canonical_force_moment,sway_force,0,0
+canonical_force_moment,heave_force,0,0
+canonical_force_moment,roll_moment,2.77555756156289e-17,0
+canonical_force_moment,pitch_moment,0,0
+canonical_force_moment,yaw_moment,2.77555756156289e-17,0
+canonical_force_moment,combined_6dof,4.44089209850063e-16,2.22044604925031e-16
+HW1_motor_step,vertical,0,0
+HW1_motor_step,roll,8.88178419700125e-15,6.46603649670442e-15
+HW1_motor_step,pitch,1.56992474575901e-16,5.85469173142172e-17
+HW1_motor_step,yaw,1.11022302462516e-16,0
