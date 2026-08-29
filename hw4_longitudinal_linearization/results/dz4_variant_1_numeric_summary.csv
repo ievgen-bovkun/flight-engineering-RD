@@ -1,0 +1,23 @@
+names,values,units
+Q1_theta,-0.00322399601269888,1/s
+Q1_alpha,2.48529585411251,1/s
+Q1_delta,0.632544660979295,1/s
+Q4_alpha,-817.688207024525,1/s^2
+Q4_omega,-6.68062624855869,1/s
+Q4_delta,-957.290212380365,1/s^2
+max_abs_error,4.18413037550636e-09,state units
+rms_error_global,6.0086761013189e-10,state units
+rms_theta,4.0954929547915e-13,rad
+rms_alpha,3.13117156719811e-15,rad
+rms_vartheta,4.48027102077548e-13,rad
+rms_omega_z,8.96533654557831e-14,rad/s
+rms_H,1.34358068161968e-09,m
+altitude_dip_m,-0.0087732293905472,m
+altitude_dip_time_s,1.042,s
+short_period_wn_rad_s,28.8839767828881,rad/s
+short_period_zeta,0.15866904866608,1
+slow_real_eigenvalue_1_s,-0.00315986301588347,1/s
+slow_real_time_constant_s,316.469414963044,s
+neutral_mode_eigenvalue_1_s,0,1/s
+quasi_steady_alpha_deg,4.60997606252676,deg
+quasi_steady_omega_z_deg_s,8.92697575183849,deg/s
