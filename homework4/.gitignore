@@ -1,0 +1,6 @@
+# MATLAB generated caches
+*.slxc
+slprj/
+
+# PDF visual-QA intermediates
+tmp/
