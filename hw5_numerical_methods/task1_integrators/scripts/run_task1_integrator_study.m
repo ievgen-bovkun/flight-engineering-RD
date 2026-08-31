@@ -82,6 +82,25 @@ grid on; xlabel('t, s'); ylabel('trial h, s');
 title('RKF45 step history: 10000 Hz, tolerance 10^{-7}'); legend('Location','best');
 exportgraphics(fig,fullfile(resultsDir,'rkf45_step_history.png'),'Resolution',180); close(fig);
 
+rkfRows = summary.method == "RKF45";
+tolLevels = unique(summary.tolerance(rkfRows));
+meanError = zeros(size(tolLevels)); meanAccepted = zeros(size(tolLevels));
+meanRejected = zeros(size(tolLevels));
+for i = 1:numel(tolLevels)
+    rows = rkfRows & summary.tolerance == tolLevels(i);
+    meanError(i) = mean(summary.max_abs_error(rows));
+    meanAccepted(i) = mean(summary.accepted_steps(rows));
+    meanRejected(i) = mean(summary.rejected_steps(rows));
+end
+fig = figure('Visible','off','Color','w'); tiledlayout(1,2,'TileSpacing','compact');
+nexttile; loglog(tolLevels,meanError,'o-','LineWidth',1.2); grid on;
+xlabel('tolerance'); ylabel('mean max |error|'); title('RKF45 achieved accuracy');
+nexttile; labels = categorical(compose('%.0e',tolLevels));
+bar(labels,[meanAccepted meanRejected]); grid on;
+xlabel('tolerance'); ylabel('mean number of trials');
+legend('accepted','rejected','Location','best'); title('RKF45 computational effort');
+exportgraphics(fig,fullfile(resultsDir,'rkf45_accuracy_effort.png'),'Resolution',180); close(fig);
+
 period = 1/10000; visibleTime = 2*period;
 fig = figure('Visible','off','Color','w');
 tExact = linspace(0,visibleTime,1000).';
