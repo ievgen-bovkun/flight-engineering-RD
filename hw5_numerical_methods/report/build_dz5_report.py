@@ -185,7 +185,8 @@ def main() -> None:
         "інакше він відхиляється та повторюється з меншим h.", s))
     story.append(p("RK4: k1=f(t,y); k2=f(t+h/2,y+h*k1/2); k3=f(t+h/2,y+h*k2/2); k4=f(t+h,y+h*k3);", s, "formula"))
     story.append(p("y(k+1)=y(k)+h*(k1+2*k2+2*k3+k4)/6.", s, "formula"))
-    story.append(p("Для RKF45 новий крок: h_new = clamp(0.9*h*(tol/e)^(1/5), h_min, h_max).", s, "formula"))
+    story.append(p("Для RKF45 новий крок обчислюється за формулою:", s))
+    story.append(p("h_new = clamp(0.9*h*(tol/e)^(1/5), h_min, h_max).", s, "formula"))
 
     rk4 = [row for row in rk_rows if row["method"] == "RK4"]
     rkf = [row for row in rk_rows if row["method"] == "RKF45"]
