@@ -88,5 +88,40 @@ for frequency = frequencies
 end
 sgtitle('Fixed nominal ZOH coefficients under clock-frequency deviation');
 exportgraphics(fig,fullfile(resultsDir,'clock_deviation.png'),'Resolution',180); close(fig);
+
+fig = figure('Visible','off','Color','w');
+ax = gca; ax.XScale = 'log'; ax.YScale = 'log'; hold on;
+for methodName = ["foh" "tustin"]
+    rows = nominal.method == methodName;
+    loglog(nominal.frequency_hz(rows),nominal.max_abs_error(rows),'-o', ...
+        'DisplayName',char(methodName));
+end
+grid on; xlabel('sampling frequency Fs, Hz'); ylabel('max |error|');
+title('Discretization error versus sampling frequency'); legend('Location','best');
+exportgraphics(fig,fullfile(resultsDir,'discretization_error_vs_fs.png'),'Resolution',180); close(fig);
+
+fig = figure('Visible','off','Color','w'); tiledlayout(numel(frequencies),2,'TileSpacing','compact');
+for i = 1:numel(frequencies)
+    frequency = frequencies(i); Ts = 1/frequency;
+    w = logspace(-1,log10(0.9*pi/Ts),500);
+    continuousResponse = squeeze(freqresp(model.sys,w));
+    nexttile; semilogx(w,20*log10(abs(continuousResponse)),'k-','LineWidth',1.1, ...
+        'DisplayName','continuous'); hold on;
+    nexttileIndex = 2*i;
+    for methodName = ["zoh" "foh" "tustin"]
+        discrete = c2d(model.sys,Ts,char(methodName));
+        response = squeeze(freqresp(discrete,w));
+        nexttile(2*i-1); semilogx(w,20*log10(abs(response)),'DisplayName',char(methodName));
+        nexttile(nexttileIndex); semilogx(w,unwrap(angle(response))*180/pi,'DisplayName',char(methodName)); hold on;
+    end
+    nexttile(2*i-1); grid on; ylabel(sprintf('|T(jw)|, dB\nFs=%g Hz',frequency),'Interpreter','none');
+    title('Magnitude'); if i == 1, legend('Location','best'); end
+    nexttile(nexttileIndex); semilogx(w,unwrap(angle(continuousResponse))*180/pi,'k-','LineWidth',1.1, ...
+        'DisplayName','continuous'); grid on; ylabel('phase, deg'); title('Phase');
+    if i == 1, legend('Location','best'); end
+end
+xlabel('angular frequency w, rad/s');
+exportgraphics(fig,fullfile(resultsDir,'frequency_response_comparison.png'),'Resolution',180); close(fig);
+
 result = struct('nominal',nominal,'clock',clock);
 end

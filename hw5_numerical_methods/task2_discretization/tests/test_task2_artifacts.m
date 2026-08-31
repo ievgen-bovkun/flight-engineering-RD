@@ -11,6 +11,7 @@ verifyEqual(testCase, unique(result.nominal.method), ["custom_zoh";"foh";"tustin
 verifyEqual(testCase, height(result.clock), 9);
 verifyLessThan(testCase, max(result.nominal.zoh_match_error(result.nominal.method=="custom_zoh")), 1e-11);
 required = {'task2_nominal_metrics.csv','task2_clock_deviation_metrics.csv', ...
-    'task2_results.mat','method_comparison.png','clock_deviation.png'};
+    'task2_results.mat','method_comparison.png','clock_deviation.png', ...
+    'discretization_error_vs_fs.png','frequency_response_comparison.png'};
 verifyTrue(testCase, all(isfile(fullfile(root, 'results', required))));
 end
