@@ -9,10 +9,10 @@
 Запуск:
 
 ```matlab
-addpath('hw5_numerical_methods/task1_integrators/src');
-addpath('hw5_numerical_methods/task1_integrators/scripts');
+addpath('homework5/task1_integrators/src');
+addpath('homework5/task1_integrators/scripts');
 summary = run_task1_integrator_study();
-results = runtests('hw5_numerical_methods/task1_integrators/tests');
+results = runtests('homework5/task1_integrators/tests');
 assertSuccess(results);
 ```
 

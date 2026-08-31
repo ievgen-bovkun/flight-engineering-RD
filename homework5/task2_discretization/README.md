@@ -11,10 +11,10 @@ Tff = tf([0.3333], [1 1 33.33]);
 Запуск:
 
 ```matlab
-addpath('hw5_numerical_methods/task2_discretization/src');
-addpath('hw5_numerical_methods/task2_discretization/scripts');
+addpath('homework5/task2_discretization/src');
+addpath('homework5/task2_discretization/scripts');
 result = run_task2_discretization_study();
-tests = runtests('hw5_numerical_methods/task2_discretization/tests');
+tests = runtests('homework5/task2_discretization/tests');
 assertSuccess(tests);
 ```
 

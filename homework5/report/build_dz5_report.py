@@ -27,7 +27,7 @@ PROJECT = Path(__file__).resolve().parents[1]
 TASK1 = PROJECT / "task1_integrators"
 TASK2 = PROJECT / "task2_discretization"
 OUTPUT = Path(__file__).resolve().parent / "DZ5_Numerical_Methods_Report.pdf"
-GITHUB_URL = "https://github.com/ievgen-bovkun/flight-engineering-RD/tree/main/hw5_numerical_methods"
+GITHUB_URL = "https://github.com/ievgen-bovkun/flight-engineering-RD/tree/main/homework5"
 
 
 def load_csv(path: Path) -> list[dict[str, str]]:
@@ -154,7 +154,7 @@ def main() -> None:
         Spacer(1, 0.52 * inch),
         p("Репозиторій з MATLAB-кодом, тестами, даними та графіками:", s, "cover_subtitle"),
         Spacer(1, 0.1 * inch),
-        Paragraph(f'<link href="{GITHUB_URL}">GitHub: main/hw5_numerical_methods</link>', s["cover_subtitle"]),
+        Paragraph(f'<link href="{GITHUB_URL}">GitHub: main/homework5</link>', s["cover_subtitle"]),
         PageBreak(),
     ])
 

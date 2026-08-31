@@ -10,16 +10,16 @@
 У MATLAB з кореня репозиторію:
 
 ```matlab
-addpath('hw5_numerical_methods/task1_integrators/src');
-addpath('hw5_numerical_methods/task1_integrators/scripts');
+addpath('homework5/task1_integrators/src');
+addpath('homework5/task1_integrators/scripts');
 task1 = run_task1_integrator_study();
 
-addpath('hw5_numerical_methods/task2_discretization/src');
-addpath('hw5_numerical_methods/task2_discretization/scripts');
+addpath('homework5/task2_discretization/src');
+addpath('homework5/task2_discretization/scripts');
 task2 = run_task2_discretization_study();
 
-tests = runtests({'hw5_numerical_methods/task1_integrators/tests', ...
-                  'hw5_numerical_methods/task2_discretization/tests'});
+tests = runtests({'homework5/task1_integrators/tests', ...
+                  'homework5/task2_discretization/tests'});
 assertSuccess(tests);
 ```
 
