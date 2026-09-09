@@ -16,6 +16,7 @@ MATLAB/Simulink. Роботи охоплюють нелінійну модель
 | [`homework3/`](homework3/) | Власна система рівнянь 6DOF у NED та порівняння зі стандартним Aerospace Block на 11 сценаріях | [`homework3/scripts/run_dz3_comparison.m`](homework3/scripts/run_dz3_comparison.m) | [Фінальний PDF](homework3/report/DZ3_6DOF_NED_Report_Final.pdf), [DOCX](homework3/report/DZ3_6DOF_NED_Report.docx) |
 | [`homework4/`](homework4/) | Лінеаризація поздовжнього руху ЛА, простір станів і порівняння MATLAB `lsim` / Simulink | [`homework4/scripts/run_dz4_variant1.m`](homework4/scripts/run_dz4_variant1.m) | [PDF](homework4/report/DZ4_Longitudinal_Linearization_Report.pdf) |
 | [`homework5/`](homework5/) | Власні RK4 та RKF45, точна ZOH-дискретизація, порівняння ZOH / FOH / Tustin і девіація частоти | Скрипти в [`task1_integrators`](homework5/task1_integrators/) та [`task2_discretization`](homework5/task2_discretization/) | [PDF](homework5/report/DZ5_Numerical_Methods_Report.pdf) |
+| [`homework6/`](homework6/) | Передатна функція в Python control, лінійний/нелінійний перевернутий маятник, PID та Simulink | [`run_analysis.py`](homework6/run_analysis.py), [`build_hw6_models.m`](homework6/simulink/build_hw6_models.m) | [PDF](homework6/report/DZ6_Control_and_Pendulum_Report.pdf) |
 
 ## Структура репозиторію
 
@@ -25,7 +26,8 @@ flight-engineering-RD/
 ├── homework2/   # маятник, NED-повороти та символьні розрахунки
 ├── homework3/   # власна 6DOF NED-модель і порівняння з Aerospace Block
 ├── homework4/   # лінеаризована поздовжня модель ЛА
-└── homework5/   # RK4/RKF45 та дискретизація передатної функції
+├── homework5/   # RK4/RKF45 та дискретизація передатної функції
+└── homework6/   # передатна функція, маятник, PID і Simulink
 ```
 
 Кожна домашня робота зберігає вихідний MATLAB-код, Simulink-моделі, тести,
