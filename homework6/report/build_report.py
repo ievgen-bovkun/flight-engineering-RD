@@ -21,6 +21,7 @@ RESULTS = PROJECT / "results"
 SIMULINK = PROJECT / "simulink"
 ASSETS = Path(__file__).resolve().parent / "assets"
 OUTPUT = Path(__file__).resolve().parent / "DZ6_Control_and_Pendulum_Report.pdf"
+GITHUB_URL = "https://github.com/ievgen-bovkun/flight-engineering-RD/tree/main/homework6"
 
 
 def register_fonts() -> None:
@@ -87,10 +88,10 @@ def main() -> None:
         summary = json.load(stream)
     tf = summary["transfer_function"]
     pendulum = summary["pendulum"]
-    doc = SimpleDocTemplate(str(OUTPUT), pagesize=A4, rightMargin=1.55 * cm, leftMargin=1.55 * cm, topMargin=1.45 * cm, bottomMargin=1.35 * cm, title="ДЗ 6 - передатна функція та перевернутий маятник", author="Ievgen Bovkun")
+    doc = SimpleDocTemplate(str(OUTPUT), pagesize=A4, rightMargin=1.55 * cm, leftMargin=1.55 * cm, topMargin=1.45 * cm, bottomMargin=1.35 * cm, title="ДЗ 6 - передатна функція та перевернутий маятник", author="Ievgen Bovkun, Dmytro Povolotskyi")
     story: list[object] = []
 
-    story += [Spacer(1, 6.0 * cm), p("ДОМАШНЯ РОБОТА №6", styles, "cover_title"), Spacer(1, 0.55 * cm), p("Flight Systems Engineering", styles, "cover_subtitle"), Spacer(1, 0.4 * cm), p("Дослідження передатної функції та моделювання лінійної й нелінійної системи перевернутого маятника", styles, "cover_subtitle"), Spacer(1, 1.25 * cm), p("Інструменти: Python (control, NumPy, SciPy, Matplotlib) і MATLAB/Simulink", styles, "cover_subtitle"), Spacer(1, 0.36 * cm), p(f"Дата формування: {date.today():%d.%m.%Y}", styles, "cover_subtitle"), PageBreak()]
+    story += [Spacer(1, 5.35 * cm), p("ДОМАШНЯ РОБОТА №6", styles, "cover_title"), Spacer(1, 0.55 * cm), p("Flight Systems Engineering", styles, "cover_subtitle"), Spacer(1, 0.4 * cm), p("Дослідження передатної функції та моделювання лінійної й нелінійної системи перевернутого маятника", styles, "cover_subtitle"), Spacer(1, 1.05 * cm), p("Виконали: Ievgen Bovkun, Dmytro Povolotskyi", styles, "cover_subtitle"), Spacer(1, 0.22 * cm), p("Інструменти: Python (control, NumPy, SciPy, Matplotlib) і MATLAB/Simulink", styles, "cover_subtitle"), Spacer(1, 0.24 * cm), p(f"Дата формування: {date.today():%d.%m.%Y}", styles, "cover_subtitle"), Spacer(1, 0.48 * cm), p("Репозиторій з кодом, Simulink-моделями та результатами:", styles, "cover_subtitle"), Spacer(1, 0.1 * cm), Paragraph(f'<link href="{GITHUB_URL}">GitHub: main/homework6</link>', styles["cover_subtitle"]), PageBreak()]
 
     story += [p("1. Мета та склад роботи", styles, "h1"), p("Мета роботи - дослідити перехідну характеристику неперервної системи за допомогою бібліотеки <i>control</i>, визначити її показники якості та полюси, а також побудувати лінійну і нелінійну моделі перевернутого маятника у просторі станів. Для перевірки реалізовано один фіксований крок інтегрування, дискретний PID-регулятор, Simulink-схеми та автоматизовані перевірки.", styles), p("Виконані пункти", styles, "h2"), table([["Частина", "Результат", "Доказ виконання"], ["Передатна функція", "Створено G(s), отримано step_response(), максимум, час піку, 2%-й час встановлення, полюси та висновок про стійкість.", "Python-скрипт, графік та pole map."], ["Маятник", "Побудовано нелінійну систему Лагранжа й лінеаризацію в околі вертикального положення.", "Порівняльні графіки та перевірка лінеаризації."], ["Керування", "PID із фільтрованою похідною, насиченням ±20 Н і захистом від накопичення інтеграла.", "Часові діаграми theta(t), u(t), x(t)."], ["Simulink", "Згенеровано State-Space модель і нелінійну схему з чотирма інтеграторами.", "Два .slx-файли та їхні знімки."], ["Перевірка", "Задано залежності й автоматичні unit-тести.", "requirements.txt, tests/ і run_analysis.py."]], [2.4, 7.6, 6.0], styles), PageBreak()]
 
