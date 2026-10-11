@@ -3,7 +3,7 @@
 **Last reviewed:** 2026-10-11, Europe/Paris.
 **Overall state:** implementation started on `codex/dc-motor-coursework`; project setup verified, task T1 still has external prerequisites unresolved.
 **Implementation owner:** SOL; executing the approved plan in this chat.
-**Current focus:** pause for the user decision on missing physical/FMU dependencies after verified project setup. Next implementation work is T2/T3 motor validation and F1/F2 corrections.
+**Current focus:** T3: match PID behavior across MATLAB/Simulink and validate performance metrics. T2 is verified.
 **Next focus:** validated optimization, then physical-model and cross-platform completion.
 **Dependency focus:** provision/verify Simscape, Simscape Electrical, standalone FMU exporter and C compiler; these need not stop the core MATLAB/Python work.
 
@@ -50,9 +50,9 @@ This is a manually maintained review table. Update it after actual implementatio
 
 | ID | Scope | Necessary element | Status | Current evidence / gap | Acceptance evidence needed / next action | Task |
 |---|---|---|---|---|---|---|
-| M01 | Required · 2.1 | Physical constants, load inertia, governing equations and transfer function | Partial | Buddy equations/parameters reviewed and algebraically consistent; not packaged with automated checks | Verify J=0.03, B=0.001, transfer denominator `[0.015,0.0605,0.012]`, units and load sign in project tests | T2 |
-| M02 | Required · 2.1 | Differential-equation Simulink blocks | Partial | Builder exists; generated/ran successfully inside diagnostic copy, not final project | Saved self-contained SLX, clean-session run, measured speed/current validation | T2 |
-| M03 | Required · 2.1 | State-space implementation | Partial | Analytical model and builder exist; final independent acceptance not run | Correct A/B and both outputs; generated SLX passes same scenarios as M02 | T2 |
+| M01 | Required · 2.1 | Physical constants, load inertia, governing equations and transfer function | Complete | T2: analytical checks, 4 scenario comparisons and saved-model CLI runs passed; generated SLX/CSV/diagrams | Verify J=0.03, B=0.001, transfer denominator `[0.015,0.0605,0.012]`, units and load sign in project tests | T2 |
+| M02 | Required · 2.1 | Differential-equation Simulink blocks | Complete | T2: analytical checks, 4 scenario comparisons and saved-model CLI runs passed; generated SLX/CSV/diagrams | Saved self-contained SLX, clean-session run, measured speed/current validation | T2 |
+| M03 | Required · 2.1 | State-space implementation | Complete | T2: analytical checks, 4 scenario comparisons and saved-model CLI runs passed; generated SLX/CSV/diagrams | Correct A/B and both outputs; generated SLX passes same scenarios as M02 | T2 |
 | M04 | Required · 2.1 / 2.6 | Physical Simscape motor and load | Blocked | Candidate builder exists but is unvalidated; physical libraries unavailable | Actual DC Motor + JL, sources/sensors/references/converters/solver; correct units and torque direction | T6 |
 | M05 | Required · 2.6 | Reusable Motor Model Subsystem | Partial | Equation subsystem exists; common two-input/two-output contract not consistent across implementations | All three plant versions expose Vin/TL inputs and omega/i outputs with matching units | T2, T6 |
 | M06 | Required · 2.1 / 2.6 | Numerical comparison of all three MATLAB models | Blocked | No verified three-way physical comparison; buddy report overstates agreement | Same scenarios/grid/initial conditions; measured error tables and passing tolerance checks including Simscape | T2, T6 |
@@ -94,7 +94,7 @@ This is a manually maintained review table. Update it after actual implementatio
 | D01 | Required | Readable documented code and README instructions | Partial | Buddy README/comments useful but include manual fallback and unsupported completion claims | Exact end-to-end CLI commands, dependencies, model conventions and results index | T1–T9 |
 | D02 | Required | Final report in Ukrainian as PDF | Not started | Ukrainian DOCX exists, but no final PDF or corrected report generator | Ukrainian narrative/tables/captions/plots, source-based values, citations, reproducible PDF build | T8 |
 | D03 | Enabler | Report accuracy and visual verification | Not started | Current DOCX technical defects reviewed; final PDF absent | Render/inspect every final page; no clipping or missing Cyrillic; numbers match run manifest | T8 |
-| D04 | Enabler | Regression tests and honest failure statuses | Not started | Diagnostic audit exists, not a deliverable test suite | Tests cover F1–F6 and numerical acceptance; missing required capabilities cannot be silent skips | T2–T7 |
+| D04 | Enabler | Regression tests and honest failure statuses | Partial | Preflight 2/2 and motor/model checks 7/7 pass; controller/optimization/cross-platform tests follow | Tests cover F1–F6 and numerical acceptance; missing required capabilities cannot be silent skips | T2–T7 |
 | D05 | Enabler | One-command pipeline and clean-copy reproduction | Not started | No final runner; dependencies and cached-gain provenance unresolved | Fail-fast MATLAB/Python/FMU/report pipeline works outside Downloads and previous workspace state | T8, T9 |
 | D06 | Required | Submission ZIP: code, results and README | Not started | Buddy folder is source material, not validated final submission | ZIP contains final code/results/README/PDF/models/FMUs; checksums and clean-extraction checks pass | T9 |
 | D07 | Required | All code and PDF pushed to Git | Unverified | No local coursework branch/commit; no matching remote delivery verified | Commit allowlisted deliverables, push, verify remote SHA and downloadable code/PDF/ZIP paths | T9 |

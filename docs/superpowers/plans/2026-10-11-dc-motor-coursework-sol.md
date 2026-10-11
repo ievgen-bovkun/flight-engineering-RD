@@ -100,12 +100,12 @@ if ($LASTEXITCODE -ne 0) { throw 'MATLAB preflight failed' }
 
 **Interfaces:** `m=motor_models(p)` returns `A,Bu,Bd,C,G,Gd` using state `[i;omega]`; `[mdl,path]=build_model_diffeq(p,modelDir)` and `build_model_statespace(p,modelDir)` produce interchangeable plant subsystems with two input and two output ports; `r=run_plant_comparison(p,scenario)` returns normalized traces and errors.
 
-- [ ] Write failing model tests with anchors `den=[0.015,0.0605,0.012]`, `dcgain(G)=25/3`, `dcgain(Gd)=-500/3`, the spec's exact A/B matrices, and both 12 V/zero-load and 13 V/0.05 N m equilibria. Test zero input and torque sign.
-- [ ] Adapt the buddy's correct equations; validate positive physical parameters and recompute J/B from primitive constants. Use analytical transfer-function coefficients and equilibrium as independent checks, not another call to the same implementation.
-- [ ] Adapt both builders so model parameters are saved in model workspace or a versioned data dictionary. Use `Simulink.SimulationInput` for scenario changes; eliminate `push_params` overwrites. State-space output matrix is `[0 1;1 0]` to expose omega and current. Load/run saved models in a fresh batch session.
-- [ ] Run zero-input, 12 V step at t=0, 12 V with load step at t=1, and nonzero initial-state cases. Align discontinuities exactly. Request solver outputs at the comparison grid instead of extrapolating beyond coverage. Start with ODE `RelTol=1e-8`, `AbsTol=1e-10`, output step 1 ms.
-- [ ] Assert same-grid maximum error <=1e-4 rad/s for speed and <=1e-5 A for current between ODE and the two Simulink implementations. Halve maximum integration step when investigating a failure; do not silently loosen gates. Confirm equations obey the load sign and zero equilibrium.
-- [ ] Export trajectories, parameter manifest and actual model diagrams; commit passing models/tests.
+- [x] Write failing model tests with anchors `den=[0.015,0.0605,0.012]`, `dcgain(G)=25/3`, `dcgain(Gd)=-500/3`, the spec's exact A/B matrices, and both 12 V/zero-load and 13 V/0.05 N m equilibria. Test zero input and torque sign.
+- [x] Adapt the buddy's correct equations; validate positive physical parameters and recompute J/B from primitive constants. Use analytical transfer-function coefficients and equilibrium as independent checks, not another call to the same implementation.
+- [x] Adapt both builders so model parameters are saved in model workspace or a versioned data dictionary. Use `Simulink.SimulationInput` for scenario changes; eliminate `push_params` overwrites. State-space output matrix is `[0 1;1 0]` to expose omega and current. Load/run saved models in a fresh batch session.
+- [x] Run zero-input, 12 V step at t=0, 12 V with load step at t=1, and nonzero initial-state cases. Align discontinuities exactly. Request solver outputs at the comparison grid instead of extrapolating beyond coverage. Start with ODE `RelTol=1e-8`, `AbsTol=1e-10`, output step 1 ms.
+- [x] Assert same-grid maximum error <=1e-4 rad/s for speed and <=1e-5 A for current between ODE and the two Simulink implementations. Halve maximum integration step when investigating a failure; do not silently loosen gates. Confirm equations obey the load sign and zero equilibrium.
+- [x] Export trajectories, parameter manifest and actual model diagrams; commit passing models/tests.
 
 **Run:** `matlab -batch "addpath(genpath('coursework/dc_motor/matlab')); assertSuccess(runtests('coursework/dc_motor/matlab/tests/test_motor_models.m')); assertSuccess(runtests('coursework/dc_motor/matlab/tests/test_model_structure.m'));"` using the full executable path above. Expected: all tests passed, no skipped required test.
 
