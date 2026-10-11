@@ -16,7 +16,7 @@ This is a manually maintained review table. Update it after actual implementatio
 - Buddy source: `C:\Users\ievge\Downloads\Курсовий проект\dc_motor_project\dc_motor_project` (30 MATLAB files, DOCX, 10 reference PNGs; no Python, FMU, generated SLX, PDF or numerical CSV/MAT files in that package).
 - MATLAB numerical audit: `../../tmp/motor_buddy_audit/audit.log`; environment evidence: `../../tmp/motor_buddy_audit/environment.log`.
 - Current implementation: `coursework/dc_motor/` exists in the app-managed worktree `C:\Users\ievge\.codex\worktrees\dc-motor-coursework\Flight Engineering` on `codex/dc-motor-coursework`; all 30 reference source hashes match originals. Source/results published at e649148; tracker publication verified at 34fc6f7.
-- Verified milestone evidence: MATLAB 26/26 and Python 16/16 checks pass; six independent cross-language comparisons pass. Required physical/FMU capabilities remain unavailable; see `coursework/dc_motor/results/json/environment.json` in the implementation branch.
+- Verified milestone evidence: MATLAB 30/30 and Python 16/16 checks pass; six independent cross-language comparisons pass. Required physical/FMU capabilities remain unavailable; see `coursework/dc_motor/results/json/environment.json` in the implementation branch.
 
 ## Status rules
 
@@ -66,8 +66,8 @@ This is a manually maintained review table. Update it after actual implementatio
 | V02 | Required · 2.4 | Settling time, overshoot and static error | Complete | T3: tuning, filter/scenario regressions and metric edge cases passed; pid_baseline_summary.csv records measured speed/current/voltage agreement | Define first-entry/sustained settling and equilibrium-tail error; edge-case tests and output table | T3 |
 | V03 | Required · 2.4 | Total voltage effort and IAE | Complete | T3: tuning, filter/scenario regressions and metric edge cases passed; pid_baseline_summary.csv records measured speed/current/voltage agreement | Consistent fields, units, horizon and generated metrics for every compared controller | T3, T4 |
 | V04 | Required · 2.4 | Quantitative conclusions backed by results | Partial | Production comparisons enforce tolerances; optimization records measured tradeoffs and separates voltage effort from energy. Corrected final report and physical/FMU conclusions remain | Final conclusions reference measured tables; preserve documented defects in original buddy material | T4, T6–T8 |
-| L01 | Required · 2.6 | Closed-loop lag compensator versus PID | Partial | Custom ODE compensator code exists; physical closed-loop comparison absent | Lag and PID run on actual Simscape with identical limits, inputs and horizon | T6 |
-| L02 | Required · 2.6 | Lead design and lag/lead tradeoff comparison | Partial | Candidate lead and ODE sweep exist; physical comparison unverified | Compare settling, overshoot and realized voltage effort; report observed rather than assumed tradeoffs | T6 |
+| L01 | Required · 2.6 | Closed-loop lag compensator versus PID | Partial | New stable lag design and saturated reference simulation verified; 12 s comparison: ts=2.330 s, error=0.160 rad/s. Physical comparison pending | Run lag and PID on actual Simscape with matching limits and scenario | T6 |
+| L02 | Required · 2.6 | Lead design and lag/lead tradeoff comparison | Partial | New lead design verified against lsim: ts=1.781 s, error=1.525 rad/s; measured effort slightly below lag. Physical comparison pending | Validate actual physical traces and report observed tradeoffs | T6 |
 
 ## Python and FMU requirements
 
@@ -92,10 +92,10 @@ This is a manually maintained review table. Update it after actual implementatio
 | ID | Scope | Necessary element | Status | Current evidence / gap | Acceptance evidence needed / next action | Task |
 |---|---|---|---|---|---|---|
 | D01 | Required | Readable documented code and README instructions | Partial | Project README documents implemented MATLAB/Python CLI commands and prerequisites; modular code exists. Final end-to-end instructions await remaining features | Exact end-to-end CLI commands, dependencies, model conventions and results index | T1–T9 |
-| D02 | Required | Final report in Ukrainian as PDF | Partial | 10-page Ukrainian progress PDF and generator verified; final report intentionally rejects missing physical/FMU results | Complete mandatory comparisons, update narrative and build final PDF | T8 |
-| D03 | Enabler | Report accuracy and visual verification | Partial | Progress PDF rendered with Poppler; all 10 pages inspected; Ukrainian text/current values validated | Repeat checks on final PDF after remaining results | T8 |
-| D04 | Enabler | Regression tests and honest failure statuses | Partial | MATLAB 26/26 and Python 16/16 pass; required physical/FMU tests still unavailable | Tests cover F1–F6 and numerical acceptance; missing required capabilities cannot be silent skips | T2–T7 |
-| D05 | Enabler | One-command pipeline and clean-copy reproduction | Partial | Core CLI pipeline exit 0: regenerated MATLAB/Python evidence, 26 MATLAB checks, 16 Python/report checks and progress PDF; final/full and clean-copy checks remain | Complete full physical/FMU/report pipeline and validate clean extraction | T8, T9 |
+| D02 | Required | Final report in Ukrainian as PDF | Partial | 11-page Ukrainian progress PDF and generator verified; final report intentionally rejects missing physical/FMU results | Complete mandatory comparisons, update narrative and build final PDF | T8 |
+| D03 | Enabler | Report accuracy and visual verification | Partial | Progress PDF rendered with Poppler; all 11 pages inspected; Ukrainian text/current values validated | Repeat checks on final PDF after remaining results | T8 |
+| D04 | Enabler | Regression tests and honest failure statuses | Partial | MATLAB 30/30 and Python 16/16 pass; required physical/FMU tests still unavailable | Tests cover F1–F6 and numerical acceptance; missing required capabilities cannot be silent skips | T2–T7 |
+| D05 | Enabler | One-command pipeline and clean-copy reproduction | Partial | Core CLI pipeline exit 0: regenerated MATLAB/Python evidence, 30 MATLAB checks, 16 Python/report checks and progress PDF; final/full and clean-copy checks remain | Complete full physical/FMU/report pipeline and validate clean extraction | T8, T9 |
 | D06 | Required | Submission ZIP: code, results and README | Not started | Buddy folder is source material, not validated final submission | ZIP contains final code/results/README/PDF/models/FMUs; checksums and clean-extraction checks pass | T9 |
 | D07 | Required | All code and PDF pushed to Git | Partial | Source milestones pushed and remote SHA verified at e649148; final PDF/ZIP remain incomplete | Commit allowlisted deliverables, push, verify remote SHA and downloadable code/PDF/ZIP paths | T9 |
 
@@ -128,7 +128,9 @@ No overall completion percentage is shown: these rows have unequal effort, and a
 |---|---|---|
 | 2026-10-11 | User assignment, spec/plan, local branch/worktree and artifact inventory, buddy source hashes, prior same-day CLI logs | Initial tracker created; source unchanged; no local coursework implementation yet; recorded current focus and prerequisite gaps |
 | 2026-10-11 | Setup milestone: managed worktree/branch, 30 source hashes, configuration, MATLAB/Simulink smoke, preflight tests | 2/2 tests PASS after RED; missing required capabilities fail clearly; pause requested for prerequisite decision |
-| 2026-10-11 | Disturbance and independent Python milestones; MATLAB 26/26, Python 11/11; six cross-language cases; remote source SHA verified | Source branch published at e649148; physical products require administrator installation; final PDF/FMU/ZIP not complete |
+| 2026-10-11 | Disturbance and independent Python milestones; MATLAB 30/30, Python 11/11; six cross-language cases; remote source SHA verified | Source branch published at e649148; physical products require administrator installation; final PDF/FMU/ZIP not complete |
 | 2026-10-11 | Status review against completed milestone artifacts and implementation ledger | Corrected stale queued/failing narrative entries; retained physical/FMU blockers and pending Ukrainian PDF/ZIP; installation approval still pending |
 
-| 2026-10-11 | Core runner exit 0, MATLAB 26/26, Python/report 16/16, SHA256 manifest and 10-page visual inspection | Ukrainian progress PDF verified; final report remains incomplete; simple milestone table maintained separately |
+| 2026-10-11 | Core runner exit 0, MATLAB 30/30, Python/report 16/16, SHA256 manifest and 11-page visual inspection | Ukrainian progress PDF verified; final report remains incomplete; simple milestone table maintained separately |
+
+| 2026-10-11 | Lag/lead reference synthesis, independent lsim, event-refinement tests, full core exit 0; MATLAB 30/30 and Python/report 16/16; all 11 PDF pages inspected | Reference compensator milestone verified; physical implementation, real FMU and final delivery still pending |

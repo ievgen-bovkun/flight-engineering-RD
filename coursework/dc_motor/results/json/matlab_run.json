@@ -3,12 +3,12 @@
   "mode": "core",
   "complete": false,
   "corePassed": true,
-  "timestampUTC": "2026-10-11T18:45:01Z",
+  "timestampUTC": "2026-10-11T18:56:45Z",
   "matlabVersion": "26.1.0.3312084 (R2026a) Update 4",
   "optimizationRegenerated": false,
   "tests": {
-    "total": 26,
-    "passed": 26,
+    "total": 30,
+    "passed": 30,
     "failed": 0,
     "incomplete": 0
   },
@@ -23,7 +23,7 @@
     "release": "2026a",
     "version": "26.1.0.3312084 (R2026a) Update 4",
     "platform": "PCWIN64",
-    "timestampUTC": "2026-10-11T18:43:45Z",
+    "timestampUTC": "2026-10-11T18:55:27Z",
     "products": [
       "Aerospace Blockset",
       "Aerospace Toolbox",
@@ -68,8 +68,12 @@
       "sha256": "59b41c794dbcacce4994b95ff35f301bd6e21a0b8bd3b112a5a0612ec55ec0e7"
     },
     {
+      "path": "matlab/run_compensator_study.m",
+      "sha256": "066d4b09bc694deca88725dc265d93b3d9b747660a84322e43f088efaa8c77fb"
+    },
+    {
       "path": "matlab/run_coursework.m",
-      "sha256": "c798a0e97ddba7c19a6215db0970fb86a3c9f32561c254b23e8eccc81c0bc9a3"
+      "sha256": "11d6c330820ea7d88de79e2710d1bfa44f99d50cbb9c54ddc01f0f703cd90808"
     },
     {
       "path": "matlab/run_disturbance_study.m",
@@ -98,6 +102,10 @@
     {
       "path": "matlab/src/dc_project_root.m",
       "sha256": "bb2afe2aefdc115c6c072d5be1588f812f504fc646677668105ad2e5ee9382d5"
+    },
+    {
+      "path": "matlab/src/design_compensator.m",
+      "sha256": "98e2d1a27c07fefb523b8864598a714fc875199c65e0d37e5464fa0062bbae34"
     },
     {
       "path": "matlab/src/design_observer.m",
@@ -172,6 +180,10 @@
       "sha256": "893daccf766fa0ca40d76b3df0bfb690c71f5fb915fb82adfbdf41b34ee18d27"
     },
     {
+      "path": "matlab/src/simulate_compensator.m",
+      "sha256": "35788da8547d46cb448e083820002d726c7003c89ac06194ff2817adbd95c122"
+    },
+    {
       "path": "matlab/src/simulate_disturbance.m",
       "sha256": "57e0bed07a3607c738f60cdcb713fee1613ca37dd92de1c4e1f5d9926a7f3d59"
     },
@@ -182,6 +194,10 @@
     {
       "path": "matlab/src/tune_ziegler_nichols.m",
       "sha256": "83fe8f74b6a34eb50f9004913925bdbdd96a42ce365c6bec0307ea06e585f8a0"
+    },
+    {
+      "path": "matlab/tests/test_compensators.m",
+      "sha256": "4cb87dc88093247ade08f607e9371df6b18be4cf87ecfa11013b0a0511382a66"
     },
     {
       "path": "matlab/tests/test_disturbance.m",

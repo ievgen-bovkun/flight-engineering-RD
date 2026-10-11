@@ -20,7 +20,7 @@ from reportlab.platypus import (Image, KeepTogether, PageBreak, Paragraph,
                                SimpleDocTemplate, Spacer, Table, TableStyle)
 
 ROOT = Path(__file__).resolve().parents[1]
-CORE_SECTIONS = ("modeling", "pid", "optimization", "disturbance", "python")
+CORE_SECTIONS = ("modeling", "pid", "optimization", "disturbance", "python", "compensator_design")
 FULL_SECTIONS = CORE_SECTIONS + ("simscape", "compensators", "fmu", "clean_copy")
 REQUIRED_INPUTS = (
     "config/parameters.json", "config/scenarios.json", "report/report_uk.md",
@@ -32,6 +32,8 @@ REQUIRED_INPUTS = (
     "results/figures/dc_motor_diffeq_subsystem.png", "results/figures/dc_motor_statespace_subsystem.png",
     "results/figures/optimized_pid_comparison.png", "results/figures/optimization_tradeoffs.png",
     "results/figures/required_disturbance.png", "results/figures/python_matlab_comparison.png",
+    "results/csv/compensator_reference_metrics.csv", "results/json/compensator_reference.json",
+    "results/figures/compensator_reference_comparison.png",
 )
 
 
@@ -88,6 +90,11 @@ def create_manifest(root=ROOT):
             if key != "scenario" and (not math.isfinite(float(value)) or float(value) > (1e-4 if "speed" in key else 1e-5)):
                 raise ValueError("Failed plant comparison")
     comparison = rows(root, "python_matlab_comparison.csv")
+    compensators = rows(root, "compensator_reference_metrics.csv")
+    compensator_record = load_json(root / "results/json/compensator_reference.json")
+    if ({r["controller"] for r in compensators} != {"PID", "lag", "lead"}
+            or compensator_record["physicalValidated"] is not False or compensator_record["horizon"] != 12):
+        raise ValueError("Incomplete or mislabeled compensator reference study")
     expected = {"zero_input", "open_loop_12V", "plant_load_step", "nonzero_initial", "pid_nominal", "pid_required_load"}
     if {r["scenario"] for r in comparison} != expected:
         raise ValueError("Incomplete Python comparison")
@@ -169,6 +176,7 @@ def build_report(root=ROOT, draft=False, output=None):
     selected = next(r for r in controllers if r["controller"] == "optimized")
     baseline = next(r for r in controllers if r["controller"] == "pole_placement")
     py = rows(root, "python_matlab_comparison.csv")
+    comp = rows(root, "compensator_reference_metrics.csv")
     fmt = lambda x, digits=3: f"{float(x):.{digits}f}"
     sci = lambda x: f"{float(x):.2e}"
     labels = {"ziegler_nichols": "Зіглер-Нікольс", "pole_placement": "Розміщення полюсів", "buddy_baseline": "Коефіцієнти колеги", "optimized": "Оптимізований ПІД"}
@@ -178,6 +186,7 @@ def build_report(root=ROOT, draft=False, output=None):
         "plant": [["Сценарій", "Δω: рівняння", "Δω: стани", "Макс. Δi, А"]] + [[r["scenario"], sci(r["max_speed_error_diffeq"]), sci(r["max_speed_error_statespace"]), sci(max(float(r[k]) for k in r if "current" in k))] for r in rows(root, "plant_comparison_summary.csv")],
         "controllers": [["Регулятор", "ts, с", "OS, %", "IAE, рад", "∫|V|dt, В·с", "Похибка, рад/с"]] + [[labels[r["controller"]], fmt(r["settling_s"]), fmt(r["overshoot_pct"]), fmt(r["IAE_rad"]), fmt(r["effort_Vs"]), sci(r["tail_error_rad_s"]) + ("*" if r["tail_equilibrium_validated"] != "1" else "")] for r in controllers],
         "gains": [["Kp", "Ki", "Kd", "Горизонт", "Крок виводу"] , [*[fmt(v, 6) for v in opt["K"]], "5 с", "0.001 с"]],
+        "compensators": [["Регулятор", "ts, с", "OS, %", "Похибка, рад/с", "IAE, рад", "∫|V|dt, В·с"]] + [[r["controller"], fmt(r["settling_s"]), fmt(r["overshoot_pct"]), fmt(r["tail_error_rad_s"]), fmt(r["IAE_rad"]), fmt(r["effort_Vs"])] for r in comp],
         "python": [["Сценарій", "Δω, рад/с", "Δi, А", "ΔV, В", "Δts, с"]] + [[r["scenario"], sci(r["max_speed_error"]), sci(r["max_current_error"]), sci(r["max_voltage_error"]), fmt(r["settling_difference_s"])] for r in py],
         "disturbance": [["Момент / час", "Регулятор", "ts, с", "Провал, рад/с", "Відновлення, с"]] + [[{1: "0.05 / 1 с", 2: "0.05 / 3 с", 3: "0.5 / 3 с", 4: "1.5 / 3 с"}[int(r["scenario"])], "ПІД" if r["controller"] == "PID" else "ПІД + спост.", fmt(r["settling_s"]), fmt(r["trajectory_dip_rad_s"]), fmt(r["recovery_s"])] for r in rows(root, "disturbance_summary.csv")],
         "pending": [["Вимога", "Перевірка завершення"], ["Simscape / Electrical", "Реальні фізичні блоки та чисельний збіг"], ["Lag та lead", "Порівняння з ПІД на фізичній моделі"], ["FMU Builder / компілятор", "Автономний експорт та запуск FMPy"], ["Повне подання", "Фінальний PDF, ZIP та чисте відтворення"]],
@@ -188,9 +197,11 @@ def build_report(root=ROOT, draft=False, output=None):
         "optimization": f"Використано п'ять стартів Nelder-Mead (fminsearch) та генетичний пошук; seed = {opt['seed']}, сумарно {opt['evaluations']} обчислень основного пошуку. Межі коефіцієнтів: Kp [2, 300], Ki [1, 800], Kd [0.1, 40]. Вибрано багатостартовий Nelder-Mead; λ = {opt['cfg']['lambda']}. Досліджено сім ваг. Пошук використовує RK4 з кроком 0.0005 с, остаточна перевірка - ode45 та Simulink, RelTol = 1e-8, AbsTol = 1e-10.",
         "tradeoff": f"Порівняно з розміщенням полюсів час усталення змінився з {fmt(baseline['settling_s'])} до {fmt(selected['settling_s'])} с, IAE - з {fmt(baseline['IAE_rad'])} до {fmt(selected['IAE_rad'])} рад. Абсолютний керуючий вплив зріс з {fmt(baseline['effort_Vs'])} до {fmt(selected['effort_Vs'])} В·с. Отже, швидкодія та IAE покращилися ціною невеликого збільшення витрат напруги; одночасного покращення всіх критеріїв немає.",
         "provenance": f"Маніфест: results/run_manifest.json. Зафіксовано {len(manifest['files'])} файлів; час формування UTC: {manifest['timestampUTC']}. Конфігурація, MATLAB/Python-код, дані та зображення мають контрольні суми. Оптимізовані коефіцієнти додатково звіряються з хешами початкової конфігурації й обчислювального коду; прихована підстановка значень не допускається.",
+        "compensators": f"Виміряний час усталення: ПІД {fmt(comp[0]['settling_s'])} с, lag {fmt(comp[1]['settling_s'])} с, lead {fmt(comp[2]['settling_s'])} с. Для lag та lead немає інтегратора, тому залишкова похибка не нульова. Lag перевищує ціль 2 с, lead перевищує обрану межу статичної похибки 0.2 рад/с. Абсолютний керуючий вплив: lag {fmt(comp[1]['effort_Vs'])} В·с, lead {fmt(comp[2]['effort_Vs'])} В·с. У цьому налаштуванні lead швидший за lag та витрачає трохи менше напруги; універсальна перевага не доведена.",
         "conclusions": f"Номінальний оптимізований ПІД: ts = {fmt(selected['settling_s'])} с, OS = {fmt(selected['overshoot_pct'])}%, IAE = {fmt(selected['IAE_rad'])} рад, ∫|V|dt = {fmt(selected['effort_Vs'])} В·с. Максимальна різниця швидкості Python/MATLAB: {sci(max(float(r['max_speed_error']) for r in py))} рад/с. Зіглер-Нікольс має ts = {fmt(controllers[0]['settling_s'])} с та OS = {fmt(controllers[0]['overshoot_pct'])}% і не відповідає обраним цілям.",
     }
     figures = {"diffeq": ("dc_motor_diffeq_subsystem.png", "Підсистема двигуна: диференціальні рівняння", 150), "statespace": ("dc_motor_statespace_subsystem.png", "Підсистема двигуна: простір станів", 115), "pid": ("optimized_pid_comparison.png", "Номінальна швидкість і прикладена напруга", 255), "tradeoffs": ("optimization_tradeoffs.png", "Емпіричні компроміси IAE та керуючого впливу", 290), "disturbance": ("required_disturbance.png", "Реакція на необхідний момент навантаження", 250), "python": ("python_matlab_comparison.png", "Незалежні траєкторії MATLAB та Python", 285)}
+    figures["compensators"] = ("compensator_reference_comparison.png", "ПІД, lag та lead на рівняннях двигуна, 12 с", 265)
     width = A4[0] - 88
     story = []
     figure_number = 0

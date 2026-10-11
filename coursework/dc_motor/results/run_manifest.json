@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "complete": false,
-  "timestampUTC": "2026-10-11T18:49:48.502386+00:00",
+  "timestampUTC": "2026-10-11T18:58:35.642467+00:00",
   "sections": {
     "modeling": {
       "status": "passed"
@@ -18,6 +18,9 @@
     "python": {
       "status": "passed"
     },
+    "compensator_design": {
+      "status": "passed"
+    },
     "simscape": {
       "status": "blocked"
     },
@@ -32,8 +35,8 @@
     }
   },
   "matlabTests": {
-    "total": 26,
-    "passed": 26,
+    "total": 30,
+    "passed": 30,
     "failed": 0,
     "incomplete": 0
   },
@@ -60,27 +63,31 @@
     },
     {
       "path": "matlab/models/dc_motor_diffeq.slx",
-      "sha256": "b5a5be6ec2e60ac0f46dba91a32823c6c7a6f96b413627f213ad90ab06056c30"
+      "sha256": "66261d0f1c7e2ef2284f123a2b7fb696cc6f1fc1ece0578001becb334e8cba07"
     },
     {
       "path": "matlab/models/dc_motor_pid_diffeq.slx",
-      "sha256": "827fdf21d0fd505f24c35d827e894413ec08c202688f87d8a368b1c442d13e1e"
+      "sha256": "6074482ccb0d1d5781d9c4ae1cfd330fcb492258baee4a2bd1e8aa9ddff29fac"
     },
     {
       "path": "matlab/models/dc_motor_pid_statespace.slx",
-      "sha256": "95f9eb214ef5dfcf9e584d2deb1b8436ef27a161d42758e4b68fb6cc16d42f85"
+      "sha256": "a888b740e12f8ed209b16dd19ed3564121d1faa6fa6746e640d97e8bd59e8cc5"
     },
     {
       "path": "matlab/models/dc_motor_statespace.slx",
-      "sha256": "14c58f795508c667602c3258cad0583b1edaf4f8d0a2e5221835f81325ac83d6"
+      "sha256": "3508b2d84b6b2d1e8376b76f31bd92d511dea57f3bdf937adc50ae226551056f"
     },
     {
       "path": "matlab/preflight.m",
       "sha256": "59b41c794dbcacce4994b95ff35f301bd6e21a0b8bd3b112a5a0612ec55ec0e7"
     },
     {
+      "path": "matlab/run_compensator_study.m",
+      "sha256": "066d4b09bc694deca88725dc265d93b3d9b747660a84322e43f088efaa8c77fb"
+    },
+    {
       "path": "matlab/run_coursework.m",
-      "sha256": "c798a0e97ddba7c19a6215db0970fb86a3c9f32561c254b23e8eccc81c0bc9a3"
+      "sha256": "11d6c330820ea7d88de79e2710d1bfa44f99d50cbb9c54ddc01f0f703cd90808"
     },
     {
       "path": "matlab/run_disturbance_study.m",
@@ -109,6 +116,10 @@
     {
       "path": "matlab/src/dc_project_root.m",
       "sha256": "bb2afe2aefdc115c6c072d5be1588f812f504fc646677668105ad2e5ee9382d5"
+    },
+    {
+      "path": "matlab/src/design_compensator.m",
+      "sha256": "98e2d1a27c07fefb523b8864598a714fc875199c65e0d37e5464fa0062bbae34"
     },
     {
       "path": "matlab/src/design_observer.m",
@@ -183,6 +194,10 @@
       "sha256": "893daccf766fa0ca40d76b3df0bfb690c71f5fb915fb82adfbdf41b34ee18d27"
     },
     {
+      "path": "matlab/src/simulate_compensator.m",
+      "sha256": "35788da8547d46cb448e083820002d726c7003c89ac06194ff2817adbd95c122"
+    },
+    {
       "path": "matlab/src/simulate_disturbance.m",
       "sha256": "57e0bed07a3607c738f60cdcb713fee1613ca37dd92de1c4e1f5d9926a7f3d59"
     },
@@ -193,6 +208,10 @@
     {
       "path": "matlab/src/tune_ziegler_nichols.m",
       "sha256": "83fe8f74b6a34eb50f9004913925bdbdd96a42ce365c6bec0307ea06e585f8a0"
+    },
+    {
+      "path": "matlab/tests/test_compensators.m",
+      "sha256": "4cb87dc88093247ade08f607e9371df6b18be4cf87ecfa11013b0a0511382a66"
     },
     {
       "path": "matlab/tests/test_disturbance.m",
@@ -276,15 +295,31 @@
     },
     {
       "path": "report/build_report.py",
-      "sha256": "b207f4ed93dcdd05a07db7baf502d25554e7b14fd8a41f6474dcb976d4e25a75"
+      "sha256": "0b0a4fb9f1b47e8de3d960445f9deb94c500486e6773543dbf6af4ca2f962f37"
     },
     {
       "path": "report/report_uk.md",
-      "sha256": "dcb9638cc40a6e74e4431c0d21a854dc65eded9d25d6c55ed45f56200e853f63"
+      "sha256": "134759b47faa78cbed575669f7b6923ef7a1137dd60f38f10fb74258811e352a"
     },
     {
       "path": "requirements.txt",
       "sha256": "7a6226a1607227025d2b1ddc1d61a01d98f67e49f51229ff492bb63b067c4783"
+    },
+    {
+      "path": "results/csv/compensator_reference_lag.csv",
+      "sha256": "d31bd9738b12f65b8a500d908405a13f5b8b7c868b924d6a416bae01171658f5"
+    },
+    {
+      "path": "results/csv/compensator_reference_lead.csv",
+      "sha256": "56232b062a1f60cf5b75a1e979526ec821c859dc0868ee9583eb75157c9fc1fd"
+    },
+    {
+      "path": "results/csv/compensator_reference_metrics.csv",
+      "sha256": "0875ba1f82a5ad07d881685f8bab7f18f62a0402b5924d5c7c2f410345527cb5"
+    },
+    {
+      "path": "results/csv/compensator_reference_PID.csv",
+      "sha256": "715a9da1d7758b83b72b7001d4bcb4aae3afba9cc76137237915f9a6c72e74ad"
     },
     {
       "path": "results/csv/controller_metrics.csv",
@@ -399,6 +434,10 @@
       "sha256": "8164a71b86cde1f751342a973340649ea216dbc11b50fe3b9f4a55b60fc7c62a"
     },
     {
+      "path": "results/figures/compensator_reference_comparison.png",
+      "sha256": "46551d44ddf6b2377a2a51294d1150f9559bfced6fcfe4c10d5d57402e5adee0"
+    },
+    {
       "path": "results/figures/dc_motor_diffeq_diagram.png",
       "sha256": "c331f0590741f2d487ada20bba527df1653f0f3154d3d25dc91a7bcbc5958992"
     },
@@ -424,7 +463,7 @@
     },
     {
       "path": "results/figures/observer_disturbance.png",
-      "sha256": "a28aa5f12231ffd74391ce50eddec608d3332588f8165c3dedac2b7976b7ad62"
+      "sha256": "5a045231b794fa1f9520280f64c9e4228ae372ace947f67f725200410a75a01a"
     },
     {
       "path": "results/figures/optimization_tradeoffs.png",
@@ -436,11 +475,11 @@
     },
     {
       "path": "results/figures/pid_baselines.png",
-      "sha256": "52ac01801f249b02727a25db5c41378d18ab6db21689f031d437b3b6df68c00b"
+      "sha256": "86711c3fbb5695ea593cfc1c0c0e8de5626b8b6e52917090d6a7e9120934a55e"
     },
     {
       "path": "results/figures/plant_load_comparison.png",
-      "sha256": "b2735f834cb65b5e7527c09d9bc71ad0c7d9bbbedefe47698a10e95e43a3d691"
+      "sha256": "5bc9b6e4f9d8e27c6ca66385c2ff50fd57b6c362d49d18b6759332024ba3f9b7"
     },
     {
       "path": "results/figures/python_matlab_comparison.png",
@@ -448,7 +487,11 @@
     },
     {
       "path": "results/figures/required_disturbance.png",
-      "sha256": "f1b3b2badf1677cc147023d8e5421fddc8a93d78f4f7bf79e3b3722c9373032d"
+      "sha256": "aa4763bee6738deffc08d9c517dae5bb262244084f1b1242b1ffcf697ba39bc3"
+    },
+    {
+      "path": "results/json/compensator_reference.json",
+      "sha256": "98792831cf3a731e79919cd483ba1da5a943418018f26142670e0f35d361961d"
     },
     {
       "path": "results/json/disturbance.json",
@@ -456,11 +499,11 @@
     },
     {
       "path": "results/json/environment.json",
-      "sha256": "de8ba2ca9f69ee096747c21ae36ff39dcdea499472d06f89d5ac11fa32399628"
+      "sha256": "78cd06a53a4acc87dc7bd9ceeb109499a827ee79cf7538934e73aa793a6202e4"
     },
     {
       "path": "results/json/matlab_run.json",
-      "sha256": "88748624f0706da92e182b3f538a1f3ea2c5cc2775f25d27f290099a158c302b"
+      "sha256": "92963c987c09ef92764ee5e8603f27975f36956be7730c488c81088d76b88753"
     },
     {
       "path": "results/json/optimization.json",

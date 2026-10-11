@@ -29,7 +29,7 @@ if regenerateOptimization
 else
     load_optimized_gains(); % Explicit verified-artifact mode; no fallback gains.
 end
-finalize_optimization_artifacts(); run_disturbance_study();
+finalize_optimization_artifacts(); run_disturbance_study(); run_compensator_study();
 K=load_optimized_gains();
 for kind={'diffeq','statespace'}
     mdl=['dc_motor_pid_' kind{1}]; load_system(fullfile(root,'matlab','models',[mdl '.slx']));
