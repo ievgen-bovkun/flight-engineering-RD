@@ -1,6 +1,6 @@
 # DC Motor Coursework Implementation Plan for SOL
 
-> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking. Execute in the SOL session; do not create another chat or delegate unless the user requests it.
+> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [x]`) syntax for tracking. Execute in the SOL session; do not create another chat or delegate unless the user requests it.
 
 **Goal:** Complete the six-part DC motor coursework with three validated MATLAB implementations, independent Python and MATLAB-exported FMU comparisons, a Ukrainian PDF report, submission ZIP, and verified Git push.
 
@@ -101,8 +101,8 @@ if ($LASTEXITCODE -ne 0) { throw 'MATLAB preflight failed' }
 - [x] Copy only the buddy's source into `reference/buddy/src`, record SHA256 and original paths, and bring the spec/plan into this branch. Record the missing Python/FMUs and F1-F6 as issues to close. Do not copy reference PNGs into final results.
 - [x] Write the exact constants and choices from the spec into config. Record clean-start zero states and controller `beta=1`, derivative-on-measurement `gamma=0`, `Tf=max(Kd/(20*Kp),0.001)`, back-calculation anti-windup.
 - [x] Implement and run CLI preflight. Check actual product availability and library loads, `which('exportToFMU')`, supported compiler selection, and a minimal new_system/sim smoke model. Check Python dependencies separately.
-- [ ] Resolve required Simscape, Simscape Electrical and FMU export/compiler availability through the supported installation/licensing path. Never claim completion using only ODE substitutes. If unavailable, continue independent tasks and record exactly which required validation remains blocked.
-- [ ] Verify the runner reports required missing capabilities as failure, then commit this setup/provenance increment.
+- [x] Resolve required Simscape, Simscape Electrical and FMU export/compiler availability through the supported installation/licensing path. Never claim completion using only ODE substitutes. If unavailable, continue independent tasks and record exactly which required validation remains blocked.
+- [x] Verify the runner reports required missing capabilities as failure, then commit this setup/provenance increment.
 
 **Evidence from this review:** normal-user MATLAB works; Simscape libraries/exportToFMU were unavailable, and `mex.getCompilerConfigurations('C','Selected')` returned empty. Recheck rather than treating this as permanently fixed or permanently impossible.
 
@@ -170,13 +170,13 @@ if ($LASTEXITCODE -ne 0) { throw 'MATLAB preflight failed' }
 
 **Interfaces:** physical `Motor Model Subsystem` implements task 2's exact ports and units. `build_compensated_model(p,controller,scenario,modelDir)` wraps this plant with the chosen PID or `C(s)=Kc*(s+z)/(s+p)` and the same declared voltage limits.
 
-- [ ] Confirm physical libraries load and can compile a minimal physical network. If missing, mark this required task blocked; do not replace it with a transfer-function block named Simscape.
-- [ ] Inspect actual R2026a library paths, DialogParameters/MaskNames and port handles. Configure DC Motor Jm/Bm internally, external inertia JL only, current and rotational speed sensors, controlled voltage and opposing torque sources, references and solver. Set converter units explicitly to V, N m, rad/s and A. Use supported physical-port handles/connections and validate each parameter; remove manual assembly fallback.
-- [ ] Compile and simulate open-loop zero-input, 12 V step, and opposing-load cases; assert Simscape/ODE speed error <=1e-3 rad/s and current error <=1e-4 A. Refine solver tolerances to diagnose discrepancies. Save actual physical model diagram and comparison CSV.
-- [ ] Design lag and lead for the assignment plant; do not copy CTMS's numerical gains for a different plant. Validate `p>0,z>0,Kc>0`, lag `z>p`, lead `z<p`, stable nominal closed-loop poles and predicted DC error.
-- [ ] Run PID, lag and lead **on the Simscape plant** and the reference ODE for 12 s with identical scenarios, initial states and voltage limits. Implement the same compensator anti-windup law in both. Compare trace errors at the open-loop physical tolerances, allowing `1e-3 V` for controller voltage after a convergence study.
-- [ ] Measure settling, OS, steady error, IAE and voltage effort for all three. Explain observed tradeoffs even if lead does not spend more effort for this particular tuning. A large loop gain alone is not evidence of higher realized effort under saturation.
-- [ ] Add tests proving missing blocks, failed parameter configuration and comparison error above threshold cause a failed task; `simscape_ok` must depend on measured acceptance. Export SLX/figures and commit.
+- [x] Confirm physical libraries load and can compile a minimal physical network. If missing, mark this required task blocked; do not replace it with a transfer-function block named Simscape.
+- [x] Inspect actual R2026a library paths, DialogParameters/MaskNames and port handles. Configure DC Motor Jm/Bm internally, external inertia JL only, current and rotational speed sensors, controlled voltage and opposing torque sources, references and solver. Set converter units explicitly to V, N m, rad/s and A. Use supported physical-port handles/connections and validate each parameter; remove manual assembly fallback.
+- [x] Compile and simulate open-loop zero-input, 12 V step, and opposing-load cases; assert Simscape/ODE speed error <=1e-3 rad/s and current error <=1e-4 A. Refine solver tolerances to diagnose discrepancies. Save actual physical model diagram and comparison CSV.
+- [x] Design lag and lead for the assignment plant; do not copy CTMS's numerical gains for a different plant. Validate `p>0,z>0,Kc>0`, lag `z>p`, lead `z<p`, stable nominal closed-loop poles and predicted DC error.
+- [x] Run PID, lag and lead **on the Simscape plant** and the reference ODE for 12 s with identical scenarios, initial states and voltage limits. Implement the same compensator anti-windup law in both. Compare trace errors at the open-loop physical tolerances, allowing `1e-3 V` for controller voltage after a convergence study.
+- [x] Measure settling, OS, steady error, IAE and voltage effort for all three. Explain observed tradeoffs even if lead does not spend more effort for this particular tuning. A large loop gain alone is not evidence of higher realized effort under saturation.
+- [x] Add tests proving missing blocks, failed parameter configuration and comparison error above threshold cause a failed task; `simscape_ok` must depend on measured acceptance. Export SLX/figures and commit.
 
 ### Task 7: Implement independent Python and real MATLAB FMU exchange
 
@@ -186,11 +186,11 @@ if ($LASTEXITCODE -ne 0) { throw 'MATLAB preflight failed' }
 
 - [x] Write independent Python analytical tests for the transfer-function constants, equilibria, load sign, PID filter/anti-windup and metric edge cases. Implement the ODE directly from the equations using `scipy.integrate.solve_ivp`; do not replay MATLAB output as a simulation.
 - [x] Compare Python and MATLAB plant/PID traces for all required scenarios on identical grids with event-aligned integration. Require max speed error <=1e-3 rad/s, current <=1e-4 A, voltage <=1e-2 V, settling difference <=2 ms; diagnose rather than conceal discrepancies.
-- [ ] Confirm a licensed compatible standalone exporter and compiler, using local R2026a help. First export a trivial supported model and run it in Python. A tool-coupling FMU that requires a running MATLAB session is not the selected standalone delivery path.
-- [ ] Build clean export harnesses from the validated equation/state-space plant and matched controller, with root scalar ports, embedded parameters and no plotting/file I/O/observer callbacks. Use fixed-step ode4 initially at 1e-4 s. Export through `exportToFMU(model,'FMIVersion','2.0','FMUType','CS')` and supported no-UI options. The assignment does not require exporting the physical Simscape network itself.
-- [ ] Check FMU ZIP integrity, `modelDescription.xml`, FMI 2.0 CoSimulation declaration, units/causality, named I/O and executable win64 binary. Inspect generation-tool metadata and record SHA256. Test both exports with FMPy in a Python process with MATLAB closed.
-- [ ] Use FMPy on open-loop and closed-loop scenarios, including TL at t=1. Define input zero-order holds and event-side semantics explicitly, align all events to communication steps, and compare FMPy results to both MATLAB and independent Python. Use initial communication step 1 ms and a 0.5 ms refinement; no interpolation across a discontinuity.
-- [ ] Apply the cross-platform tolerances above; if communication error exceeds them, refine and document the accepted interval. Validate a fresh FMU instance per scenario. Save comparison error tables/plots and commit source plus actual FMUs.
+- [x] Confirm a licensed compatible standalone exporter and compiler, using local R2026a help. First export a trivial supported model and run it in Python. A tool-coupling FMU that requires a running MATLAB session is not the selected standalone delivery path.
+- [x] Build clean export harnesses from the validated equation/state-space plant and matched controller, with root scalar ports, embedded parameters and no plotting/file I/O/observer callbacks. Use fixed-step ode4 initially at 1e-4 s. Export through `exportToFMU(model,'FMIVersion','2.0','FMUType','CS')` and supported no-UI options. The assignment does not require exporting the physical Simscape network itself.
+- [x] Check FMU ZIP integrity, `modelDescription.xml`, FMI 2.0 CoSimulation declaration, units/causality, named I/O and executable win64 binary. Inspect generation-tool metadata and record SHA256. Test both exports with FMPy in a Python process with MATLAB closed.
+- [x] Use FMPy on open-loop and closed-loop scenarios, including TL at t=1. Define input zero-order holds and event-side semantics explicitly, align all events to communication steps, and compare FMPy results to both MATLAB and independent Python. Use initial communication step 1 ms and a 0.5 ms refinement; no interpolation across a discontinuity.
+- [x] Apply the cross-platform tolerances above; if communication error exceeds them, refine and document the accepted interval. Validate a fresh FMU instance per scenario. Save comparison error tables/plots and commit source plus actual FMUs.
 
 **Run:** `python -m pytest coursework/dc_motor/python/tests -q` with the project's pinned environment, then the CLI FMU comparison runner. Expected: no skipped required Python/FMU checks and all comparison gates passed.
 
@@ -200,12 +200,12 @@ if ($LASTEXITCODE -ne 0) { throw 'MATLAB preflight failed' }
 
 **Interfaces:** report builder consumes only the successful run manifest, recorded configuration, CSV/JSON metrics and generated figure paths. It must reject stale/missing/failed required results. Report generation may use Python; the motor calculations remain MATLAB and independent Python as required.
 
-- [ ] Finish `matlab/run_coursework.m` as a single deterministic orchestration entrypoint for parts 1-6 and MATLAB tests; emit config/source hashes and per-section completion statuses. Close models/figures and clear temporary paths on exit.
-- [ ] Create the Ukrainian narrative: постановка задачі; припущення; виведення; три моделі; ПІД; оптимізація; оцінка; збурення; Simscape/lag/lead; Python і FMU; відтворення; висновки; джерела. Attribute reused buddy code and CTMS guidance, distinguishing new measured results.
-- [ ] Use existing homework 4/5 ReportLab builders as a starting pattern, adapting paths and removing stale hard-coded numbers. Use embedded Cyrillic-capable fonts, A4 pages, readable equations, numbered figures/tables, units and real model diagrams. No unfilled table-of-contents fields or manual F9 instructions.
-- [ ] Populate every performance table from machine-readable outputs. Include solver/version/seed/horizon, all numerical discrepancies, failed baseline specifications, actuator assumptions and actual optimization tradeoffs. Avoid claiming that every method meets the specification.
-- [ ] Build PDF via CLI. Render every page with Poppler, inspect full-size pages, fix clipping/overflow/missing glyphs and rebuild. Extract PDF text to confirm Ukrainian text, citations, expected section coverage and current numbers. Do not substitute DOCX for requested PDF.
-- [ ] Confirm all required source/SLX/FMU/CSV/PDF paths exist and that the report's success claims match the manifest; commit source and final PDF.
+- [x] Finish `matlab/run_coursework.m` as a single deterministic orchestration entrypoint for parts 1-6 and MATLAB tests; emit config/source hashes and per-section completion statuses. Close models/figures and clear temporary paths on exit.
+- [x] Create the Ukrainian narrative: постановка задачі; припущення; виведення; три моделі; ПІД; оптимізація; оцінка; збурення; Simscape/lag/lead; Python і FMU; відтворення; висновки; джерела. Attribute reused buddy code and CTMS guidance, distinguishing new measured results.
+- [x] Use existing homework 4/5 ReportLab builders as a starting pattern, adapting paths and removing stale hard-coded numbers. Use embedded Cyrillic-capable fonts, A4 pages, readable equations, numbered figures/tables, units and real model diagrams. No unfilled table-of-contents fields or manual F9 instructions.
+- [x] Populate every performance table from machine-readable outputs. Include solver/version/seed/horizon, all numerical discrepancies, failed baseline specifications, actuator assumptions and actual optimization tradeoffs. Avoid claiming that every method meets the specification.
+- [x] Build PDF via CLI. Render every page with Poppler, inspect full-size pages, fix clipping/overflow/missing glyphs and rebuild. Extract PDF text to confirm Ukrainian text, citations, expected section coverage and current numbers. Do not substitute DOCX for requested PDF.
+- [x] Confirm all required source/SLX/FMU/CSV/PDF paths exist and that the report's success claims match the manifest; commit source and final PDF.
 
 ### Task 9: Package, verify from a clean copy and push to Git
 
@@ -213,12 +213,12 @@ if ($LASTEXITCODE -ne 0) { throw 'MATLAB preflight failed' }
 
 **Interfaces:** `run_all.ps1` runs preflight, MATLAB computation/tests, FMU export, Python/FMU checks, report generation and package validation; `package_submission.py` creates a deterministic manifest with hashes and an allowlisted archive excluding caches, reference-only screenshots, venv, secrets and the delivery directory itself.
 
-- [ ] Document exact setup and commands for MATLAB, Python/FMPy, PDF regeneration and full run. State the MATLAB release, required products/compiler and FMU platform compatibility. Include a fast verification path using shipped outputs plus full regeneration instructions.
-- [ ] Run the full pipeline and record its exit code, check counts and acceptance metrics. Missing Simscape or exporter cannot be converted to a passing skipped test. Finish independent parts if a prerequisite remains unavailable, but clearly mark the submission incomplete.
-- [ ] Build the ZIP with code, config, MATLAB models, Python modules/tests, real FMUs, results, Ukrainian PDF, report generator, README and checksums. Verify it excludes itself and scratch folders.
-- [ ] Extract to a fresh path, verify every hash, run the documented verification and regenerate the report there. Validate no dependency on the Downloads source, Obsidian vault, prior base workspace or an ignored MAT cache. Run the full pipeline from clean source before declaring reproducibility.
-- [ ] Render the final extracted PDF and inspect it; check ZIP CRC/inventory and all model/FMU filenames. Ensure no handwritten metrics have diverged from the run manifest.
-- [ ] Review the final diff and required source list. Stage only this project's files and the explicit README/spec/plan updates. Use `git check-ignore -v` to detect accidentally excluded deliverables and `git diff --cached --check` to validate the staged change.
+- [x] Document exact setup and commands for MATLAB, Python/FMPy, PDF regeneration and full run. State the MATLAB release, required products/compiler and FMU platform compatibility. Include a fast verification path using shipped outputs plus full regeneration instructions.
+- [x] Run the full pipeline and record its exit code, check counts and acceptance metrics. Missing Simscape or exporter cannot be converted to a passing skipped test. Finish independent parts if a prerequisite remains unavailable, but clearly mark the submission incomplete.
+- [x] Build the ZIP with code, config, MATLAB models, Python modules/tests, real FMUs, results, Ukrainian PDF, report generator, README and checksums. Verify it excludes itself and scratch folders.
+- [x] Extract to a fresh path, verify every hash, run the documented verification and regenerate the report there. Validate no dependency on the Downloads source, Obsidian vault, prior base workspace or an ignored MAT cache. Run the full pipeline from clean source before declaring reproducibility.
+- [x] Render the final extracted PDF and inspect it; check ZIP CRC/inventory and all model/FMU filenames. Ensure no handwritten metrics have diverged from the run manifest.
+- [x] Review the final diff and required source list. Stage only this project's files and the explicit README/spec/plan updates. Use `git check-ignore -v` to detect accidentally excluded deliverables and `git diff --cached --check` to validate the staged change.
 - [ ] Commit and push to `origin codex/dc-motor-coursework` using ordinary push, never force push. The user's request already authorizes delivery of the code and PDF to Git. Do not merge existing homework branches as part of delivery.
 - [ ] Verify remote SHA with `git ls-remote origin refs/heads/codex/dc-motor-coursework`, compare with local HEAD, and inspect committed paths for all `.m`, `.py`, `.slx`, `.fmu`, report source, PDF and ZIP. Observe host file-size limits; use the repository's supported artifact/LFS strategy if needed, preserving downloadable deliverables.
 - [ ] Return the branch/commit link, PDF link, ZIP link, final test counts, main performance metrics and any remaining limitations. Never report push success without a matching remote commit. If a PR is created, attach it to this chat using the app tool.

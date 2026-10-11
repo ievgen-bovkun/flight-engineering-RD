@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "complete": false,
-  "timestampUTC": "2026-10-11T21:40:14.064596+00:00",
+  "complete": true,
+  "timestampUTC": "2026-10-11T21:52:06.870537+00:00",
   "sections": {
     "modeling": {
       "status": "passed"
@@ -33,7 +33,7 @@
       "standalone": false
     },
     "clean_copy": {
-      "status": "pending"
+      "status": "passed"
     }
   },
   "matlabTests": {
@@ -349,7 +349,7 @@
     },
     {
       "path": "python/tests/test_fmu.py",
-      "sha256": "8ddb412fd477bdbf1f6c382e62b2b4296549931efbd737b6b6fa4aca55b976ff"
+      "sha256": "85e11625ecb772f1fbe40b88be66c2f04d786954fc7d7dd1eeca43603b7235aa"
     },
     {
       "path": "python/tests/test_metrics.py",
@@ -658,6 +658,10 @@
     {
       "path": "results/figures/simscape_open_loop_comparison.png",
       "sha256": "8ec07db628670470861998f8fe7f943e1628209be988f1f288d9b127108d7fc3"
+    },
+    {
+      "path": "results/json/clean_copy.json",
+      "sha256": "a5862f66007c68def418c0bf11f83224333b161e53fe6047548fba64e0ec2d2e"
     },
     {
       "path": "results/json/compensator_reference.json",

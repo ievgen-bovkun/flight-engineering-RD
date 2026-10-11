@@ -11,9 +11,9 @@ Updated: 2026-10-11. Implementation: `codex/dc-motor-coursework`.
 | 5. Disturbance and live visualization | Done | Required load case settles in 1.690 s; CLI live updates verified |
 | 6. Simscape and lag/lead comparisons | Done | Actual physical motor/load and PID/lag/lead comparisons pass numerical gates |
 | 7. Python and FMU exchange | Done | Genuine MATLAB tool-coupling FMUs run in FMPy; five scenarios pass at 1 ms and 0.5 ms; local MATLAB/Simulink required |
-| 8. Ukrainian report | In progress | Final narrative and FMU results added; final PDF generation and visual inspection pending |
-| 9. Final ZIP and Git delivery | Partial | Current source/results pushed; final PDF/ZIP and clean-copy checks pending |
+| 8. Ukrainian report | Done | Final 15-page Ukrainian PDF built from accepted results; all pages rendered and inspected |
+| 9. Final ZIP and Git delivery | In progress | Full and fresh-copy runs pass 41 MATLAB +27 Python checks; ZIP verified; final review/push pending |
 
-Current focus: milestones 8-9 - complete Full CLI run, repeat from a fresh copy, inspect final Ukrainian PDF, package ZIP and verify Git push. User authorized trial-only tool-coupling FMUs; standalone portability is not claimed.
+Current focus: milestone 9 - fresh whole-branch review and verified Git push. User authorized trial-only tool-coupling FMUs; standalone portability is not claimed.
 
 [Detailed requirement checks](dc-motor-requirements.md) · [Approved implementation plan](plans/2026-10-11-dc-motor-coursework-sol.md)
