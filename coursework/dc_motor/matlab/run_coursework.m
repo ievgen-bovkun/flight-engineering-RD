@@ -13,6 +13,12 @@ for folder={'csv','json','figures','logs'}
     target=fullfile(root,'results',folder{1}); if ~isfolder(target), mkdir(target); end
 end
 p=motor_params(); scenarios=jsondecode(fileread(fullfile(root,'config','scenarios.json')));
+% Bootstrap gains before tests consume them, including missing/stale caches.
+if regenerateOptimization
+    run_optimization();
+else
+    load_optimized_gains(); % Explicit verified-artifact mode; no fallback gains.
+end
 tests=runtests(fullfile(root,'matlab','tests')); assertSuccess(tests);
 % Tests build alternate scenarios. Regenerate deliverable models afterwards.
 for j=1:numel(scenarios.scenarios)
@@ -21,11 +27,6 @@ for j=1:numel(scenarios.scenarios)
     if strcmp(s.kind,'plant'), run_plant_comparison(p,s); end
 end
 export_modeling_artifacts(); export_pid_artifacts();
-if regenerateOptimization
-    run_optimization();
-else
-    load_optimized_gains(); % Explicit verified-artifact mode; no fallback gains.
-end
 finalize_optimization_artifacts(); run_disturbance_study(); run_compensator_study(); export_physical_artifacts();
 K=load_optimized_gains();
 for kind={'diffeq','statespace'}

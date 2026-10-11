@@ -42,7 +42,7 @@
     },
     {
       "path": "matlab/run_coursework.m",
-      "sha256": "35fb70853823b6f8efac5683f40c6b09c50cbe2c47bcb9d1f3dbf81a92d058f2"
+      "sha256": "29e99dcf45fb65b94fad81748c64fa2940203da883a9f64bf53fa2063bcf287e"
     },
     {
       "path": "matlab/run_disturbance_study.m",
@@ -213,6 +213,10 @@
       "sha256": "46669f74403f73af9550ddfd96dcb59fbe972e6256cc88fa6a7c1b4184f92f1c"
     },
     {
+      "path": "matlab/tests/test_orchestration.m",
+      "sha256": "2589fad2f7397451120bf9c8421ef0939ca3417ac996f68f5c346028fad8c1b2"
+    },
+    {
       "path": "matlab/tests/test_pid_equivalence.m",
       "sha256": "50755d5cb9c2e2c1c157d6635231dd456fabb3c2c42602f4607bb644530b5fb1"
     },
@@ -290,7 +294,7 @@
     },
     {
       "path": "README.md",
-      "sha256": "cb4db1f571e98880270a28fe0e5539289cd6d22d153aef07ba3d904760e37666"
+      "sha256": "542186b5707a16b0130831523f38a6e997dd9140876e50278d05259d428cb311"
     },
     {
       "path": "reference/buddy/src/add_block_any.m",
@@ -422,7 +426,7 @@
     },
     {
       "path": "report/report_uk.md",
-      "sha256": "f583d3652da45fe29ee26da9bf1a7a37324f67cfdcf3f844a5672ebbfac489ab"
+      "sha256": "725a828473fbfdbfade5e1e3a49e1c250bf5e68bc1a16f5e471d440618a7a9e8"
     },
     {
       "path": "requirements.txt",
@@ -456,12 +460,518 @@
     "incomplete": 0
   },
   "pythonTests": 27,
-  "method": "Fresh allowlisted source/evidence copy; no local venv or ignored MAT caches; Full CLI with explicit external pinned Python runtime",
+  "method": "Prior successful fresh-copy Full CLI reproduction (41 MATLAB, 27 Python); current-source revalidation of documentation and tested orchestration ordering only. All motor/controller/optimizer/physical/FMU/Python numerical sources and configurations are unchanged.",
   "testSourceNormalization": {
     "path": "python/tests/test_fmu.py",
     "beforeSHA256": "8ddb412fd477bdbf1f6c382e62b2b4296549931efbd737b6b6fa4aca55b976ff",
     "afterSHA256": "85e11625ecb772f1fbe40b88be66c2f04d786954fc7d7dd1eeca43603b7235aa",
     "pythonASTUnchanged": true,
     "reason": "Git text attributes ship LF; only a test file had mixed CRLF/LF. All numerical MATLAB/Python/FMUs sources and configuration are unchanged."
+  },
+  "priorFullReproduction": {
+    "passed": true,
+    "exitCode": 0,
+    "timestampUTC": "2026-10-11T21:50:30.156288+00:00",
+    "route": "tool_coupling",
+    "sources": [
+      {
+        "path": "config/parameters.json",
+        "sha256": "c225653d97ab3e081de8d56dac46beec6cbf2520ca3f711aab754ef54255f4c7"
+      },
+      {
+        "path": "config/scenarios.json",
+        "sha256": "5d9266f2516e7a68fd6a1f069da415d4574e255d05011abe8cc551c668c817f6"
+      },
+      {
+        "path": "matlab/export_coursework_fmu.m",
+        "sha256": "6f0b536554301d09e54cd5ddc77a4cb7533a1584f117eb303c84cb0695ed77ae"
+      },
+      {
+        "path": "matlab/export_modeling_artifacts.m",
+        "sha256": "cb6f42359cf5cc56746152c7ae8f7aca3d840f4bd6415f550a1b56d859bf7cfc"
+      },
+      {
+        "path": "matlab/export_physical_artifacts.m",
+        "sha256": "9d247ecd16c0aa0cbb7afa6346ffc0b93c7537e08a748bb42f79a60f983f93df"
+      },
+      {
+        "path": "matlab/export_pid_artifacts.m",
+        "sha256": "33d2779dc4a46b54d76e0be64bd14df51d7414a7b3382c1de7e2f1018be65d0e"
+      },
+      {
+        "path": "matlab/finalize_optimization_artifacts.m",
+        "sha256": "b4288306e816d1ea50634582fa545a8c2f38546a053e288d0ec878865b9cfad6"
+      },
+      {
+        "path": "matlab/preflight.m",
+        "sha256": "ba628d3892ea6c0f99a4deee07ffdb8f741d5c9e17badd8f8af421e7658e07dc"
+      },
+      {
+        "path": "matlab/run_compensator_study.m",
+        "sha256": "70f25a5b43155f8e7a1ad543beb67a46b3252396776279051724ac2d898eed48"
+      },
+      {
+        "path": "matlab/run_coursework.m",
+        "sha256": "35fb70853823b6f8efac5683f40c6b09c50cbe2c47bcb9d1f3dbf81a92d058f2"
+      },
+      {
+        "path": "matlab/run_disturbance_study.m",
+        "sha256": "9ce330f933691e902368f3b57ea806aa35728bf2ee22b041156952ffcd668620"
+      },
+      {
+        "path": "matlab/run_optimization.m",
+        "sha256": "a66fc85e51a334d99d9c41a09bec24110f23a79f3576857e870fdb6dcf9c4604"
+      },
+      {
+        "path": "matlab/src/build_compensated_model.m",
+        "sha256": "a0081b0c322ff82bb74fe534dc94d3d71edec7465a091cf02e06f2bdd320a325"
+      },
+      {
+        "path": "matlab/src/build_fmu_harness.m",
+        "sha256": "c3c63f628cf954f48db1b9fb1b7c0c87754059d3b8398806b0a69eb339c81b78"
+      },
+      {
+        "path": "matlab/src/build_model_diffeq.m",
+        "sha256": "a6146319a9c785fead839c0eadcbee9c3d2f74a208d6b5fcb180b622a619158d"
+      },
+      {
+        "path": "matlab/src/build_model_pid.m",
+        "sha256": "4d91ba4705f3fba91ba27e46682c537aaf32edbcd53b700215200006b0289f77"
+      },
+      {
+        "path": "matlab/src/build_model_simscape.m",
+        "sha256": "4582dcfc2b64452d3c03cf5ea0527bcb08fda0d6ef7034d30f8e12995159a4ea"
+      },
+      {
+        "path": "matlab/src/build_model_statespace.m",
+        "sha256": "fe5c30c4dc50ae508ebd60fb2076354618045a32d452dc3f36067c63df57de47"
+      },
+      {
+        "path": "matlab/src/check_feasibility.m",
+        "sha256": "776f8cb9240394fe3bb7e5734c0abb1cb3ad27455716ec11109fd3411c70598d"
+      },
+      {
+        "path": "matlab/src/dc_project_root.m",
+        "sha256": "bb2afe2aefdc115c6c072d5be1588f812f504fc646677668105ad2e5ee9382d5"
+      },
+      {
+        "path": "matlab/src/design_compensator.m",
+        "sha256": "98e2d1a27c07fefb523b8864598a714fc875199c65e0d37e5464fa0062bbae34"
+      },
+      {
+        "path": "matlab/src/design_observer.m",
+        "sha256": "8bed6765f21e6e5404a45abdeb5ba6346d36cc283a070d817af7e59363de6453"
+      },
+      {
+        "path": "matlab/src/disturbance_recovery.m",
+        "sha256": "cbfbd9741ac94406cd8e5a495447c7cce104296c2a66148ae54c469dabba12e3"
+      },
+      {
+        "path": "matlab/src/file_sha256.m",
+        "sha256": "77e4b1975ba46625c0d21b4189c649e1f23dd01458db16348186baeb2d5732b7"
+      },
+      {
+        "path": "matlab/src/ga_simple.m",
+        "sha256": "3680a897ad1d4795f436dae6abf971ecd9a8adca47efa8c2c01a101851398c1f"
+      },
+      {
+        "path": "matlab/src/init_motor_model.m",
+        "sha256": "8f27136c5a9e40ea85835473533a32f70e00b7fd14bb872c64286aaac5b39ae1"
+      },
+      {
+        "path": "matlab/src/live_visualization.m",
+        "sha256": "005459bc8a88e5f5067515c1643c7cbc07008aff6b0d68b0f429d24ae5e5caa4"
+      },
+      {
+        "path": "matlab/src/load_optimized_gains.m",
+        "sha256": "832e5ece7ef136283b574341291e92035c21e92921568df099189fd0b23672d9"
+      },
+      {
+        "path": "matlab/src/motor_models.m",
+        "sha256": "8ef66e21152d2d745823ae28d55de8ff70fd62f655a6b235bbc4a7cd4960f5db"
+      },
+      {
+        "path": "matlab/src/motor_params.m",
+        "sha256": "4aa64eb0bd067ba72cdc36706f280536a21a68396c1d8c280d39826c6660c8c3"
+      },
+      {
+        "path": "matlab/src/optimize_pid.m",
+        "sha256": "17138eb9ca681e0e7f208c0e8d28e4c291100467daa3bc4d20e91ae1d586efe8"
+      },
+      {
+        "path": "matlab/src/performance_metrics.m",
+        "sha256": "b143af954174eddfc1efd419ccbaee08a23c966cc1255d0231a0934fe643037f"
+      },
+      {
+        "path": "matlab/src/pid_cost.m",
+        "sha256": "350a5d7130c7f0f08381c5eb3908512ce88a5ae2cdad93aea14993d28ca95d92"
+      },
+      {
+        "path": "matlab/src/pid_output.m",
+        "sha256": "5e0f34cb84349862fd475e87dce2af9acb7d4190bd60a6fa349bafb5e51b72ee"
+      },
+      {
+        "path": "matlab/src/pid_settings.m",
+        "sha256": "7397628dafcc90104c7ee89876c576bcf93343595a0bdaa6220aedfefaf0dfbc"
+      },
+      {
+        "path": "matlab/src/plant_reference.m",
+        "sha256": "f00d5d4bb5ce28761306ac90c3257d64604445b7527e1adb82c3461c8335abf9"
+      },
+      {
+        "path": "matlab/src/run_physical_controller_comparison.m",
+        "sha256": "9804c750aca5039f96a335180396faa69d7fa99b3d6ac612c3c2cc2af536c513"
+      },
+      {
+        "path": "matlab/src/run_pid_comparison.m",
+        "sha256": "e56bbf0afcbf27f54550a81f51ced3e40919348176a20fc51d48648920657ab7"
+      },
+      {
+        "path": "matlab/src/run_plant_comparison.m",
+        "sha256": "85d8a474fbfb58340b1ad1f28a237c0614cfdc6fae81ccc418b78ae3c7ae97d4"
+      },
+      {
+        "path": "matlab/src/run_simscape_comparison.m",
+        "sha256": "a34662f9cd828dd7d3089d9b424a4f3ffaebb2e34feeb044127cc322202b71c7"
+      },
+      {
+        "path": "matlab/src/simulate_closed_loop.m",
+        "sha256": "893daccf766fa0ca40d76b3df0bfb690c71f5fb915fb82adfbdf41b34ee18d27"
+      },
+      {
+        "path": "matlab/src/simulate_compensator.m",
+        "sha256": "35788da8547d46cb448e083820002d726c7003c89ac06194ff2817adbd95c122"
+      },
+      {
+        "path": "matlab/src/simulate_disturbance.m",
+        "sha256": "57e0bed07a3607c738f60cdcb713fee1613ca37dd92de1c4e1f5d9926a7f3d59"
+      },
+      {
+        "path": "matlab/src/tune_pole_placement.m",
+        "sha256": "8020198ad140b61c79eafa21fad4c1d0c03c88e05d55d61080be714764c34ae7"
+      },
+      {
+        "path": "matlab/src/tune_ziegler_nichols.m",
+        "sha256": "83fe8f74b6a34eb50f9004913925bdbdd96a42ce365c6bec0307ea06e585f8a0"
+      },
+      {
+        "path": "matlab/tests/test_compensators.m",
+        "sha256": "4cb87dc88093247ade08f607e9371df6b18be4cf87ecfa11013b0a0511382a66"
+      },
+      {
+        "path": "matlab/tests/test_disturbance.m",
+        "sha256": "964977d040a673bcf66b963ee1d5f38236d70d037f91a8fe0731b958bd77d733"
+      },
+      {
+        "path": "matlab/tests/test_fmu_export.m",
+        "sha256": "9f1e92daa3c94928561d998b196aac68b6922ef30219413b13d00e86ab8c45f8"
+      },
+      {
+        "path": "matlab/tests/test_metrics.m",
+        "sha256": "5c9183154e890102d80daa16c63a11fa6c0fb2d90b2eaeacfe344443d034bfdc"
+      },
+      {
+        "path": "matlab/tests/test_model_structure.m",
+        "sha256": "84c952951004d867023cee19401759a6e3c13779b4d9268d30d1decf9db325cc"
+      },
+      {
+        "path": "matlab/tests/test_motor_models.m",
+        "sha256": "c13ea7c5e84621b26e5db36d0d4f3cf0e3cc5bca036716411fb8d6e057311654"
+      },
+      {
+        "path": "matlab/tests/test_optimization.m",
+        "sha256": "46669f74403f73af9550ddfd96dcb59fbe972e6256cc88fa6a7c1b4184f92f1c"
+      },
+      {
+        "path": "matlab/tests/test_pid_equivalence.m",
+        "sha256": "50755d5cb9c2e2c1c157d6635231dd456fabb3c2c42602f4607bb644530b5fb1"
+      },
+      {
+        "path": "matlab/tests/test_preflight.m",
+        "sha256": "8ee857e810b554113e30ceb586fb734204bd961ae5ee86dc3c85dc6971ccd0e3"
+      },
+      {
+        "path": "matlab/tests/test_simscape.m",
+        "sha256": "e3f620589fe6fef06d48d2ff3d09be505cff1ae2f9744616e37f566c481530c6"
+      },
+      {
+        "path": "python/dc_motor/__init__.py",
+        "sha256": "a388e0764013558fe801e2c33f2b998e2d11930cd1016519b4e0d46fd759c7cf"
+      },
+      {
+        "path": "python/dc_motor/controller.py",
+        "sha256": "070c7fa1162dbb596bed7b53586db0b848edec8123ea75adc7c6e27807bf82bf"
+      },
+      {
+        "path": "python/dc_motor/metrics.py",
+        "sha256": "10dc3b1baebd6640738874b64162a390809f4bdc06051aec2b3a470411b4646a"
+      },
+      {
+        "path": "python/dc_motor/model.py",
+        "sha256": "41adfb6ae2b86a6087eee29e4176039954e259af0756a59466b0217d9b7f82c7"
+      },
+      {
+        "path": "python/dc_motor/run_comparison.py",
+        "sha256": "7fc5231f95fe431d487e566ba5c5271535c95e37621b6d48ac2e9bfff6f8605a"
+      },
+      {
+        "path": "python/dc_motor/run_fmu.py",
+        "sha256": "7f5dc2f735f066dca15cc5df38e670408469c7db56c4b4b37268a5b2e600f297"
+      },
+      {
+        "path": "python/run_comparisons.py",
+        "sha256": "82d98e4c0b8c70de7d8cee0c09ae8bf0e7160a343b3cf92a9606be8ba63c644e"
+      },
+      {
+        "path": "python/tests/conftest.py",
+        "sha256": "8659c4f6af34a32f61ecc29774fd873cf628e7e0828ce9ff04773418357a6cc6"
+      },
+      {
+        "path": "python/tests/test_controller.py",
+        "sha256": "f46a35507ea14c1608e96285467b58d01cf3d04b43420240bc89adb4fc256718"
+      },
+      {
+        "path": "python/tests/test_cross_language.py",
+        "sha256": "4f2f30c2c405fbc7b6d7904864ee068539d5df8fb12948cca8c16684b8d6856f"
+      },
+      {
+        "path": "python/tests/test_delivery.py",
+        "sha256": "6317acdead49681b653d257d3e6887d764d16cd7f74de9ef2136b47ece25d888"
+      },
+      {
+        "path": "python/tests/test_fmu.py",
+        "sha256": "85e11625ecb772f1fbe40b88be66c2f04d786954fc7d7dd1eeca43603b7235aa"
+      },
+      {
+        "path": "python/tests/test_metrics.py",
+        "sha256": "e7a00c8b77bcbfd5fe3d9a19f9e7baa07211c0acc6549a5a5d46acf8ad0147f0"
+      },
+      {
+        "path": "python/tests/test_model.py",
+        "sha256": "139a905beb07412ebfb5458be0c7e158774e0aad5bc1f6df1b40715446ee3318"
+      },
+      {
+        "path": "python/tests/test_provenance.py",
+        "sha256": "aef8ddef499c2e210c86e1fe616fa4afbb92800aad3d3575b90617a0eb88d4ac"
+      },
+      {
+        "path": "python/tests/test_report.py",
+        "sha256": "b26a32a64136b1269cf9d604efde7f869669f7e4d7683cd7c7c64edd5fce5a64"
+      },
+      {
+        "path": "README.md",
+        "sha256": "cb4db1f571e98880270a28fe0e5539289cd6d22d153aef07ba3d904760e37666"
+      },
+      {
+        "path": "reference/buddy/src/add_block_any.m",
+        "sha256": "df7a559f799adaeb2b0c3516342a7a9dadc36d4cccf4ad84a68c8f28e208ded5"
+      },
+      {
+        "path": "reference/buddy/src/build_model_diffeq.m",
+        "sha256": "6a365c0d4e048e20ebd72d7ada9c9889862951d64a91fe3c8d3321708301454c"
+      },
+      {
+        "path": "reference/buddy/src/build_model_pid.m",
+        "sha256": "af3947f36900ee31113be139e0a9fc9b31ff87a28b7dda6bc3940ffff7ef5085"
+      },
+      {
+        "path": "reference/buddy/src/build_model_simscape.m",
+        "sha256": "e3fff998a03f7626dd8d4612e7ef639407021173ca5bbf696adede025339e890"
+      },
+      {
+        "path": "reference/buddy/src/build_model_statespace.m",
+        "sha256": "2ea53467106410b8d97ef92150f0b648c05ab2b416bfbad98c8782d58a2c0bd3"
+      },
+      {
+        "path": "reference/buddy/src/check_feasibility.m",
+        "sha256": "bddef34a5e7f4360a96396269c6e7a89400f456fdd4a1fdbbd92de1dea1be758"
+      },
+      {
+        "path": "reference/buddy/src/design_compensator.m",
+        "sha256": "c509c61333351826299e7a262921ec1c3176e9abe57a750573a7406b17f48a1b"
+      },
+      {
+        "path": "reference/buddy/src/design_observer.m",
+        "sha256": "ef11a0f0be5c321065aaa33ce3b7a2e8b379c286f62707459246796386833fec"
+      },
+      {
+        "path": "reference/buddy/src/ga_simple.m",
+        "sha256": "3680a897ad1d4795f436dae6abf971ecd9a8adca47efa8c2c01a101851398c1f"
+      },
+      {
+        "path": "reference/buddy/src/live_visualization.m",
+        "sha256": "77a4a79aa7790da0ab1c5c73db298c2591ec4e0f7aecfe8b26a4e6a463dcd75a"
+      },
+      {
+        "path": "reference/buddy/src/motor_models.m",
+        "sha256": "346a3c082a1cbc5f04813873a2d106596af06011b5ca339182132d4e352029ba"
+      },
+      {
+        "path": "reference/buddy/src/motor_params.m",
+        "sha256": "680696575634f9f0308ccf4af1f992debc778c9c79d095e17b8b9880a5a51af3"
+      },
+      {
+        "path": "reference/buddy/src/optimize_pid.m",
+        "sha256": "cf0c8e24cab7c6d23a95bffd72da51510ebfae45cfe2ddbae888d64908354115"
+      },
+      {
+        "path": "reference/buddy/src/part1_modeling.m",
+        "sha256": "ab9a89e1720fef2699ab8699c058924090fec68010c111b55ac652348120b358"
+      },
+      {
+        "path": "reference/buddy/src/part2_pid_design.m",
+        "sha256": "d61504388933fa6bf25d6782d9481c53b79ddca7ed68be7b29c5b1b5234039e1"
+      },
+      {
+        "path": "reference/buddy/src/part3_optimization.m",
+        "sha256": "5a4b9f44f5b3153eac9c1ef6941cbb1a76e457da04657bad6689215a2cc3a3b8"
+      },
+      {
+        "path": "reference/buddy/src/part4_evaluation.m",
+        "sha256": "38d0638c8d6ad726466a5ade27f97bf913921f26803edbf235a3eae8bebecb94"
+      },
+      {
+        "path": "reference/buddy/src/part5_disturbance.m",
+        "sha256": "dc8b779dfc3b4b0db052a57da9eac4d1d0658c3abfb9c64073a089c7db29b426"
+      },
+      {
+        "path": "reference/buddy/src/part6_simscape.m",
+        "sha256": "4463bbbfa90a99a19f992e5c6d41bbb25b81ad96ac3cf311a64f5a5ae3529eba"
+      },
+      {
+        "path": "reference/buddy/src/performance_metrics.m",
+        "sha256": "b9847ad5cc56b23c95f5da129e310dbf57ef0087c38f98039f372229f69c399b"
+      },
+      {
+        "path": "reference/buddy/src/pid_cost.m",
+        "sha256": "9020b3ad135f475ff5738221e6d58d90626cda5b1e36fbd34ba5681d6bc5c4b3"
+      },
+      {
+        "path": "reference/buddy/src/pid_output.m",
+        "sha256": "2f83a23fb54cec891ae1150a2bed39085b3f8ef3967dd2398065a0dd4f19df4d"
+      },
+      {
+        "path": "reference/buddy/src/plot_response.m",
+        "sha256": "dc8911567e543f4e3b840c5131e3e1fb697fca154f5b62199a97ee10db677da5"
+      },
+      {
+        "path": "reference/buddy/src/push_params.m",
+        "sha256": "c8243f8ec820b7fcbc48da5b5be8f822e0d79c197091215c568b05750e5bfc71"
+      },
+      {
+        "path": "reference/buddy/src/report_metrics.m",
+        "sha256": "e5d052ea2d428b5fb32d57c7f46ca4a9859d2adee7fda478875028288bfc2b6e"
+      },
+      {
+        "path": "reference/buddy/src/simulate_closed_loop.m",
+        "sha256": "8011c31191011e32251fbb058d9444fc8ad979c138692c4e56116708b7ae5bf3"
+      },
+      {
+        "path": "reference/buddy/src/simulate_compensator.m",
+        "sha256": "015a82f9fbf2daa6e4358bf333242af6e14e0f5a9e2d92cb2bc68b1500d04225"
+      },
+      {
+        "path": "reference/buddy/src/time_optimal_benchmark.m",
+        "sha256": "23bd5db50b2d25ed3e8042d8e6f682eca43a2ca700e05bcc067432bd3762f9df"
+      },
+      {
+        "path": "reference/buddy/src/tune_pole_placement.m",
+        "sha256": "458b29d77254aa3ef56bd2c890dd44a1148ff3796596bf4ae0e2b3cebcaec194"
+      },
+      {
+        "path": "reference/buddy/src/tune_ziegler_nichols.m",
+        "sha256": "a011be23daa2c0c72779b3e6a8bb672c92dcb124322091161ea599dc3c504c1a"
+      },
+      {
+        "path": "reference/buddy_review.md",
+        "sha256": "8dea60ec4e69a161c0dddaa826db46303af036bd4a41a97dc3e7508662d3e3df"
+      },
+      {
+        "path": "report/build_report.py",
+        "sha256": "4b1fb768aac70e4a67f9f9078baeaa3c42acebad4219aad4ccc1d7cf62bb52b5"
+      },
+      {
+        "path": "report/report_uk.md",
+        "sha256": "f583d3652da45fe29ee26da9bf1a7a37324f67cfdcf3f844a5672ebbfac489ab"
+      },
+      {
+        "path": "requirements.txt",
+        "sha256": "7a6226a1607227025d2b1ddc1d61a01d98f67e49f51229ff492bb63b067c4783"
+      },
+      {
+        "path": "scripts/finish_submission.py",
+        "sha256": "849958a5ceb78b07b6764ad54b0bb8b30018b7e93a7533941a47de1eb8356012"
+      },
+      {
+        "path": "scripts/install_matlab_prerequisites.ps1",
+        "sha256": "03a1929ffb0d157ac76db7e46d7bc509db9431440f928d45127bee4d5ccd0b34"
+      },
+      {
+        "path": "scripts/package_submission.py",
+        "sha256": "74e359af2468f99e71af66f1513ecadbc4d8e901a614df5eafb07e15e736d539"
+      },
+      {
+        "path": "scripts/run_all.ps1",
+        "sha256": "400c786ccd22427a5ee8aaf745314b80fcb0b10c33f22df95b83051a5a24f263"
+      },
+      {
+        "path": "scripts/setup_compiler.ps1",
+        "sha256": "29838abc5b2326c51d3d3e83680537263417a71b979313bb9a7d7fc7e7a8864c"
+      }
+    ],
+    "matlabTests": {
+      "total": 41,
+      "passed": 41,
+      "failed": 0,
+      "incomplete": 0
+    },
+    "pythonTests": 27,
+    "method": "Fresh allowlisted source/evidence copy; no local venv or ignored MAT caches; Full CLI with explicit external pinned Python runtime",
+    "testSourceNormalization": {
+      "path": "python/tests/test_fmu.py",
+      "beforeSHA256": "8ddb412fd477bdbf1f6c382e62b2b4296549931efbd737b6b6fa4aca55b976ff",
+      "afterSHA256": "85e11625ecb772f1fbe40b88be66c2f04d786954fc7d7dd1eeca43603b7235aa",
+      "pythonASTUnchanged": true,
+      "reason": "Git text attributes ship LF; only a test file had mixed CRLF/LF. All numerical MATLAB/Python/FMUs sources and configuration are unchanged."
+    }
+  },
+  "sourceRevalidation": {
+    "timestampUTC": "2026-10-11T22:23:45.603542+00:00",
+    "changes": [
+      {
+        "path": "README.md",
+        "previousSHA256": "cb4db1f571e98880270a28fe0e5539289cd6d22d153aef07ba3d904760e37666",
+        "currentSHA256": "542186b5707a16b0130831523f38a6e997dd9140876e50278d05259d428cb311"
+      },
+      {
+        "path": "matlab/run_coursework.m",
+        "previousSHA256": "35fb70853823b6f8efac5683f40c6b09c50cbe2c47bcb9d1f3dbf81a92d058f2",
+        "currentSHA256": "29e99dcf45fb65b94fad81748c64fa2940203da883a9f64bf53fa2063bcf287e"
+      },
+      {
+        "path": "matlab/tests/test_orchestration.m",
+        "previousSHA256": null,
+        "currentSHA256": "2589fad2f7397451120bf9c8421ef0939ca3417ac996f68f5c346028fad8c1b2"
+      },
+      {
+        "path": "report/report_uk.md",
+        "previousSHA256": "f583d3652da45fe29ee26da9bf1a7a37324f67cfdcf3f844a5672ebbfac489ab",
+        "currentSHA256": "725a828473fbfdbfade5e1e3a49e1c250bf5e68bc1a16f5e471d440618a7a9e8"
+      }
+    ],
+    "numericalSourcesUnchanged": true,
+    "currentPrimaryVerification": {
+      "matlabTests": {
+        "total": 43,
+        "passed": 43,
+        "failed": 0,
+        "incomplete": 0
+      },
+      "pythonTests": 27
+    },
+    "repeatedFreshCopy": {
+      "completed": false,
+      "reason": "Stopped to focus on report editing; existing successful numerical and fresh-copy evidence retained."
+    }
   }
 }

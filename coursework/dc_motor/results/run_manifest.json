@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "complete": true,
-  "timestampUTC": "2026-10-11T21:52:06.870537+00:00",
+  "timestampUTC": "2026-10-11T22:23:46.756101+00:00",
   "sections": {
     "modeling": {
       "status": "passed"
@@ -37,8 +37,8 @@
     }
   },
   "matlabTests": {
-    "total": 41,
-    "passed": 41,
+    "total": 43,
+    "passed": 43,
     "failed": 0,
     "incomplete": 0
   },
@@ -73,43 +73,43 @@
     },
     {
       "path": "matlab/models/dc_motor_diffeq.slx",
-      "sha256": "cd520d8c81d2471ca6fc1a6d39424facb0be0527556a95ba3fa3f64420cfecc0"
+      "sha256": "585865ce8833a821677cfac4770ae2b370558ea65cc6ab6ef0195768a4da88d0"
     },
     {
       "path": "matlab/models/dc_motor_lag_simscape.slx",
-      "sha256": "35bc9b17ab46c1bfa115c35044f95d4560005a8206d2209ddebc1be9d541d4b7"
+      "sha256": "c9171e87def6653ed5782154b697df6ce9bf162b173d90a971bf673abeac01f3"
     },
     {
       "path": "matlab/models/dc_motor_lead_simscape.slx",
-      "sha256": "1953e91dc8b26c213ae68b1ade581332d394076f4ed6da611364011dbe54b5f2"
+      "sha256": "b6c4a7a047c518a70d706b49767b397e4d93a141b4a198b80cd99c4140246241"
     },
     {
       "path": "matlab/models/dc_motor_pid.slx",
-      "sha256": "0b765c3c1b9d5075a6d3f0def55045df3043dcdd1a1e14d9e6e637ce764abdae"
+      "sha256": "6b7c9b2ea104f04f086c9db399811a3b6e2968fc51ba298466260ece9bb1018d"
     },
     {
       "path": "matlab/models/dc_motor_pid_diffeq.slx",
-      "sha256": "d23c7c498c49fbe1d90d99ecf4ac2866374c60f6ce08569c370c86b12b94ce17"
+      "sha256": "0e8bd92d71d61c35d7a6dda73f2f21527747d62f619ae61bb532be77aa630ba7"
     },
     {
       "path": "matlab/models/dc_motor_pid_simscape.slx",
-      "sha256": "e3044f7038d4f27ccea4b5a5bd77aaa28fb3acd366b05f03c64db57f01c5e85f"
+      "sha256": "87b6519a19c99d5c0db013297ac9adc3496c95fa479af8cf22af96e3c43ecb3f"
     },
     {
       "path": "matlab/models/dc_motor_pid_statespace.slx",
-      "sha256": "013ae1d7b27b9385932efbd91fef263603ea2dd94f1909cf3a5e61be2b639dbe"
+      "sha256": "43002fd25e30e5d848944ecd4aa55578d8bb4a612206499acd7c37ba9d5c57e8"
     },
     {
       "path": "matlab/models/dc_motor_plant.slx",
-      "sha256": "8632ccad581701cfc77266832a29c401200299bed1ab769febb50970329c7482"
+      "sha256": "e2ccc5d38011170bfc8dd9529662fef6dafc4d6276ff1b38e72902899f06bd2c"
     },
     {
       "path": "matlab/models/dc_motor_simscape.slx",
-      "sha256": "b6e4870ec5e750b83dc762ab3d8fda9d9e4d36022e3cfe90087a8e8d8dbf7096"
+      "sha256": "5776f84e601cc819ece5ab1a68cb661c56487e06fb2875476082883597ba8b12"
     },
     {
       "path": "matlab/models/dc_motor_statespace.slx",
-      "sha256": "4cdf45ad71d85501e7fba4aaac71656d30704db2cf1be870041fc51fee75224d"
+      "sha256": "b3cfc068b4fecdf55bdc65663b24aee452284a0eb86b4540d75d47cb6ab4b2a8"
     },
     {
       "path": "matlab/preflight.m",
@@ -121,7 +121,7 @@
     },
     {
       "path": "matlab/run_coursework.m",
-      "sha256": "35fb70853823b6f8efac5683f40c6b09c50cbe2c47bcb9d1f3dbf81a92d058f2"
+      "sha256": "29e99dcf45fb65b94fad81748c64fa2940203da883a9f64bf53fa2063bcf287e"
     },
     {
       "path": "matlab/run_disturbance_study.m",
@@ -292,6 +292,10 @@
       "sha256": "46669f74403f73af9550ddfd96dcb59fbe972e6256cc88fa6a7c1b4184f92f1c"
     },
     {
+      "path": "matlab/tests/test_orchestration.m",
+      "sha256": "2589fad2f7397451120bf9c8421ef0939ca3417ac996f68f5c346028fad8c1b2"
+    },
+    {
       "path": "matlab/tests/test_pid_equivalence.m",
       "sha256": "50755d5cb9c2e2c1c157d6635231dd456fabb3c2c42602f4607bb644530b5fb1"
     },
@@ -369,7 +373,7 @@
     },
     {
       "path": "README.md",
-      "sha256": "cb4db1f571e98880270a28fe0e5539289cd6d22d153aef07ba3d904760e37666"
+      "sha256": "542186b5707a16b0130831523f38a6e997dd9140876e50278d05259d428cb311"
     },
     {
       "path": "report/build_report.py",
@@ -377,7 +381,7 @@
     },
     {
       "path": "report/report_uk.md",
-      "sha256": "f583d3652da45fe29ee26da9bf1a7a37324f67cfdcf3f844a5672ebbfac489ab"
+      "sha256": "725a828473fbfdbfade5e1e3a49e1c250bf5e68bc1a16f5e471d440618a7a9e8"
     },
     {
       "path": "requirements.txt",
@@ -573,7 +577,7 @@
     },
     {
       "path": "results/figures/compensator_reference_comparison.png",
-      "sha256": "62db732a21e69a2d11987c63d25687809b15c7c253f1433aae40f8924dfa75db"
+      "sha256": "609f6024dd5960cfd46928a583f351a18c5b7db8d5fd450799529e6f9e0848ac"
     },
     {
       "path": "results/figures/dc_motor_diffeq_diagram.png",
@@ -625,23 +629,23 @@
     },
     {
       "path": "results/figures/observer_disturbance.png",
-      "sha256": "546ea5bf631d029774a1811c995ccb12f6686b5cdbc28514402e485325948a0a"
+      "sha256": "548a46f67b312ee2ff8fa6cf07f2785c556ff8ccf93eeba2123d66c104625ca1"
     },
     {
       "path": "results/figures/optimization_tradeoffs.png",
-      "sha256": "5c20b89dbc109426cd22c1ed5772c6c51ee5ba4771ca9f6d2d462d3a1e9773d3"
+      "sha256": "fb74c52188f2211826845788681610338f40e5259702cb5c5b8bfdc8568e3de4"
     },
     {
       "path": "results/figures/optimized_pid_comparison.png",
-      "sha256": "9a034c56544aac993e5fccd8c433d498b002ddeccb6077ed9cd82a7d435c5cee"
+      "sha256": "ef3e3c461f167378e946428107d27a8bf81434ed1c0307e147e38ba01aaf7996"
     },
     {
       "path": "results/figures/pid_baselines.png",
-      "sha256": "4bc624e8e775019c6ef2d8f98d4164f0115d581db4214298a5b7a8cbd65903a1"
+      "sha256": "8e6294b46c60f2dd185e113658fbadeb8afd236000837cff20e9bac5fb57445b"
     },
     {
       "path": "results/figures/plant_load_comparison.png",
-      "sha256": "19ab25c6a2948f4323ef26510465a66423d2dd0e1b63a8982d305158ebbb7086"
+      "sha256": "73cb7b78069b2c68fdaa16c2525f694054afcfa8de4c422bc19521ecc3f3f977"
     },
     {
       "path": "results/figures/python_matlab_comparison.png",
@@ -649,19 +653,19 @@
     },
     {
       "path": "results/figures/required_disturbance.png",
-      "sha256": "04d39c0a34136a93b61f8db1bd01aaacc1de02d3ef8ba9586b4950ac16b0d060"
+      "sha256": "c8f324821cbf1f107a936753414476d5ae260b86ac398499ff54886f3e9a37bc"
     },
     {
       "path": "results/figures/simscape_controller_comparison.png",
-      "sha256": "ddae911af9be9a7f4f43e3506ce99edab8cb24289aca1940e460467b70cdc32c"
+      "sha256": "5d240f6013a360acd0d34cace3842f688fac4e72a30b99a298c2ea22454a3c17"
     },
     {
       "path": "results/figures/simscape_open_loop_comparison.png",
-      "sha256": "8ec07db628670470861998f8fe7f943e1628209be988f1f288d9b127108d7fc3"
+      "sha256": "740f270694c09b9295685982d5c19f57183e0ab9b3c252fe1776cec26e01c12a"
     },
     {
       "path": "results/json/clean_copy.json",
-      "sha256": "a5862f66007c68def418c0bf11f83224333b161e53fe6047548fba64e0ec2d2e"
+      "sha256": "e9be8cbf82485f390e3a8087df8283e69e275598f3390d6744c60f5c91310b52"
     },
     {
       "path": "results/json/compensator_reference.json",
@@ -673,7 +677,7 @@
     },
     {
       "path": "results/json/environment.json",
-      "sha256": "0512f32d7a3793641328c70bfe63cf4e03535a72447af2e6d42867f3234cf31a"
+      "sha256": "fdad20346422efa1eb174c501560f25f3d1b7eb25a65109bafb9dd41dc680e37"
     },
     {
       "path": "results/json/fmu_capability.json",
@@ -685,15 +689,15 @@
     },
     {
       "path": "results/json/fmu_export.json",
-      "sha256": "1211398e855c3685cc7d213e951bdf7efa09cbaee2f0ede49f420dcd6aeb132e"
+      "sha256": "f002ff1be642318c77893975150627cdcf29e74ebb992b6ee2b9e70ba58b77a1"
     },
     {
       "path": "results/json/matlab_run.json",
-      "sha256": "e5f84e01e689847509cec06adc118a9111a04faab547c9e23ee62dfa6686b672"
+      "sha256": "ba83f7b6e19119fd43002025b90a9fe0839e32dae13275022d6b2d12053e8fa9"
     },
     {
       "path": "results/json/optimization.json",
-      "sha256": "131212b6016d13580dc52245b3f083dce7c09e1ef3458056483f55458a63927d"
+      "sha256": "b184fb25c9f12a847f1f66ee7c5c1e8beed8c152ba650961c08f12359fd9907d"
     },
     {
       "path": "results/json/physical_parameters.json",
@@ -733,11 +737,11 @@
     },
     {
       "path": "fmu/dc_motor_pid.fmu",
-      "sha256": "1a1207e9c47653c205708eb0908c5877c36bb1677670b3fead35c1196eed493f"
+      "sha256": "8d63bfc2a8ef7dd035e7dacc2f78d1c70218b4761dd4b10edb38b27191b2d55b"
     },
     {
       "path": "fmu/dc_motor_plant.fmu",
-      "sha256": "126f4ad8588970a1491e28b254645c99197a1997b7d9e7782faa25f3ec1d9066"
+      "sha256": "1f856659958fb03ce17c30d6bc9ab5ac3f37ad3ac4432e848e5270817239c1b9"
     }
   ]
 }

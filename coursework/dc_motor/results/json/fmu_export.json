@@ -8,11 +8,11 @@
   "files": [
     {
       "path": "fmu/dc_motor_plant.fmu",
-      "sha256": "126f4ad8588970a1491e28b254645c99197a1997b7d9e7782faa25f3ec1d9066"
+      "sha256": "1f856659958fb03ce17c30d6bc9ab5ac3f37ad3ac4432e848e5270817239c1b9"
     },
     {
       "path": "fmu/dc_motor_pid.fmu",
-      "sha256": "1a1207e9c47653c205708eb0908c5877c36bb1677670b3fead35c1196eed493f"
+      "sha256": "8d63bfc2a8ef7dd035e7dacc2f78d1c70218b4761dd4b10edb38b27191b2d55b"
     }
   ],
   "configSHA256": "c225653d97ab3e081de8d56dac46beec6cbf2520ca3f711aab754ef54255f4c7",
