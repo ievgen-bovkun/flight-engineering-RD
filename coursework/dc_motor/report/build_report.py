@@ -8,7 +8,7 @@ import re
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
-from xml.sax.saxutils import escape
+from xml.sax.saxutils import escape, quoteattr
 
 from reportlab.lib import colors
 from reportlab.lib.enums import TA_CENTER
@@ -378,7 +378,14 @@ def build_report(root=ROOT, draft=False, output=None):
     table_number = 0
 
     def paragraph(text, style="BodyUA"):
-        return Paragraph(escape(text), styles[style])
+        fragments = []
+        cursor = 0
+        for link in re.finditer(r"\[([^\]]+)\]\((https?://[^\s)]+)\)", text):
+            fragments.append(escape(text[cursor:link.start()]))
+            fragments.append(f'<link href={quoteattr(link.group(2))} color="#117F83"><u>{escape(link.group(1))}</u></link>')
+            cursor = link.end()
+        fragments.append(escape(text[cursor:]))
+        return Paragraph(''.join(fragments), styles[style])
 
     for block in (root / "report/report_uk.md").read_text(encoding="utf-8").strip().split("\n\n"):
         marker = re.fullmatch(r"\{\{(table|summary|figure|commands):([^}]+)\}\}", block.strip())

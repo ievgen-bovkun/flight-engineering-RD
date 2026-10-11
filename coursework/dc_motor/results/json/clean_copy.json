@@ -422,11 +422,11 @@
     },
     {
       "path": "report/build_report.py",
-      "sha256": "89e863de8b0cb3adaeeb27b392b3470cccd79593b54a08f2b3582b8a66a28a91"
+      "sha256": "d79969bf393d92f723d8ef91bb2b581f5bfe5bb910431c355ffbb94a33fe75db"
     },
     {
       "path": "report/report_uk.md",
-      "sha256": "b2372a63a44f6c5148016a42d7cab5420ac2cd37887f97aa13418a36bfaa9dfb"
+      "sha256": "b271817fc643ef75f379828a40924b2801ff2d4dd724848fdfc6e32b8711b25c"
     },
     {
       "path": "requirements.txt",
@@ -956,12 +956,12 @@
       {
         "path": "report/report_uk.md",
         "previousSHA256": "f583d3652da45fe29ee26da9bf1a7a37324f67cfdcf3f844a5672ebbfac489ab",
-        "currentSHA256": "b2372a63a44f6c5148016a42d7cab5420ac2cd37887f97aa13418a36bfaa9dfb"
+        "currentSHA256": "b271817fc643ef75f379828a40924b2801ff2d4dd724848fdfc6e32b8711b25c"
       },
       {
         "path": "report/build_report.py",
         "previousSHA256": "4b1fb768aac70e4a67f9f9078baeaa3c42acebad4219aad4ccc1d7cf62bb52b5",
-        "currentSHA256": "89e863de8b0cb3adaeeb27b392b3470cccd79593b54a08f2b3582b8a66a28a91"
+        "currentSHA256": "d79969bf393d92f723d8ef91bb2b581f5bfe5bb910431c355ffbb94a33fe75db"
       }
     ],
     "numericalSourcesUnchanged": true,
@@ -1026,6 +1026,20 @@
         "path": "report/report_uk.md",
         "previousSHA256": "314ec93e10000eddfa2b61c57d90a1983913f161b1456e0a925ebfeab3f64cbf",
         "currentSHA256": "b2372a63a44f6c5148016a42d7cab5420ac2cd37887f97aa13418a36bfaa9dfb",
+        "scope": "Cover drawing and report presentation only; numerical sources, configurations and result data retained; no simulations repeated."
+      },
+      {
+        "timestampUTC": "2026-10-11T22:47:46.600524+00:00",
+        "path": "report/build_report.py",
+        "previousSHA256": "89e863de8b0cb3adaeeb27b392b3470cccd79593b54a08f2b3582b8a66a28a91",
+        "currentSHA256": "d79969bf393d92f723d8ef91bb2b581f5bfe5bb910431c355ffbb94a33fe75db",
+        "scope": "Cover drawing and report presentation only; numerical sources, configurations and result data retained; no simulations repeated."
+      },
+      {
+        "timestampUTC": "2026-10-11T22:47:46.600524+00:00",
+        "path": "report/report_uk.md",
+        "previousSHA256": "b2372a63a44f6c5148016a42d7cab5420ac2cd37887f97aa13418a36bfaa9dfb",
+        "currentSHA256": "b271817fc643ef75f379828a40924b2801ff2d4dd724848fdfc6e32b8711b25c",
         "scope": "Cover drawing and report presentation only; numerical sources, configurations and result data retained; no simulations repeated."
       }
     ]
