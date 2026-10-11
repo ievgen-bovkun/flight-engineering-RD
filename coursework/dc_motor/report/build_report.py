@@ -295,8 +295,9 @@ def draw_cover(canvas, doc, draft=False):
     canvas.setStrokeColor(colors.HexColor('#CBD4D3'))
     canvas.setLineWidth(.6)
     canvas.line(left, 174, right, 174)
-    text('ВИКОНАВ', left, 143, 8, muted, tracking=1.2)
-    text('Євген Бовкун', left, 118, 17, bold=True)
+    text('ВИКОНАЛИ', left, 153, 8, muted, tracking=1.2)
+    text('Ievgen Bovkun', left, 127, 15, bold=True)
+    text('Dmytro Povolotskyi', left, 103, 15, bold=True)
     canvas.setFont('Coursework-Bold', 19)
     canvas.setFillColor(navy)
     canvas.drawRightString(right, 118, '2026')
@@ -423,7 +424,7 @@ def build_report(root=ROOT, draft=False, output=None):
         canvas.drawRightString(A4[0] - 44, 25, str(doc.page))
         canvas.restoreState()
 
-    doc = SimpleDocTemplate(str(output), pagesize=A4, rightMargin=44, leftMargin=44, topMargin=40, bottomMargin=44, title="Система керування ДПС - проміжний звіт" if draft else "Система керування ДПС", author="Ievgen Bovkun")
+    doc = SimpleDocTemplate(str(output), pagesize=A4, rightMargin=44, leftMargin=44, topMargin=40, bottomMargin=44, title="Система керування ДПС - проміжний звіт" if draft else "Система керування ДПС", author="Ievgen Bovkun, Dmytro Povolotskyi")
     doc.build(story, onFirstPage=lambda canvas, doc: draw_cover(canvas, doc, draft),
               onLaterPages=footer)
     return output
