@@ -1,19 +1,19 @@
 {
   "schemaVersion": 1,
-  "mode": "core",
+  "mode": "full",
   "complete": false,
   "corePassed": true,
-  "timestampUTC": "2026-10-11T19:40:54Z",
+  "timestampUTC": "2026-10-11T21:33:40Z",
   "matlabVersion": "26.1.0.3312084 (R2026a) Update 4",
   "optimizationRegenerated": false,
   "tests": {
-    "total": 37,
-    "passed": 37,
+    "total": 41,
+    "passed": 41,
     "failed": 0,
     "incomplete": 0
   },
   "pending": [
-    "Licensed MATLAB FMU export and Python execution",
+    "Tool-coupling MATLAB FMU export and Python execution",
     "Final report and clean-copy packaging"
   ],
   "environment": {
@@ -21,7 +21,7 @@
     "release": "2026a",
     "version": "26.1.0.3312084 (R2026a) Update 4",
     "platform": "PCWIN64",
-    "timestampUTC": "2026-10-11T19:38:48Z",
+    "timestampUTC": "2026-10-11T21:33:39Z",
     "products": [
       "Aerospace Blockset",
       "Aerospace Toolbox",
@@ -39,6 +39,8 @@
     "simscape": true,
     "simscapeElectrical": true,
     "fmuExporter": true,
+    "toolCouplingExporter": true,
+    "fmuRoute": "tool_coupling",
     "fmuLicense": false,
     "compiler": true,
     "compilerNames": [
@@ -47,12 +49,14 @@
     ],
     "simulinkSmoke": true,
     "coreComplete": true,
-    "missingRequired": [
-      "Simulink FMU Builder license"
-    ],
-    "complete": false
+    "missingRequired": [],
+    "complete": true
   },
   "sources": [
+    {
+      "path": "matlab/export_coursework_fmu.m",
+      "sha256": "6f0b536554301d09e54cd5ddc77a4cb7533a1584f117eb303c84cb0695ed77ae"
+    },
     {
       "path": "matlab/export_modeling_artifacts.m",
       "sha256": "cb6f42359cf5cc56746152c7ae8f7aca3d840f4bd6415f550a1b56d859bf7cfc"
@@ -71,7 +75,7 @@
     },
     {
       "path": "matlab/preflight.m",
-      "sha256": "56fa05227f27b8204fe595ed22afa346cdeabed34d5d1c298394d15856aab059"
+      "sha256": "ba628d3892ea6c0f99a4deee07ffdb8f741d5c9e17badd8f8af421e7658e07dc"
     },
     {
       "path": "matlab/run_compensator_study.m",
@@ -79,7 +83,7 @@
     },
     {
       "path": "matlab/run_coursework.m",
-      "sha256": "fdae43724bf5f5053a7a9485e51a03e6d60affce55a930720eb620d0efa30195"
+      "sha256": "35fb70853823b6f8efac5683f40c6b09c50cbe2c47bcb9d1f3dbf81a92d058f2"
     },
     {
       "path": "matlab/run_disturbance_study.m",
@@ -92,6 +96,10 @@
     {
       "path": "matlab/src/build_compensated_model.m",
       "sha256": "a0081b0c322ff82bb74fe534dc94d3d71edec7465a091cf02e06f2bdd320a325"
+    },
+    {
+      "path": "matlab/src/build_fmu_harness.m",
+      "sha256": "c3c63f628cf954f48db1b9fb1b7c0c87754059d3b8398806b0a69eb339c81b78"
     },
     {
       "path": "matlab/src/build_model_diffeq.m",
@@ -226,6 +234,10 @@
       "sha256": "964977d040a673bcf66b963ee1d5f38236d70d037f91a8fe0731b958bd77d733"
     },
     {
+      "path": "matlab/tests/test_fmu_export.m",
+      "sha256": "9f1e92daa3c94928561d998b196aac68b6922ef30219413b13d00e86ab8c45f8"
+    },
+    {
       "path": "matlab/tests/test_metrics.m",
       "sha256": "5c9183154e890102d80daa16c63a11fa6c0fb2d90b2eaeacfe344443d034bfdc"
     },
@@ -261,9 +273,5 @@
       "path": "config/scenarios.json",
       "sha256": "5d9266f2516e7a68fd6a1f069da415d4574e255d05011abe8cc551c668c817f6"
     }
-  ],
-  "artifactRefresh": {
-    "path": "matlab/run_compensator_study.m",
-    "reason": "Reference results and plot regenerated after correcting outdated title; unchanged controller/physics code and prior 37 passing MATLAB tests."
-  }
+  ]
 }

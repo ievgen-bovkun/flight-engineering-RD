@@ -12,6 +12,18 @@
 
 **Progress tracker:** `docs/superpowers/dc-motor-progress.md`. Before execution, set the current focus and active row IDs; after each task, update status, artifact/test evidence and commit SHA. A selected next focus is not an implementation already in progress. Keep required work and optional bonus distinct.
 
+## User-authorized trial-only adjustment (2026-10-11)
+
+The user requested completion using only products included in the trial after
+FMU Builder entitlement proved unavailable. Task 7 now uses genuine FMI 2.0
+Simulink tool-coupling FMUs, exported by
+`Simulink.fmuexport.ExportSimulinkProjectToFMU` and executed through FMPy with
+a dedicated matching licensed MATLAB/Simulink R2026a session. No compiler or
+FMU Builder license is needed for this route. This amendment replaces the
+standalone/"MATLAB closed" clauses below; all physics, numerical comparisons,
+event refinement and delivery gates still apply. Report the runtime dependency
+explicitly; never claim these FMUs run independently of MATLAB.
+
 ## Global Constraints
 
 - MATLAB CLI only: no MATLAB/Simulink GUI interaction, manual block wiring, PID Tuner or manual Run steps.

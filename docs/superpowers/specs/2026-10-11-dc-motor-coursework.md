@@ -176,3 +176,7 @@ Sandbox execution first failed because the normal preferences folder was not wri
 - [FMPy tutorial](https://fmpy.readthedocs.io/en/latest/tutorial/): Python execution and inspecting FMU metadata.
 
 The brief lists voluntary defense on 24.09 and submission on 1.10 without a year. Preserve that text only as course context; do not invent a new deadline.
+
+## User scope amendment: available trial products (2026-10-11)
+
+The user instructed: "try to workaround and solve task for course work only with products available in trial". Simulink FMU Builder is absent from the trial entitlement. The assignment requires MATLAB FMU export and Python comparison but does not specify standalone execution. Use the documented Simulink tool-coupling exporter with genuine FMI2 CoSimulation FMUs and FMPy, requiring a dedicated local licensed MATLAB/Simulink R2026a session. This amendment supersedes earlier standalone/MATLAB-closed delivery choices; do not bypass licenses or claim autonomous portability. Preserve all original numerical and physical validation gates and Ukrainian reporting.

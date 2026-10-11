@@ -124,13 +124,32 @@ def create_manifest(root=ROOT):
             or optimized["tail_equilibrium_validated"] != "1"):
         raise ValueError("Failed optimized controller acceptance")
     patterns = ["config/*.json", "matlab/**/*.m", "matlab/models/*.slx", "python/**/*.py",
-                "report/*.py", "report/*.md", "scripts/*.ps1", "requirements.txt",
+                "report/*.py", "report/*.md", "scripts/*.ps1", "scripts/*.py", "README.md", "requirements.txt",
                 "results/json/*.json", "results/csv/*.csv", "results/figures/*.png"]
     paths = sorted({p for pattern in patterns for p in root.glob(pattern) if p.is_file()})
     sections = {name: {"status": "passed"} for name in CORE_SECTIONS}
     sections.update({name: {"status": "blocked" if name != "clean_copy" else "pending"}
                      for name in FULL_SECTIONS if name not in CORE_SECTIONS})
-    manifest = {"schemaVersion": 1, "complete": False,
+    if (root / "results/json/fmu_comparison.json").is_file():
+        from dc_motor.run_fmu import validate_fmu_evidence
+        validate_fmu_evidence(root)
+        sections["fmu"] = {"status": "passed", "route": "tool_coupling", "standalone": False}
+        paths += [p for p in (root / "fmu").glob("*.fmu")]
+    clean_path = root / "results/json/clean_copy.json"
+    if clean_path.is_file():
+        clean = load_json(clean_path)
+        if not clean.get("passed") or clean.get("exitCode") != 0 or not clean.get("sources"):
+            raise ValueError("Failed clean-copy reproduction")
+        sys.path.insert(0, str(root / 'scripts'))
+        from package_submission import source_records
+        if clean['sources'] != source_records(root):
+            raise ValueError('Incomplete clean-copy source inventory')
+        for source in clean['sources']:
+            if sha(safe_file(root, source["path"])) != source["sha256"]:
+                raise ValueError("Stale clean-copy source proof")
+        sections["clean_copy"] = {"status": "passed"}
+    complete = all(sections[name]["status"] == "passed" for name in FULL_SECTIONS)
+    manifest = {"schemaVersion": 1, "complete": complete,
                 "timestampUTC": datetime.now(timezone.utc).isoformat(),
                 "sections": sections, "matlabTests": run["tests"],
                 "files": [{"path": p.relative_to(root).as_posix(), "sha256": sha(p)} for p in paths]}
@@ -146,6 +165,10 @@ def validate_manifest(root=ROOT, draft=False):
     for record in manifest["files"]:
         if sha(safe_file(root, record["path"])) != record["sha256"]:
             raise ValueError(f"Stale evidence: {record['path']}")
+    if manifest.get("sections", {}).get("fmu", {}).get("status") == "passed":
+        sys.path.insert(0, str(root / "python"))
+        from dc_motor.run_fmu import validate_fmu_evidence
+        validate_fmu_evidence(root)
     if not draft:
         if not manifest.get("complete") or any(manifest.get("sections", {}).get(s, {}).get("status") != "passed" for s in FULL_SECTIONS):
             raise ValueError("Incomplete project: final report requires all mandatory comparisons")
@@ -190,8 +213,9 @@ def build_report(root=ROOT, draft=False, output=None):
     fmt = lambda x, digits=3: f"{float(x):.{digits}f}"
     sci = lambda x: f"{float(x):.2e}"
     labels = {"ziegler_nichols": "Зіглер-Нікольс", "pole_placement": "Розміщення полюсів", "buddy_baseline": "Коефіцієнти колеги", "optimized": "Оптимізований ПІД"}
+    fmu_record = load_json(root / "results/json/fmu_comparison.json") if manifest['sections'].get('fmu', {}).get('status') == 'passed' else None
     tables = {
-        "milestones": [["Етап", "Стан"], ["Рівняння та дві моделі Simulink", "Перевірено"], ["ПІД та оптимізація", "Перевірено"], ["Збурення й Python", "Перевірено"], ["Simscape та фізичні lag/lead", "Перевірено"], ["FMU: експорт та виконання", "Потрібна ліцензія"], ["Фінальний PDF та ZIP", "Не завершено"]],
+        "milestones": [["Етап", "Стан"], ["Рівняння та дві моделі Simulink", "Перевірено"], ["ПІД та оптимізація", "Перевірено"], ["Збурення й Python", "Перевірено"], ["Simscape та фізичні lag/lead", "Перевірено"], ["FMU: експорт та виконання", "Tool-coupling перевірено" if fmu_record else "Перевірка триває"], ["Чисте відтворення та подання", "Перевірено" if manifest["complete"] else "Наступний етап"]],
         "parameters": [["Параметр", "Значення", "Одиниця"]] + [[k, str(v), u] for k, v, u in zip(cfg["physical"], cfg["physical"].values(), ["Ом", "Гн", "Н·м/А", "В/(рад/с)", "кг·м²", "Н·м·с/рад", "кг·м²"])],
         "plant": [["Сценарій", "Δω: рівняння", "Δω: стани", "Макс. Δi, А"]] + [[r["scenario"], sci(r["max_speed_error_diffeq"]), sci(r["max_speed_error_statespace"]), sci(max(float(r[k]) for k in r if "current" in k))] for r in rows(root, "plant_comparison_summary.csv")],
         "controllers": [["Регулятор", "ts, с", "OS, %", "IAE, рад", "∫|V|dt, В·с", "Похибка, рад/с"]] + [[labels[r["controller"]], fmt(r["settling_s"]), fmt(r["overshoot_pct"]), fmt(r["IAE_rad"]), fmt(r["effort_Vs"]), sci(r["tail_error_rad_s"]) + ("*" if r["tail_equilibrium_validated"] != "1" else "")] for r in controllers],
@@ -203,6 +227,7 @@ def build_report(root=ROOT, draft=False, output=None):
         "disturbance": [["Момент / час", "Регулятор", "ts, с", "Провал, рад/с", "Відновлення, с"]] + [[{1: "0.05 / 1 с", 2: "0.05 / 3 с", 3: "0.5 / 3 с", 4: "1.5 / 3 с"}[int(r["scenario"])], "ПІД" if r["controller"] == "PID" else "ПІД + спост.", fmt(r["settling_s"]), fmt(r["trajectory_dip_rad_s"]), fmt(r["recovery_s"])] for r in rows(root, "disturbance_summary.csv")],
         "pending": [["Вимога", "Перевірка завершення"], ["Ліцензія FMU Builder", "Успішний пробний автономний експорт"], ["FMU двигуна та ПІД", "Експорт MATLAB та незалежне виконання FMPy"], ["Повне подання", "Фінальний PDF, ZIP та чисте відтворення"]],
     }
+    tables['fmu'] = [["Сценарій", "Δω Python", "Δi Python", "ΔV, В", "Δts, с"]] + ([[r['scenario'], sci(r['max_speed_error_python']), sci(r['max_current_error_python']), sci(r['max_voltage_error']), fmt(r['settling_difference_s'])] for r in fmu_record['fine']] if fmu_record else [["Виконання", "Триває", "", "", ""]])
     summaries = {
         "environment": f"Середовище: {env['version']}; {env['platform']}. Сітка виводу: 0.001 с. MATLAB: {manifest['matlabTests']['passed']}/{manifest['matlabTests']['total']} перевірок у записаному запуску. Чисельні таблиці та зображення перевіряються за SHA256 перед складанням PDF.",
         "assumptions": f"Обрана межа напруги: від {cfg['control']['Vmin']:g} до {cfg['control']['Vmax']:g} В. Перерегулювання ≤{cfg['chosenTargets']['overshootPercent']:g}% та статична похибка ≤{cfg['chosenTargets']['steadyError']:g} рад/с є інженерними цілями; викладач задав лише 100 рад/с протягом 2 с і вимогу мінімізації. Горизонт порівняння базових регуляторів: 5 с.",
@@ -213,11 +238,16 @@ def build_report(root=ROOT, draft=False, output=None):
         "physical": f"Максимальні розбіжності фізичного замкненого контуру та рівнянь: Δω = {sci(physical_record['controllerMaximumErrors'][0])} рад/с, Δi = {sci(physical_record['controllerMaximumErrors'][1])} А, ΔV = {sci(physical_record['controllerMaximumErrors'][2])} В. Межі прийняття: 1e-3 рад/с, 1e-4 А, 1e-3 В. Необхідний момент 0.05 Н·м при t = 1 с на фізичній ПІД-моделі: ts = {fmt(physical_record['requiredLoadMetrics']['ts'])} с, OS = {fmt(physical_record['requiredLoadMetrics']['os'])}%. Усі ці перевірки пройдено.",
         "conclusions": f"Номінальний оптимізований ПІД: ts = {fmt(selected['settling_s'])} с, OS = {fmt(selected['overshoot_pct'])}%, IAE = {fmt(selected['IAE_rad'])} рад, ∫|V|dt = {fmt(selected['effort_Vs'])} В·с. Максимальна різниця швидкості Python/MATLAB: {sci(max(float(r['max_speed_error']) for r in py))} рад/с. Зіглер-Нікольс має ts = {fmt(controllers[0]['settling_s'])} с та OS = {fmt(controllers[0]['overshoot_pct'])}% і не відповідає обраним цілям.",
     }
+    summaries['report_status'] = 'ПРОМІЖНИЙ ЗВІТ' if draft else 'КУРСОВА РОБОТА'
+    summaries['delivery_status'] = ('Три MATLAB-моделі та незалежну Python-реалізацію перевірено. FMU використовують офіційний tool-coupling з локальною сесією MATLAB/Simulink. Фінальний режим допускається лише після фактичних FMU-порівнянь і чистого відтворення.' if manifest['complete'] else 'Проміжний результат: математичні й фізичні моделі перевірено. Виконується завершення FMU-порівнянь та перевірка чистого відтворення; цей документ ще не є фінальним комплектом здачі.')
+    summaries['fmu'] = ('Порівняно п’ять сценаріїв з MATLAB та незалежною Python-моделлю на двох сітках обміну. Максимальна похибка швидкості: ' + sci(max(r['max_speed_error_python'] for r in fmu_record['fine'])) + ' рад/с; струму: ' + sci(max(r['max_current_error_python'] for r in fmu_record['fine'])) + ' А; напруги: ' + sci(max(r['max_voltage_error'] for r in fmu_record['fine'])) + ' В. Межі: 1e-3 рад/с, 1e-4 А, 1e-2 В та 0.002 с для часу усталення. Усі сценарії пройшли ці перевірки.' if fmu_record else 'FMU-порівняння ще не завершено; результат не заявляється успішним.')
+    summaries['reproduction_status'] = ('Чисте відтворення CLI пройдено з копії джерел, без віртуального середовища, ignored MAT-кешів, Downloads та Obsidian. Маніфест перевіряє контрольні суми поточних джерел і результатів. Архів містить інструкції, код, моделі, справжні FMU, CSV/JSON, графіки та український PDF.' if manifest['complete'] else 'Core перевіряє математичні й фізичні моделі. Full додатково експортує і виконує справжні tool-coupling FMU; фінальне складання чекає перевірки чистого відтворення.')
     figures = {"diffeq": ("dc_motor_diffeq_subsystem.png", "Підсистема двигуна: диференціальні рівняння", 150), "statespace": ("dc_motor_statespace_subsystem.png", "Підсистема двигуна: простір станів", 115), "pid": ("optimized_pid_comparison.png", "Номінальна швидкість і прикладена напруга", 255), "tradeoffs": ("optimization_tradeoffs.png", "Емпіричні компроміси IAE та керуючого впливу", 290), "disturbance": ("required_disturbance.png", "Реакція на необхідний момент навантаження", 250), "python": ("python_matlab_comparison.png", "Незалежні траєкторії MATLAB та Python", 285)}
     figures["compensators"] = ("compensator_reference_comparison.png", "ПІД, lag та lead на рівняннях двигуна, 12 с", 265)
     figures["physical_model"] = ("dc_motor_simscape_subsystem.png", "Реальна фізична підсистема Simscape", 285)
     figures["physical_plant"] = ("simscape_open_loop_comparison.png", "Відгук фізичної моделі та рівнянь", 330)
     figures["physical_controllers"] = ("simscape_controller_comparison.png", "Порівняння ПІД, lag та lead на Simscape", 290)
+    figures["fmu"] = ("fmu_comparison.png", "FMU MATLAB у FMPy та прямі рівняння", 285)
     width = A4[0] - 88
     story = []
     figure_number = 0
@@ -237,12 +267,15 @@ def build_report(root=ROOT, draft=False, output=None):
                 data = [[paragraph(str(v), "CellUA") for v in row] for row in tables[key]]
                 widths = None
                 if key == "controllers": widths = [114, 45, 46, 59, 72, width - 336]
-                if key in ("python", "physical_plant"): widths = [124] + [(width - 124) / 4] * 4
+                if key in ("python", "physical_plant", "fmu"): widths = [124] + [(width - 124) / 4] * 4
                 if key == "plant": widths = [126] + [(width - 126) / 3] * 3
                 table = Table(data, colWidths=widths or [width / len(data[0])] * len(data[0]), repeatRows=1, hAlign="LEFT")
                 table.setStyle(TableStyle([("BACKGROUND", (0, 0), (-1, 0), colors.HexColor("#e7eef5")), ("VALIGN", (0, 0), (-1, -1), "TOP"), ("GRID", (0, 0), (-1, -1), .35, colors.HexColor("#afbfce")), ("LEFTPADDING", (0, 0), (-1, -1), 6), ("RIGHTPADDING", (0, 0), (-1, -1), 6), ("TOPPADDING", (0, 0), (-1, -1), 6), ("BOTTOMPADDING", (0, 0), (-1, -1), 6)]))
                 story.extend([paragraph(f"Таблиця {table_number}", "CaptionUA"), table, Spacer(1, 12)])
             elif kind == "figure":
+                if key == "fmu" and fmu_record is None:
+                    story.append(paragraph("Графік FMU буде додано після успішного порівняння."))
+                    continue
                 figure_number += 1
                 filename, caption, max_height = figures[key]
                 image = Image(str(root / "results/figures" / filename))
@@ -250,7 +283,7 @@ def build_report(root=ROOT, draft=False, output=None):
                 image.drawWidth, image.drawHeight = image.imageWidth * scale, image.imageHeight * scale
                 story.append(KeepTogether([image, Spacer(1, 5), paragraph(f"Рисунок {figure_number}. {caption}", "CaptionUA")]))
             else:
-                commands = ["PowerShell, з кореня репозиторію:", "./coursework/dc_motor/scripts/run_all.ps1 -Mode Core", "Для повторної оптимізації: додайте -RegenerateOptimization", "Повний режим: -Mode Full (поки завершується помилкою)"]
+                commands = ["PowerShell, з кореня репозиторію:", "./coursework/dc_motor/scripts/run_all.ps1 -Mode Core", "Для повторної оптимізації: додайте -RegenerateOptimization", "Повний режим: -Mode Full; FMU потребують локального MATLAB/Simulink"]
                 story.extend(paragraph(c) for c in commands)
         elif block.startswith("## "):
             story.extend([PageBreak(), paragraph(block[3:], "HeadingUA")])
@@ -263,7 +296,7 @@ def build_report(root=ROOT, draft=False, output=None):
         canvas.saveState()
         canvas.setFont("Coursework", 7.5)
         canvas.setFillColor(colors.HexColor("#53677a"))
-        canvas.drawString(44, 25, "Проміжний звіт - FMU та фінальне подання не завершено" if draft else "Курсова робота - ДПС")
+        canvas.drawString(44, 25, "Проміжний звіт - перевірка фінального подання триває" if draft else "Курсова робота - ДПС")
         canvas.drawRightString(A4[0] - 44, 25, str(doc.page))
         canvas.restoreState()
 

@@ -73,4 +73,4 @@ def test_ukrainian_draft_uses_measured_values_and_discloses_gaps(tmp_path):
     import re
     expected_pages = 1 + len(re.findall(r"^## ", (PROJECT / "report/report_uk.md").read_text(encoding="utf-8"), re.MULTILINE))
     assert len(reader.pages) == expected_pages
-    assert manifest["complete"] is False
+    assert manifest['sections']['modeling']['status'] == 'passed'

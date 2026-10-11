@@ -42,7 +42,7 @@ This is a manually maintained review table. Update it after actual implementatio
 | E01 | Required | MATLAB CLI execution | Complete | Normal-user R2026a Update 4 batch audit succeeded; Simulink and Control System Toolbox available | Use CLI throughout; no manual UI dependency | T1 |
 | E02 | Enabler | Isolated project, source provenance and shared configuration | Complete | App-managed branch created; physical/scenario JSON, 30-file source snapshot and SHA256 manifest verified | Commit milestone evidence; final source delivery follows T9 | T1 |
 | E03 | Required | Simscape and Simscape Electrical available | Complete | Administrator-approved R2026aU4 installation completed; actual physical network compiles and simulates | Preserve version/installation evidence | T1, T6 |
-| E04 | Required | MATLAB standalone FMU export capability | Blocked | Exporter installed, but license test=0; two real smoke exports fail with license checkout error | Enable a valid FMU Builder license/trial, then rerun actual export smoke | T1, T7 |
+| E04 | Required | MATLAB FMU export capability (trial-only amendment) | Complete | Genuine FMI2 tool-coupling exports pass using available Simulink; standalone FMU Builder entitlement remains absent | Require matching local licensed MATLAB/Simulink; never claim standalone execution | T1, T7 |
 | E05 | Enabler | FMU build compiler configured | Complete | Verified official MinGW-w64 GCC 8.1 archive SHA256; C/C++ MEX configured in task-local directory | Actual licensed FMU export remains a separate gate | T1, T7 |
 | E06 | Enabler | Python/FMPy and report dependencies reproducible | Complete | Project virtual environment created; tested versions pinned in requirements.txt; SciPy/FMPy/report dependencies installed and Python checks pass | Preserve pinned environment for final pipeline | T1, T7, T8 |
 
@@ -75,8 +75,8 @@ This is a manually maintained review table. Update it after actual implementatio
 |---|---|---|---|---|---|---|
 | X01 | Required | Independent Python motor/control simulation | Complete | Independent SciPy equations/PID implemented; 11 Python checks pass; six MATLAB comparisons, max speed error 9.18e-7 rad/s and settling difference 0 | Independent SciPy equations, matched controller, analytical tests and scenario runs | T7 |
 | X02 | Required | Python versus MATLAB comparison | Complete | Independent SciPy equations/PID implemented; 11 Python checks pass; six MATLAB comparisons, max speed error 9.18e-7 rad/s and settling difference 0 | Same event timing, parameters and states; trajectory/metric error tables and plots pass | T7 |
-| X03 | Required | Export actual FMU from MATLAB | Blocked | Actual exporter API and supported compiler installed; two smoke exports failed because FMU Builder license is unavailable | Enable valid license and export real plant/PID FMUs | T7 |
-| X04 | Required | Run FMU in Python and compare to Python model | Blocked | Depends on X03; no FMPy runner/results | FMPy executes real FMU with MATLAB closed; event/step refinement and comparison tolerances pass | T7 |
+| X03 | Required | Export actual FMU from MATLAB | Complete | Actual MATLAB plant/PID tool-coupling FMUs exported; named scalar ports, units, CRC and SHA verified | Preserve MATLAB generation metadata and explicit local runtime dependency | T7 |
+| X04 | Required | Run FMU in Python and compare to Python model | Complete | FMPy executes five scenarios on 1 ms and 0.5 ms grids with dedicated licensed MATLAB session; all original error gates pass | User-approved trial-only route requires local MATLAB/Simulink; standalone portability not claimed | T7 |
 
 ## Optional bonus and chosen enhancements
 

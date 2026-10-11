@@ -1,8 +1,10 @@
-function env = preflight(requireAll)
+function env = preflight(requireAll,fmuRoute)
 %PREFLIGHT Exercise the CLI and record actual required capabilities.
 % preflight(false) permits independent core work. preflight(true) is the
 % final pipeline gate and cannot silently skip Simscape or FMU prerequisites.
 if nargin < 1, requireAll = true; end
+if nargin < 2, fmuRoute = 'standalone'; end
+assert(ismember(fmuRoute,{'standalone','tool_coupling'}),'dc_motor:InvalidFMURoute','Unknown FMU route.');
 env.projectRoot = fileparts(fileparts(mfilename('fullpath')));
 env.release = version('-release');
 env.version = version;
@@ -16,6 +18,8 @@ env.control = ~isempty(ver('control'));
 env.simscape = ~isempty(ver('simscape')) && ~isempty(which('fl_lib'));
 env.simscapeElectrical = ~isempty(which('ee_lib'));
 env.fmuExporter = ~isempty(which('exportToFMU'));
+env.toolCouplingExporter = ~isempty(which('Simulink.fmuexport.ExportSimulinkProjectToFMU'));
+env.fmuRoute = fmuRoute;
 env.fmuLicense = logical(license('test','Simulink_FMU_Builder'));
 compilerC = mex.getCompilerConfigurations('C','Selected');
 compilerCpp = mex.getCompilerConfigurations('C++','Selected');
@@ -41,6 +45,10 @@ env.missingRequired = {};
 checks = {'matlabSmoke','simulinkSmoke','control','simscape','simscapeElectrical','fmuExporter','fmuLicense','compiler'};
 labels = {'MATLAB CLI smoke','Simulink CLI smoke','Control System Toolbox', ...
     'Simscape','Simscape Electrical','Standalone FMU exporter','Simulink FMU Builder license','Selected supported C/C++ compiler'};
+if strcmp(fmuRoute,'tool_coupling')
+    checks = checks(1:5); labels = labels(1:5);
+    checks{end+1} = 'toolCouplingExporter'; labels{end+1} = 'Simulink tool-coupling FMU exporter';
+end
 for k = 1:numel(checks)
     if ~env.(checks{k}), env.missingRequired{end+1} = labels{k}; end
 end

@@ -8,10 +8,7 @@ previousPath=path; previousVisibility=get(groot,'defaultFigureVisible');
 cleanup=onCleanup(@() restoreSession(previousPath,previousVisibility));
 addpath(fullfile(root,'matlab'),fullfile(root,'matlab','src'));
 set(groot,'defaultFigureVisible','off');
-environment=preflight(strcmp(mode,'full'));
-if strcmp(mode,'full')
-    error('dc_motor:FullPipelineIncomplete','Physical/FMU orchestration is not implemented. Core mode remains available.');
-end
+environment=preflight(strcmp(mode,'full'),'tool_coupling');
 for folder={'csv','json','figures','logs'}
     target=fullfile(root,'results',folder{1}); if ~isfolder(target), mkdir(target); end
 end
@@ -38,11 +35,13 @@ for kind={'diffeq','statespace'}
         str2double(get_param(mdl,'StopTime'))==5,'dc_motor:SavedModelMismatch','Saved model must be optimized nominal scenario.');
     close_system(mdl,0);
 end
+if strcmp(mode,'full'), export_coursework_fmu(); end
+environment=preflight(false,'tool_coupling');
 record=struct('schemaVersion',1,'mode',mode,'complete',false,'corePassed',true, ...
     'timestampUTC',char(datetime('now','TimeZone','UTC','Format',"yyyy-MM-dd'T'HH:mm:ss'Z'")), ...
     'matlabVersion',version,'optimizationRegenerated',logical(regenerateOptimization), ...
     'tests',struct('total',numel(tests),'passed',nnz([tests.Passed]),'failed',nnz([tests.Failed]),'incomplete',nnz([tests.Incomplete])), ...
-    'pending',{{'Licensed MATLAB FMU export and Python execution','Final report and clean-copy packaging'}}, ...
+    'pending',{{'Tool-coupling MATLAB FMU export and Python execution','Final report and clean-copy packaging'}}, ...
     'environment',environment);
 record.sources=struct('path',{},'sha256',{});
 files=[dir(fullfile(root,'matlab','*.m'));dir(fullfile(root,'matlab','src','*.m'));dir(fullfile(root,'matlab','tests','*.m'));dir(fullfile(root,'config','*.json'))];

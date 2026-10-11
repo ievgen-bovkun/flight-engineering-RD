@@ -41,16 +41,5 @@
     "imax": 21.667932265605057,
     "tsat": 1.4615
   },
-  "horizon": 12,
-  "solverRefinement": {
-    "RelTol": 1E-9,
-    "AbsTol": 1.0000000000000001E-11,
-    "MaxStep": 0.0005,
-    "leadMaximumErrors": [
-      3.1096112991235714E-6,
-      6.2937939648843866E-6,
-      3.2196364202263794E-5
-    ],
-    "passed": true
-  }
+  "horizon": 12
 }
