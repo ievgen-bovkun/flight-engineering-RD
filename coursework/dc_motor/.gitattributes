@@ -4,3 +4,10 @@
 *.md text eol=lf
 *.ps1 text eol=lf
 reference/buddy/src/*.m -text
+*.csv text eol=lf
+*.pdf binary
+*.slx binary
+*.png binary
+*.fmu binary
+*.zip binary
+*.txt text eol=lf
