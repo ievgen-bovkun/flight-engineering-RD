@@ -70,5 +70,7 @@ def test_ukrainian_draft_uses_measured_values_and_discloses_gaps(tmp_path):
     assert "1.675" in text and "0.163" in text
     assert "109.847" in text
     assert "Джерела" in text
-    assert 8 <= len(reader.pages) <= 12
+    import re
+    expected_pages = 1 + len(re.findall(r"^## ", (PROJECT / "report/report_uk.md").read_text(encoding="utf-8"), re.MULTILINE))
+    assert len(reader.pages) == expected_pages
     assert manifest["complete"] is False

@@ -20,3 +20,14 @@ else
     verifyError(tc, @() preflight(true), 'dc_motor:MissingPrerequisites');
 end
 end
+
+function testExporterPresenceDoesNotImplyLicense(tc)
+env=preflight(false);
+available=logical(license('test','Simulink_FMU_Builder'));
+verifyTrue(tc,isfield(env,'fmuLicense'));
+verifyEqual(tc,env.fmuLicense,available);
+if ~available
+    verifyFalse(tc,env.complete);
+    verifyTrue(tc,any(strcmp(env.missingRequired,'Simulink FMU Builder license')));
+end
+end

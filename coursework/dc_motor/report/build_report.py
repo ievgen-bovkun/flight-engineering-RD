@@ -20,8 +20,8 @@ from reportlab.platypus import (Image, KeepTogether, PageBreak, Paragraph,
                                SimpleDocTemplate, Spacer, Table, TableStyle)
 
 ROOT = Path(__file__).resolve().parents[1]
-CORE_SECTIONS = ("modeling", "pid", "optimization", "disturbance", "python", "compensator_design")
-FULL_SECTIONS = CORE_SECTIONS + ("simscape", "compensators", "fmu", "clean_copy")
+CORE_SECTIONS = ("modeling", "pid", "optimization", "disturbance", "python", "compensator_design", "simscape", "compensators")
+FULL_SECTIONS = CORE_SECTIONS + ("fmu", "clean_copy")
 REQUIRED_INPUTS = (
     "config/parameters.json", "config/scenarios.json", "report/report_uk.md",
     "results/json/optimization.json", "results/json/environment.json",
@@ -34,6 +34,9 @@ REQUIRED_INPUTS = (
     "results/figures/required_disturbance.png", "results/figures/python_matlab_comparison.png",
     "results/csv/compensator_reference_metrics.csv", "results/json/compensator_reference.json",
     "results/figures/compensator_reference_comparison.png",
+    "results/json/simscape.json", "results/csv/simscape_comparison.csv", "results/csv/compensator_comparison.csv",
+    "results/figures/dc_motor_simscape_subsystem.png", "results/figures/simscape_open_loop_comparison.png",
+    "results/figures/simscape_controller_comparison.png",
 )
 
 
@@ -90,6 +93,11 @@ def create_manifest(root=ROOT):
             if key != "scenario" and (not math.isfinite(float(value)) or float(value) > (1e-4 if "speed" in key else 1e-5)):
                 raise ValueError("Failed plant comparison")
     comparison = rows(root, "python_matlab_comparison.csv")
+    physical = load_json(root / "results/json/simscape.json")
+    if not physical.get("physicalValidated") or any(value > limit for value, limit in zip(physical["controllerMaximumErrors"], [1e-3, 1e-4, 1e-3])):
+        raise ValueError("Failed physical-controller comparison")
+    if {r["scenario"] for r in rows(root, "simscape_comparison.csv")} != {"simscape_zero", "simscape_step", "simscape_load"}:
+        raise ValueError("Incomplete physical plant comparison")
     compensators = rows(root, "compensator_reference_metrics.csv")
     compensator_record = load_json(root / "results/json/compensator_reference.json")
     if ({r["controller"] for r in compensators} != {"PID", "lag", "lead"}
@@ -177,19 +185,23 @@ def build_report(root=ROOT, draft=False, output=None):
     baseline = next(r for r in controllers if r["controller"] == "pole_placement")
     py = rows(root, "python_matlab_comparison.csv")
     comp = rows(root, "compensator_reference_metrics.csv")
+    physical_comp = rows(root, "compensator_comparison.csv")
+    physical_record = load_json(root / "results/json/simscape.json")
     fmt = lambda x, digits=3: f"{float(x):.{digits}f}"
     sci = lambda x: f"{float(x):.2e}"
     labels = {"ziegler_nichols": "Зіглер-Нікольс", "pole_placement": "Розміщення полюсів", "buddy_baseline": "Коефіцієнти колеги", "optimized": "Оптимізований ПІД"}
     tables = {
-        "milestones": [["Етап", "Стан"], ["Рівняння та дві моделі Simulink", "Перевірено"], ["ПІД та оптимізація", "Перевірено"], ["Збурення й Python", "Перевірено"], ["Simscape, lag/lead та FMU", "Не завершено"], ["Фінальний PDF та ZIP", "Не завершено"]],
+        "milestones": [["Етап", "Стан"], ["Рівняння та дві моделі Simulink", "Перевірено"], ["ПІД та оптимізація", "Перевірено"], ["Збурення й Python", "Перевірено"], ["Simscape та фізичні lag/lead", "Перевірено"], ["FMU: експорт та виконання", "Потрібна ліцензія"], ["Фінальний PDF та ZIP", "Не завершено"]],
         "parameters": [["Параметр", "Значення", "Одиниця"]] + [[k, str(v), u] for k, v, u in zip(cfg["physical"], cfg["physical"].values(), ["Ом", "Гн", "Н·м/А", "В/(рад/с)", "кг·м²", "Н·м·с/рад", "кг·м²"])],
         "plant": [["Сценарій", "Δω: рівняння", "Δω: стани", "Макс. Δi, А"]] + [[r["scenario"], sci(r["max_speed_error_diffeq"]), sci(r["max_speed_error_statespace"]), sci(max(float(r[k]) for k in r if "current" in k))] for r in rows(root, "plant_comparison_summary.csv")],
         "controllers": [["Регулятор", "ts, с", "OS, %", "IAE, рад", "∫|V|dt, В·с", "Похибка, рад/с"]] + [[labels[r["controller"]], fmt(r["settling_s"]), fmt(r["overshoot_pct"]), fmt(r["IAE_rad"]), fmt(r["effort_Vs"]), sci(r["tail_error_rad_s"]) + ("*" if r["tail_equilibrium_validated"] != "1" else "")] for r in controllers],
         "gains": [["Kp", "Ki", "Kd", "Горизонт", "Крок виводу"] , [*[fmt(v, 6) for v in opt["K"]], "5 с", "0.001 с"]],
         "compensators": [["Регулятор", "ts, с", "OS, %", "Похибка, рад/с", "IAE, рад", "∫|V|dt, В·с"]] + [[r["controller"], fmt(r["settling_s"]), fmt(r["overshoot_pct"]), fmt(r["tail_error_rad_s"]), fmt(r["IAE_rad"]), fmt(r["effort_Vs"])] for r in comp],
+        "physical_plant": [["Сценарій", "Δω рівняння", "Δω стани", "Δω фізична", "Δi фізична, А"]] + [[r["scenario"], sci(r["max_speed_error_diffeq"]), sci(r["max_speed_error_statespace"]), sci(r["max_speed_error_simscape"]), sci(r["max_current_error_simscape"])] for r in rows(root, "simscape_comparison.csv")],
+        "physical_controllers": [["Регулятор", "ts, с", "OS, %", "Похибка, рад/с", "IAE, рад", "∫|V|dt, В·с"]] + [[r["controller"], fmt(r["settling_s"]), fmt(r["overshoot_pct"]), fmt(r["tail_error_rad_s"]), fmt(r["IAE_rad"]), fmt(r["effort_Vs"])] for r in physical_comp],
         "python": [["Сценарій", "Δω, рад/с", "Δi, А", "ΔV, В", "Δts, с"]] + [[r["scenario"], sci(r["max_speed_error"]), sci(r["max_current_error"]), sci(r["max_voltage_error"]), fmt(r["settling_difference_s"])] for r in py],
         "disturbance": [["Момент / час", "Регулятор", "ts, с", "Провал, рад/с", "Відновлення, с"]] + [[{1: "0.05 / 1 с", 2: "0.05 / 3 с", 3: "0.5 / 3 с", 4: "1.5 / 3 с"}[int(r["scenario"])], "ПІД" if r["controller"] == "PID" else "ПІД + спост.", fmt(r["settling_s"]), fmt(r["trajectory_dip_rad_s"]), fmt(r["recovery_s"])] for r in rows(root, "disturbance_summary.csv")],
-        "pending": [["Вимога", "Перевірка завершення"], ["Simscape / Electrical", "Реальні фізичні блоки та чисельний збіг"], ["Lag та lead", "Порівняння з ПІД на фізичній моделі"], ["FMU Builder / компілятор", "Автономний експорт та запуск FMPy"], ["Повне подання", "Фінальний PDF, ZIP та чисте відтворення"]],
+        "pending": [["Вимога", "Перевірка завершення"], ["Ліцензія FMU Builder", "Успішний пробний автономний експорт"], ["FMU двигуна та ПІД", "Експорт MATLAB та незалежне виконання FMPy"], ["Повне подання", "Фінальний PDF, ZIP та чисте відтворення"]],
     }
     summaries = {
         "environment": f"Середовище: {env['version']}; {env['platform']}. Сітка виводу: 0.001 с. MATLAB: {manifest['matlabTests']['passed']}/{manifest['matlabTests']['total']} перевірок у записаному запуску. Чисельні таблиці та зображення перевіряються за SHA256 перед складанням PDF.",
@@ -198,10 +210,14 @@ def build_report(root=ROOT, draft=False, output=None):
         "tradeoff": f"Порівняно з розміщенням полюсів час усталення змінився з {fmt(baseline['settling_s'])} до {fmt(selected['settling_s'])} с, IAE - з {fmt(baseline['IAE_rad'])} до {fmt(selected['IAE_rad'])} рад. Абсолютний керуючий вплив зріс з {fmt(baseline['effort_Vs'])} до {fmt(selected['effort_Vs'])} В·с. Отже, швидкодія та IAE покращилися ціною невеликого збільшення витрат напруги; одночасного покращення всіх критеріїв немає.",
         "provenance": f"Маніфест: results/run_manifest.json. Зафіксовано {len(manifest['files'])} файлів; час формування UTC: {manifest['timestampUTC']}. Конфігурація, MATLAB/Python-код, дані та зображення мають контрольні суми. Оптимізовані коефіцієнти додатково звіряються з хешами початкової конфігурації й обчислювального коду; прихована підстановка значень не допускається.",
         "compensators": f"Виміряний час усталення: ПІД {fmt(comp[0]['settling_s'])} с, lag {fmt(comp[1]['settling_s'])} с, lead {fmt(comp[2]['settling_s'])} с. Для lag та lead немає інтегратора, тому залишкова похибка не нульова. Lag перевищує ціль 2 с, lead перевищує обрану межу статичної похибки 0.2 рад/с. Абсолютний керуючий вплив: lag {fmt(comp[1]['effort_Vs'])} В·с, lead {fmt(comp[2]['effort_Vs'])} В·с. У цьому налаштуванні lead швидший за lag та витрачає трохи менше напруги; універсальна перевага не доведена.",
+        "physical": f"Максимальні розбіжності фізичного замкненого контуру та рівнянь: Δω = {sci(physical_record['controllerMaximumErrors'][0])} рад/с, Δi = {sci(physical_record['controllerMaximumErrors'][1])} А, ΔV = {sci(physical_record['controllerMaximumErrors'][2])} В. Межі прийняття: 1e-3 рад/с, 1e-4 А, 1e-3 В. Необхідний момент 0.05 Н·м при t = 1 с на фізичній ПІД-моделі: ts = {fmt(physical_record['requiredLoadMetrics']['ts'])} с, OS = {fmt(physical_record['requiredLoadMetrics']['os'])}%. Усі ці перевірки пройдено.",
         "conclusions": f"Номінальний оптимізований ПІД: ts = {fmt(selected['settling_s'])} с, OS = {fmt(selected['overshoot_pct'])}%, IAE = {fmt(selected['IAE_rad'])} рад, ∫|V|dt = {fmt(selected['effort_Vs'])} В·с. Максимальна різниця швидкості Python/MATLAB: {sci(max(float(r['max_speed_error']) for r in py))} рад/с. Зіглер-Нікольс має ts = {fmt(controllers[0]['settling_s'])} с та OS = {fmt(controllers[0]['overshoot_pct'])}% і не відповідає обраним цілям.",
     }
     figures = {"diffeq": ("dc_motor_diffeq_subsystem.png", "Підсистема двигуна: диференціальні рівняння", 150), "statespace": ("dc_motor_statespace_subsystem.png", "Підсистема двигуна: простір станів", 115), "pid": ("optimized_pid_comparison.png", "Номінальна швидкість і прикладена напруга", 255), "tradeoffs": ("optimization_tradeoffs.png", "Емпіричні компроміси IAE та керуючого впливу", 290), "disturbance": ("required_disturbance.png", "Реакція на необхідний момент навантаження", 250), "python": ("python_matlab_comparison.png", "Незалежні траєкторії MATLAB та Python", 285)}
     figures["compensators"] = ("compensator_reference_comparison.png", "ПІД, lag та lead на рівняннях двигуна, 12 с", 265)
+    figures["physical_model"] = ("dc_motor_simscape_subsystem.png", "Реальна фізична підсистема Simscape", 285)
+    figures["physical_plant"] = ("simscape_open_loop_comparison.png", "Відгук фізичної моделі та рівнянь", 330)
+    figures["physical_controllers"] = ("simscape_controller_comparison.png", "Порівняння ПІД, lag та lead на Simscape", 290)
     width = A4[0] - 88
     story = []
     figure_number = 0
@@ -221,7 +237,7 @@ def build_report(root=ROOT, draft=False, output=None):
                 data = [[paragraph(str(v), "CellUA") for v in row] for row in tables[key]]
                 widths = None
                 if key == "controllers": widths = [114, 45, 46, 59, 72, width - 336]
-                if key == "python": widths = [124] + [(width - 124) / 4] * 4
+                if key in ("python", "physical_plant"): widths = [124] + [(width - 124) / 4] * 4
                 if key == "plant": widths = [126] + [(width - 126) / 3] * 3
                 table = Table(data, colWidths=widths or [width / len(data[0])] * len(data[0]), repeatRows=1, hAlign="LEFT")
                 table.setStyle(TableStyle([("BACKGROUND", (0, 0), (-1, 0), colors.HexColor("#e7eef5")), ("VALIGN", (0, 0), (-1, -1), "TOP"), ("GRID", (0, 0), (-1, -1), .35, colors.HexColor("#afbfce")), ("LEFTPADDING", (0, 0), (-1, -1), 6), ("RIGHTPADDING", (0, 0), (-1, -1), 6), ("TOPPADDING", (0, 0), (-1, -1), 6), ("BOTTOMPADDING", (0, 0), (-1, -1), 6)]))
@@ -247,7 +263,7 @@ def build_report(root=ROOT, draft=False, output=None):
         canvas.saveState()
         canvas.setFont("Coursework", 7.5)
         canvas.setFillColor(colors.HexColor("#53677a"))
-        canvas.drawString(44, 25, "Проміжний звіт - обов'язкові Simscape/FMU етапи не завершено" if draft else "Курсова робота - ДПС")
+        canvas.drawString(44, 25, "Проміжний звіт - FMU та фінальне подання не завершено" if draft else "Курсова робота - ДПС")
         canvas.drawRightString(A4[0] - 44, 25, str(doc.page))
         canvas.restoreState()
 

@@ -1,5 +1,5 @@
 function summary=run_compensator_study()
-%RUN_COMPENSATOR_STUDY Fair 12 s reference study; physical comparison pending.
+%RUN_COMPENSATOR_STUDY Fair 12 s reference study; physical evidence is separate.
 root=fileparts(fileparts(mfilename('fullpath'))); addpath(fullfile(root,'matlab','src'));
 p=motor_params(); m=motor_models(p); K=load_optimized_gains();
 controllers={design_compensator(p,m,.01,.7),design_compensator(p,m,20,.7)};
@@ -22,7 +22,7 @@ tiledlayout(2,1); nexttile; hold on;
 for j=1:3, plot(runs{j}.t,runs{j}.w,'LineWidth',1.4); end
 yline(100,'--','HandleVisibility','off'); yline(98,':','HandleVisibility','off');
 xlabel('Час, с'); ylabel('Кутова швидкість, рад/с'); grid on; legend('ПІД','Lag','Lead','Location','southeast');
-title('Порівняння на рівняннях: перевірка Simscape ще не виконана');
+title('Референсне порівняння ПІД, lag та lead на рівняннях');
 nexttile; hold on; for j=1:3, plot(runs{j}.t,runs{j}.u,'LineWidth',1.4); end
 xlabel('Час, с'); ylabel('Напруга, В'); grid on; legend('ПІД','Lag','Lead');
 exportgraphics(f,fullfile(figDir,'compensator_reference_comparison.png'),'Resolution',180);

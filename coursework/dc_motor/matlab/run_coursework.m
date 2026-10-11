@@ -29,7 +29,7 @@ if regenerateOptimization
 else
     load_optimized_gains(); % Explicit verified-artifact mode; no fallback gains.
 end
-finalize_optimization_artifacts(); run_disturbance_study(); run_compensator_study();
+finalize_optimization_artifacts(); run_disturbance_study(); run_compensator_study(); export_physical_artifacts();
 K=load_optimized_gains();
 for kind={'diffeq','statespace'}
     mdl=['dc_motor_pid_' kind{1}]; load_system(fullfile(root,'matlab','models',[mdl '.slx']));
@@ -42,7 +42,7 @@ record=struct('schemaVersion',1,'mode',mode,'complete',false,'corePassed',true, 
     'timestampUTC',char(datetime('now','TimeZone','UTC','Format',"yyyy-MM-dd'T'HH:mm:ss'Z'")), ...
     'matlabVersion',version,'optimizationRegenerated',logical(regenerateOptimization), ...
     'tests',struct('total',numel(tests),'passed',nnz([tests.Passed]),'failed',nnz([tests.Failed]),'incomplete',nnz([tests.Incomplete])), ...
-    'pending',{{'Simscape physical model','Lag/lead physical comparison','MATLAB FMU export and Python execution','Final report and clean-copy packaging'}}, ...
+    'pending',{{'Licensed MATLAB FMU export and Python execution','Final report and clean-copy packaging'}}, ...
     'environment',environment);
 record.sources=struct('path',{},'sha256',{});
 files=[dir(fullfile(root,'matlab','*.m'));dir(fullfile(root,'matlab','src','*.m'));dir(fullfile(root,'matlab','tests','*.m'));dir(fullfile(root,'config','*.json'))];

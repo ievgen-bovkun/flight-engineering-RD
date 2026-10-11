@@ -16,6 +16,7 @@ env.control = ~isempty(ver('control'));
 env.simscape = ~isempty(ver('simscape')) && ~isempty(which('fl_lib'));
 env.simscapeElectrical = ~isempty(which('ee_lib'));
 env.fmuExporter = ~isempty(which('exportToFMU'));
+env.fmuLicense = logical(license('test','Simulink_FMU_Builder'));
 compilerC = mex.getCompilerConfigurations('C','Selected');
 compilerCpp = mex.getCompilerConfigurations('C++','Selected');
 env.compiler = ~isempty(compilerC) || ~isempty(compilerCpp);
@@ -37,9 +38,9 @@ if env.simulink
 end
 env.coreComplete = env.matlabSmoke && env.simulinkSmoke && env.control;
 env.missingRequired = {};
-checks = {'matlabSmoke','simulinkSmoke','control','simscape','simscapeElectrical','fmuExporter','compiler'};
+checks = {'matlabSmoke','simulinkSmoke','control','simscape','simscapeElectrical','fmuExporter','fmuLicense','compiler'};
 labels = {'MATLAB CLI smoke','Simulink CLI smoke','Control System Toolbox', ...
-    'Simscape','Simscape Electrical','Standalone FMU exporter','Selected supported C/C++ compiler'};
+    'Simscape','Simscape Electrical','Standalone FMU exporter','Simulink FMU Builder license','Selected supported C/C++ compiler'};
 for k = 1:numel(checks)
     if ~env.(checks{k}), env.missingRequired{end+1} = labels{k}; end
 end

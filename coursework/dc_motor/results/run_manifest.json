@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "complete": false,
-  "timestampUTC": "2026-10-11T18:58:35.642467+00:00",
+  "timestampUTC": "2026-10-11T20:00:08.035151+00:00",
   "sections": {
     "modeling": {
       "status": "passed"
@@ -22,10 +22,10 @@
       "status": "passed"
     },
     "simscape": {
-      "status": "blocked"
+      "status": "passed"
     },
     "compensators": {
-      "status": "blocked"
+      "status": "passed"
     },
     "fmu": {
       "status": "blocked"
@@ -35,8 +35,8 @@
     }
   },
   "matlabTests": {
-    "total": 30,
-    "passed": 30,
+    "total": 37,
+    "passed": 37,
     "failed": 0,
     "incomplete": 0
   },
@@ -54,6 +54,10 @@
       "sha256": "cb6f42359cf5cc56746152c7ae8f7aca3d840f4bd6415f550a1b56d859bf7cfc"
     },
     {
+      "path": "matlab/export_physical_artifacts.m",
+      "sha256": "9d247ecd16c0aa0cbb7afa6346ffc0b93c7537e08a748bb42f79a60f983f93df"
+    },
+    {
       "path": "matlab/export_pid_artifacts.m",
       "sha256": "33d2779dc4a46b54d76e0be64bd14df51d7414a7b3382c1de7e2f1018be65d0e"
     },
@@ -63,31 +67,47 @@
     },
     {
       "path": "matlab/models/dc_motor_diffeq.slx",
-      "sha256": "66261d0f1c7e2ef2284f123a2b7fb696cc6f1fc1ece0578001becb334e8cba07"
+      "sha256": "f877195f28fa877fe66653cbc7f1be27d3a20b3a54924c56021326808f472497"
+    },
+    {
+      "path": "matlab/models/dc_motor_lag_simscape.slx",
+      "sha256": "7804d7a36110ab4f56f82596a2eea96d05de00e3623d449b8ff024a12f802855"
+    },
+    {
+      "path": "matlab/models/dc_motor_lead_simscape.slx",
+      "sha256": "1ea0a407de3791dded0d1c1e29541b553df14b06d74e967bbebb715d6dcb05a8"
     },
     {
       "path": "matlab/models/dc_motor_pid_diffeq.slx",
-      "sha256": "6074482ccb0d1d5781d9c4ae1cfd330fcb492258baee4a2bd1e8aa9ddff29fac"
+      "sha256": "0004d97066bd19256088fb6f54744e0cc077c4fc5bafa9abaf0dbce2ddc23bac"
+    },
+    {
+      "path": "matlab/models/dc_motor_pid_simscape.slx",
+      "sha256": "367e59a0304f329bf58231bdec25c07f1b0e18707e05a3da077c16c43cd5ef00"
     },
     {
       "path": "matlab/models/dc_motor_pid_statespace.slx",
-      "sha256": "a888b740e12f8ed209b16dd19ed3564121d1faa6fa6746e640d97e8bd59e8cc5"
+      "sha256": "c0e33f244997d0c867aed485af302c535cccef945a9a72c86a122de65260a162"
+    },
+    {
+      "path": "matlab/models/dc_motor_simscape.slx",
+      "sha256": "57d39ac23f992e922f536c8b6efe160f3c37470a9ac97c184c96e3d881bb03ee"
     },
     {
       "path": "matlab/models/dc_motor_statespace.slx",
-      "sha256": "3508b2d84b6b2d1e8376b76f31bd92d511dea57f3bdf937adc50ae226551056f"
+      "sha256": "14465af497bddff68ac15d4cdaff8190b3395a6974dde63ad393c16fb0d5701b"
     },
     {
       "path": "matlab/preflight.m",
-      "sha256": "59b41c794dbcacce4994b95ff35f301bd6e21a0b8bd3b112a5a0612ec55ec0e7"
+      "sha256": "56fa05227f27b8204fe595ed22afa346cdeabed34d5d1c298394d15856aab059"
     },
     {
       "path": "matlab/run_compensator_study.m",
-      "sha256": "066d4b09bc694deca88725dc265d93b3d9b747660a84322e43f088efaa8c77fb"
+      "sha256": "70f25a5b43155f8e7a1ad543beb67a46b3252396776279051724ac2d898eed48"
     },
     {
       "path": "matlab/run_coursework.m",
-      "sha256": "11d6c330820ea7d88de79e2710d1bfa44f99d50cbb9c54ddc01f0f703cd90808"
+      "sha256": "fdae43724bf5f5053a7a9485e51a03e6d60affce55a930720eb620d0efa30195"
     },
     {
       "path": "matlab/run_disturbance_study.m",
@@ -98,12 +118,20 @@
       "sha256": "a66fc85e51a334d99d9c41a09bec24110f23a79f3576857e870fdb6dcf9c4604"
     },
     {
+      "path": "matlab/src/build_compensated_model.m",
+      "sha256": "a0081b0c322ff82bb74fe534dc94d3d71edec7465a091cf02e06f2bdd320a325"
+    },
+    {
       "path": "matlab/src/build_model_diffeq.m",
       "sha256": "a6146319a9c785fead839c0eadcbee9c3d2f74a208d6b5fcb180b622a619158d"
     },
     {
       "path": "matlab/src/build_model_pid.m",
       "sha256": "4d91ba4705f3fba91ba27e46682c537aaf32edbcd53b700215200006b0289f77"
+    },
+    {
+      "path": "matlab/src/build_model_simscape.m",
+      "sha256": "4582dcfc2b64452d3c03cf5ea0527bcb08fda0d6ef7034d30f8e12995159a4ea"
     },
     {
       "path": "matlab/src/build_model_statespace.m",
@@ -182,12 +210,20 @@
       "sha256": "f00d5d4bb5ce28761306ac90c3257d64604445b7527e1adb82c3461c8335abf9"
     },
     {
+      "path": "matlab/src/run_physical_controller_comparison.m",
+      "sha256": "9804c750aca5039f96a335180396faa69d7fa99b3d6ac612c3c2cc2af536c513"
+    },
+    {
       "path": "matlab/src/run_pid_comparison.m",
       "sha256": "e56bbf0afcbf27f54550a81f51ced3e40919348176a20fc51d48648920657ab7"
     },
     {
       "path": "matlab/src/run_plant_comparison.m",
       "sha256": "85d8a474fbfb58340b1ad1f28a237c0614cfdc6fae81ccc418b78ae3c7ae97d4"
+    },
+    {
+      "path": "matlab/src/run_simscape_comparison.m",
+      "sha256": "a34662f9cd828dd7d3089d9b424a4f3ffaebb2e34feeb044127cc322202b71c7"
     },
     {
       "path": "matlab/src/simulate_closed_loop.m",
@@ -239,7 +275,11 @@
     },
     {
       "path": "matlab/tests/test_preflight.m",
-      "sha256": "b036cd2921b6c3e1255f043f0d49f59965cb4f6ebdf032b883414d94fa2ab04b"
+      "sha256": "8ee857e810b554113e30ceb586fb734204bd961ae5ee86dc3c85dc6971ccd0e3"
+    },
+    {
+      "path": "matlab/tests/test_simscape.m",
+      "sha256": "e3f620589fe6fef06d48d2ff3d09be505cff1ae2f9744616e37f566c481530c6"
     },
     {
       "path": "python/dc_motor/__init__.py",
@@ -291,19 +331,23 @@
     },
     {
       "path": "python/tests/test_report.py",
-      "sha256": "bc26cc892489483a29d6965cf0c48ff4adfe950fcff1c558d7092173f061aa87"
+      "sha256": "f059cf533e27be70c1c4cb83525f590fef321ef2e33c2a60d29965deb1a71411"
     },
     {
       "path": "report/build_report.py",
-      "sha256": "0b0a4fb9f1b47e8de3d960445f9deb94c500486e6773543dbf6af4ca2f962f37"
+      "sha256": "585e82c2e3a83d678f92d4c91a1f420ae45413849384e1e3f0596a807461d4eb"
     },
     {
       "path": "report/report_uk.md",
-      "sha256": "134759b47faa78cbed575669f7b6923ef7a1137dd60f38f10fb74258811e352a"
+      "sha256": "dac06276e540362d03948414c023823188d14e842d5f93374467ff8d2d0d673c"
     },
     {
       "path": "requirements.txt",
       "sha256": "7a6226a1607227025d2b1ddc1d61a01d98f67e49f51229ff492bb63b067c4783"
+    },
+    {
+      "path": "results/csv/compensator_comparison.csv",
+      "sha256": "f97be4a5e5dc3107135816b5006adc747df9a42259fdcd3eb747fffa468cae9b"
     },
     {
       "path": "results/csv/compensator_reference_lag.csv",
@@ -374,6 +418,22 @@
       "sha256": "6c84b32d51db5c9b6007d54eba67e8e1df81981bb74ffc80835a8a7fd009e969"
     },
     {
+      "path": "results/csv/physical_lag.csv",
+      "sha256": "805a6ec48883deb3dc898de867308d3aa757930618b9f13d04f8cea1141fd5c6"
+    },
+    {
+      "path": "results/csv/physical_lead.csv",
+      "sha256": "a897546cb41bb70e2d6f0fb9bb8e2bbb1abd49692705c6893d67ea1c79dbedde"
+    },
+    {
+      "path": "results/csv/physical_PID.csv",
+      "sha256": "a13a0909f61e136eb9d12afa9207fab99ad9272b0f1b370cdf3265fdcf23a8d7"
+    },
+    {
+      "path": "results/csv/physical_PID_required_load.csv",
+      "sha256": "684bb68227924b29418f5b8cf705b83bf16e8e289c5a13cee1ddedaac3c457ff"
+    },
+    {
       "path": "results/csv/pid_baseline_summary.csv",
       "sha256": "28f1f507a3b8c44470675b8925903319c32603e3943b6dcf765462faf1134ba5"
     },
@@ -430,12 +490,28 @@
       "sha256": "e8b156cbb95c8e4e6c0d22544b3a441e58c72a0ca5c520f040703302a45c2c2e"
     },
     {
+      "path": "results/csv/simscape_comparison.csv",
+      "sha256": "9fb675bce2fe5611aa5f522e281847eb7a1b6a22339b993145503b8c2aa9a329"
+    },
+    {
+      "path": "results/csv/simscape_load.csv",
+      "sha256": "055a5b6f7e0d3b81f0cb3281879cacaa27a8019fa7d5ff1c9208434fed84a572"
+    },
+    {
+      "path": "results/csv/simscape_step.csv",
+      "sha256": "b9590c806d47d95f51ebd937e6fa51fec390e44854fe022490c6fb7f70250528"
+    },
+    {
+      "path": "results/csv/simscape_zero.csv",
+      "sha256": "0803d556d10ff5bff578cc6a87050ffa15c589aed22b3983d86d21358a1a01d1"
+    },
+    {
       "path": "results/csv/zero_input.csv",
       "sha256": "8164a71b86cde1f751342a973340649ea216dbc11b50fe3b9f4a55b60fc7c62a"
     },
     {
       "path": "results/figures/compensator_reference_comparison.png",
-      "sha256": "46551d44ddf6b2377a2a51294d1150f9559bfced6fcfe4c10d5d57402e5adee0"
+      "sha256": "c1c7a47235e78b13fc10ba3e5cad6901d16a640c606870f107a263f458386e93"
     },
     {
       "path": "results/figures/dc_motor_diffeq_diagram.png",
@@ -446,12 +522,32 @@
       "sha256": "d272c77e58e5f508da9a6f921d54e874f93ee592835b4ed22e45c846cfcc9efe"
     },
     {
+      "path": "results/figures/dc_motor_lag_simscape_diagram.png",
+      "sha256": "347323d7980c11d752118ebdb3b4f7c06f579ef1acc0156642252eadbf023674"
+    },
+    {
+      "path": "results/figures/dc_motor_lead_simscape_diagram.png",
+      "sha256": "347323d7980c11d752118ebdb3b4f7c06f579ef1acc0156642252eadbf023674"
+    },
+    {
       "path": "results/figures/dc_motor_pid_diffeq_diagram.png",
       "sha256": "f812aabcb4f51cc5f5d8e9f200cc898a828e87ff147e843969a0e1d9cdf18933"
     },
     {
+      "path": "results/figures/dc_motor_pid_simscape_diagram.png",
+      "sha256": "91b3437543ff2cd1e79beb0e3ca7940462d9485cbfd6cec0453c3aa297d7de95"
+    },
+    {
       "path": "results/figures/dc_motor_pid_statespace_diagram.png",
       "sha256": "c2ea95be4f2fb61834dd32b4544f2d79950c622914b04a201ae7ad453379806e"
+    },
+    {
+      "path": "results/figures/dc_motor_simscape_diagram.png",
+      "sha256": "373a3b904ed20663e951de05a2308a3aa8d8fc8736deda5e43f376bba643a223"
+    },
+    {
+      "path": "results/figures/dc_motor_simscape_subsystem.png",
+      "sha256": "ec8c9079ac2f11190556e153f6ed66ee9714d4c0c3d86a090b8fd7107cb4d505"
     },
     {
       "path": "results/figures/dc_motor_statespace_diagram.png",
@@ -463,7 +559,7 @@
     },
     {
       "path": "results/figures/observer_disturbance.png",
-      "sha256": "5a045231b794fa1f9520280f64c9e4228ae372ace947f67f725200410a75a01a"
+      "sha256": "a93f1d74bcecad8c95ddfcb269268ae85cce80976bc41f9f123b59d385322d34"
     },
     {
       "path": "results/figures/optimization_tradeoffs.png",
@@ -475,11 +571,11 @@
     },
     {
       "path": "results/figures/pid_baselines.png",
-      "sha256": "86711c3fbb5695ea593cfc1c0c0e8de5626b8b6e52917090d6a7e9120934a55e"
+      "sha256": "70e6e00bcd2a81cfcb68c407e450a856ebaea33ae8c298a72ca6f55e1e89658d"
     },
     {
       "path": "results/figures/plant_load_comparison.png",
-      "sha256": "5bc9b6e4f9d8e27c6ca66385c2ff50fd57b6c362d49d18b6759332024ba3f9b7"
+      "sha256": "9b58f37c64ebc6b9f2bebb76754938187c11d9395ca74e1c4817e777f9feee40"
     },
     {
       "path": "results/figures/python_matlab_comparison.png",
@@ -487,7 +583,15 @@
     },
     {
       "path": "results/figures/required_disturbance.png",
-      "sha256": "aa4763bee6738deffc08d9c517dae5bb262244084f1b1242b1ffcf697ba39bc3"
+      "sha256": "deb64173db4b91c833a77ff15ae2c4c3726f65aa088240ac557836b4ed95d9d4"
+    },
+    {
+      "path": "results/figures/simscape_controller_comparison.png",
+      "sha256": "819681330fb137fc4e42d2b57020a54fec039a7ba9c89ab530b1327a3cfcfee5"
+    },
+    {
+      "path": "results/figures/simscape_open_loop_comparison.png",
+      "sha256": "038b16226197f211e06ea5b972f52f920564c91900f9c41a9c1eb334d9b3add9"
     },
     {
       "path": "results/json/compensator_reference.json",
@@ -499,11 +603,15 @@
     },
     {
       "path": "results/json/environment.json",
-      "sha256": "78cd06a53a4acc87dc7bd9ceeb109499a827ee79cf7538934e73aa793a6202e4"
+      "sha256": "c8e50770a35321483d11c0fa1b6bd728a7c5d83c8ad1bea72350e69b43b09d99"
+    },
+    {
+      "path": "results/json/fmu_capability.json",
+      "sha256": "5097e976618868d4ac58460f583a39924e4c7c03b494e7e9535185612aa9e5ea"
     },
     {
       "path": "results/json/matlab_run.json",
-      "sha256": "92963c987c09ef92764ee5e8603f27975f36956be7730c488c81088d76b88753"
+      "sha256": "2cf6e9b24732b5b7ee391985d991c713cf7438d372649db37c1bc89add5c3aa2"
     },
     {
       "path": "results/json/optimization.json",
@@ -522,12 +630,20 @@
       "sha256": "7860871a47ea84062a1f682281a499b777231e0361e037ceee3ab3fa11bfff40"
     },
     {
+      "path": "results/json/simscape.json",
+      "sha256": "14703d51af1488696a302d0176b39cb8b1fc3eb70c70b01c6d98d572cdbcdcd3"
+    },
+    {
       "path": "scripts/install_matlab_prerequisites.ps1",
       "sha256": "03a1929ffb0d157ac76db7e46d7bc509db9431440f928d45127bee4d5ccd0b34"
     },
     {
       "path": "scripts/run_all.ps1",
-      "sha256": "2af767e38b01d1c6c252bf24efec77e79a58590db6cf00472057ae881ccfff0c"
+      "sha256": "52631a1f24c4df61ecc236251d20a67370e5fd0d85ef8dee0aea4ca8e243b8fc"
+    },
+    {
+      "path": "scripts/setup_compiler.ps1",
+      "sha256": "29838abc5b2326c51d3d3e83680537263417a71b979313bb9a7d7fc7e7a8864c"
     }
   ]
 }

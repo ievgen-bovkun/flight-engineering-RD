@@ -3,30 +3,34 @@
   "release": "2026a",
   "version": "26.1.0.3312084 (R2026a) Update 4",
   "platform": "PCWIN64",
-  "timestampUTC": "2026-10-11T18:56:06Z",
+  "timestampUTC": "2026-10-11T19:39:27Z",
   "products": [
     "Aerospace Blockset",
     "Aerospace Toolbox",
     "Control System Toolbox",
     "MATLAB",
+    "Simscape",
+    "Simscape Electrical",
     "Simulink",
+    "Simulink FMU Builder",
     "Symbolic Math Toolbox"
   ],
   "matlabSmoke": true,
   "simulink": true,
   "control": true,
-  "simscape": false,
-  "simscapeElectrical": false,
-  "fmuExporter": false,
-  "compiler": false,
-  "compilerNames": [],
+  "simscape": true,
+  "simscapeElectrical": true,
+  "fmuExporter": true,
+  "fmuLicense": false,
+  "compiler": true,
+  "compilerNames": [
+    "MinGW64 Compiler (C)",
+    "MinGW64 Compiler (C++)"
+  ],
   "simulinkSmoke": true,
   "coreComplete": true,
   "missingRequired": [
-    "Simscape",
-    "Simscape Electrical",
-    "Standalone FMU exporter",
-    "Selected supported C/C++ compiler"
+    "Simulink FMU Builder license"
   ],
   "complete": false
 }

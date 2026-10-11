@@ -3,19 +3,17 @@
   "mode": "core",
   "complete": false,
   "corePassed": true,
-  "timestampUTC": "2026-10-11T18:56:45Z",
+  "timestampUTC": "2026-10-11T19:40:54Z",
   "matlabVersion": "26.1.0.3312084 (R2026a) Update 4",
   "optimizationRegenerated": false,
   "tests": {
-    "total": 30,
-    "passed": 30,
+    "total": 37,
+    "passed": 37,
     "failed": 0,
     "incomplete": 0
   },
   "pending": [
-    "Simscape physical model",
-    "Lag/lead physical comparison",
-    "MATLAB FMU export and Python execution",
+    "Licensed MATLAB FMU export and Python execution",
     "Final report and clean-copy packaging"
   ],
   "environment": {
@@ -23,30 +21,34 @@
     "release": "2026a",
     "version": "26.1.0.3312084 (R2026a) Update 4",
     "platform": "PCWIN64",
-    "timestampUTC": "2026-10-11T18:55:27Z",
+    "timestampUTC": "2026-10-11T19:38:48Z",
     "products": [
       "Aerospace Blockset",
       "Aerospace Toolbox",
       "Control System Toolbox",
       "MATLAB",
+      "Simscape",
+      "Simscape Electrical",
       "Simulink",
+      "Simulink FMU Builder",
       "Symbolic Math Toolbox"
     ],
     "matlabSmoke": true,
     "simulink": true,
     "control": true,
-    "simscape": false,
-    "simscapeElectrical": false,
-    "fmuExporter": false,
-    "compiler": false,
-    "compilerNames": [],
+    "simscape": true,
+    "simscapeElectrical": true,
+    "fmuExporter": true,
+    "fmuLicense": false,
+    "compiler": true,
+    "compilerNames": [
+      "MinGW64 Compiler (C)",
+      "MinGW64 Compiler (C++)"
+    ],
     "simulinkSmoke": true,
     "coreComplete": true,
     "missingRequired": [
-      "Simscape",
-      "Simscape Electrical",
-      "Standalone FMU exporter",
-      "Selected supported C/C++ compiler"
+      "Simulink FMU Builder license"
     ],
     "complete": false
   },
@@ -54,6 +56,10 @@
     {
       "path": "matlab/export_modeling_artifacts.m",
       "sha256": "cb6f42359cf5cc56746152c7ae8f7aca3d840f4bd6415f550a1b56d859bf7cfc"
+    },
+    {
+      "path": "matlab/export_physical_artifacts.m",
+      "sha256": "9d247ecd16c0aa0cbb7afa6346ffc0b93c7537e08a748bb42f79a60f983f93df"
     },
     {
       "path": "matlab/export_pid_artifacts.m",
@@ -65,15 +71,15 @@
     },
     {
       "path": "matlab/preflight.m",
-      "sha256": "59b41c794dbcacce4994b95ff35f301bd6e21a0b8bd3b112a5a0612ec55ec0e7"
+      "sha256": "56fa05227f27b8204fe595ed22afa346cdeabed34d5d1c298394d15856aab059"
     },
     {
       "path": "matlab/run_compensator_study.m",
-      "sha256": "066d4b09bc694deca88725dc265d93b3d9b747660a84322e43f088efaa8c77fb"
+      "sha256": "70f25a5b43155f8e7a1ad543beb67a46b3252396776279051724ac2d898eed48"
     },
     {
       "path": "matlab/run_coursework.m",
-      "sha256": "11d6c330820ea7d88de79e2710d1bfa44f99d50cbb9c54ddc01f0f703cd90808"
+      "sha256": "fdae43724bf5f5053a7a9485e51a03e6d60affce55a930720eb620d0efa30195"
     },
     {
       "path": "matlab/run_disturbance_study.m",
@@ -84,12 +90,20 @@
       "sha256": "a66fc85e51a334d99d9c41a09bec24110f23a79f3576857e870fdb6dcf9c4604"
     },
     {
+      "path": "matlab/src/build_compensated_model.m",
+      "sha256": "a0081b0c322ff82bb74fe534dc94d3d71edec7465a091cf02e06f2bdd320a325"
+    },
+    {
       "path": "matlab/src/build_model_diffeq.m",
       "sha256": "a6146319a9c785fead839c0eadcbee9c3d2f74a208d6b5fcb180b622a619158d"
     },
     {
       "path": "matlab/src/build_model_pid.m",
       "sha256": "4d91ba4705f3fba91ba27e46682c537aaf32edbcd53b700215200006b0289f77"
+    },
+    {
+      "path": "matlab/src/build_model_simscape.m",
+      "sha256": "4582dcfc2b64452d3c03cf5ea0527bcb08fda0d6ef7034d30f8e12995159a4ea"
     },
     {
       "path": "matlab/src/build_model_statespace.m",
@@ -168,12 +182,20 @@
       "sha256": "f00d5d4bb5ce28761306ac90c3257d64604445b7527e1adb82c3461c8335abf9"
     },
     {
+      "path": "matlab/src/run_physical_controller_comparison.m",
+      "sha256": "9804c750aca5039f96a335180396faa69d7fa99b3d6ac612c3c2cc2af536c513"
+    },
+    {
       "path": "matlab/src/run_pid_comparison.m",
       "sha256": "e56bbf0afcbf27f54550a81f51ced3e40919348176a20fc51d48648920657ab7"
     },
     {
       "path": "matlab/src/run_plant_comparison.m",
       "sha256": "85d8a474fbfb58340b1ad1f28a237c0614cfdc6fae81ccc418b78ae3c7ae97d4"
+    },
+    {
+      "path": "matlab/src/run_simscape_comparison.m",
+      "sha256": "a34662f9cd828dd7d3089d9b424a4f3ffaebb2e34feeb044127cc322202b71c7"
     },
     {
       "path": "matlab/src/simulate_closed_loop.m",
@@ -225,7 +247,11 @@
     },
     {
       "path": "matlab/tests/test_preflight.m",
-      "sha256": "b036cd2921b6c3e1255f043f0d49f59965cb4f6ebdf032b883414d94fa2ab04b"
+      "sha256": "8ee857e810b554113e30ceb586fb734204bd961ae5ee86dc3c85dc6971ccd0e3"
+    },
+    {
+      "path": "matlab/tests/test_simscape.m",
+      "sha256": "e3f620589fe6fef06d48d2ff3d09be505cff1ae2f9744616e37f566c481530c6"
     },
     {
       "path": "config/parameters.json",
@@ -235,5 +261,9 @@
       "path": "config/scenarios.json",
       "sha256": "5d9266f2516e7a68fd6a1f069da415d4574e255d05011abe8cc551c668c817f6"
     }
-  ]
+  ],
+  "artifactRefresh": {
+    "path": "matlab/run_compensator_study.m",
+    "reason": "Reference results and plot regenerated after correcting outdated title; unchanged controller/physics code and prior 37 passing MATLAB tests."
+  }
 }

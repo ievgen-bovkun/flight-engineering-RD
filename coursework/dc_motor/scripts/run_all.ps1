@@ -2,11 +2,15 @@ param(
     [ValidateSet('Preflight','Core','Full')][string]$Mode = 'Preflight',
     [string]$MatlabExe = 'C:\Program Files\MATLAB\R2026a\bin\matlab.exe',
     [string]$PythonExe = '',
+    [string]$CompilerRoot = '',
     [switch]$RegenerateOptimization
 )
 $ErrorActionPreference = 'Stop'
 $projectRoot = Split-Path $PSScriptRoot -Parent
 $repositoryRoot = Split-Path (Split-Path $projectRoot -Parent) -Parent
+if (-not $CompilerRoot) { $CompilerRoot = $env:MW_MINGW64_LOC }
+if (-not $CompilerRoot) { $CompilerRoot = Join-Path (Split-Path $repositoryRoot -Parent) 'toolchain\mingw64' }
+if (Test-Path -LiteralPath (Join-Path $CompilerRoot 'bin\gcc.exe')) { $env:MW_MINGW64_LOC = $CompilerRoot }
 $matlabPath = ($repositoryRoot -replace '\\','/').Replace("'","''")
 $logRoot = Join-Path $projectRoot 'results\logs'
 New-Item -ItemType Directory -Force -Path $logRoot | Out-Null
@@ -29,4 +33,4 @@ if ($LASTEXITCODE -ne 0) { throw 'Validated progress report failed.' }
 $pytestXmlArgument = '--junitxml=' + (Join-Path $logRoot 'python-tests.xml')
 & $PythonExe -m pytest (Join-Path $projectRoot 'python\tests') -q $pytestXmlArgument
 if ($LASTEXITCODE -ne 0) { throw 'Python/report checks failed.' }
-Write-Output 'Core milestone verified. Progress PDF generated; Simscape/FMU and final ZIP are still pending.'
+Write-Output 'Core and physical milestone verified. Progress PDF generated; licensed FMU export and final ZIP are still pending.'

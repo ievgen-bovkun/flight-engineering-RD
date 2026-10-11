@@ -3,7 +3,7 @@
 **Last reviewed:** 2026-10-11, Europe/Paris.
 **Overall state:** core MATLAB/Simulink modeling, PID optimization, disturbance studies and independent Python comparisons verified and published on `codex/dc-motor-coursework`; physical Simscape/FMU prerequisites and final delivery remain incomplete.
 **Implementation owner:** SOL; executing the approved plan in this chat.
-**Current focus:** independent lag/lead design after verified core orchestration and Ukrainian progress PDF. Actual physical/FMU execution remains unavailable.
+**Current focus:** licensed standalone FMU export. Physical Simscape and lag/lead validation completed; exporter/compiler installed, FMU Builder license unavailable.
 **Next focus:** after prerequisite installation and smoke checks, implement the physical Simscape model and lag/lead comparisons, then MATLAB FMU export and Python execution. Final Ukrainian PDF, complete pipeline and ZIP follow.
 **Dependency focus:** provision/verify Simscape, Simscape Electrical, standalone FMU exporter and C compiler; these need not stop the core MATLAB/Python work.
 
@@ -16,7 +16,7 @@ This is a manually maintained review table. Update it after actual implementatio
 - Buddy source: `C:\Users\ievge\Downloads\Курсовий проект\dc_motor_project\dc_motor_project` (30 MATLAB files, DOCX, 10 reference PNGs; no Python, FMU, generated SLX, PDF or numerical CSV/MAT files in that package).
 - MATLAB numerical audit: `../../tmp/motor_buddy_audit/audit.log`; environment evidence: `../../tmp/motor_buddy_audit/environment.log`.
 - Current implementation: `coursework/dc_motor/` exists in the app-managed worktree `C:\Users\ievge\.codex\worktrees\dc-motor-coursework\Flight Engineering` on `codex/dc-motor-coursework`; all 30 reference source hashes match originals. Source/results published at e649148; tracker publication verified at 34fc6f7.
-- Verified milestone evidence: MATLAB 30/30 and Python 16/16 checks pass; six independent cross-language comparisons pass. Required physical/FMU capabilities remain unavailable; see `coursework/dc_motor/results/json/environment.json` in the implementation branch.
+- Verified milestone evidence: MATLAB 37/37 and Python 16/16 checks pass; six independent cross-language comparisons pass. Required physical/FMU capabilities remain unavailable; see `coursework/dc_motor/results/json/environment.json` in the implementation branch.
 
 ## Status rules
 
@@ -41,9 +41,9 @@ This is a manually maintained review table. Update it after actual implementatio
 | P03 | Enabler | SOL implementation plan | Complete | Nine-task plan with file responsibilities and checks exists | Keep plan and this tracker synchronized | — |
 | E01 | Required | MATLAB CLI execution | Complete | Normal-user R2026a Update 4 batch audit succeeded; Simulink and Control System Toolbox available | Use CLI throughout; no manual UI dependency | T1 |
 | E02 | Enabler | Isolated project, source provenance and shared configuration | Complete | App-managed branch created; physical/scenario JSON, 30-file source snapshot and SHA256 manifest verified | Commit milestone evidence; final source delivery follows T9 | T1 |
-| E03 | Required | Simscape and Simscape Electrical available | Blocked | Simscape/Electrical license checks returned 1, but libraries absent; official installer requires administrator token, current token false | Install/license as needed; library load and physical-network compilation pass | T1, T6 |
-| E04 | Required | MATLAB standalone FMU export capability | Blocked | Recorded `which('exportToFMU')` empty | Supported exporter available; trivial model exports successfully from CLI | T1, T7 |
-| E05 | Enabler | FMU build compiler configured | Blocked | Installed and selected C/C++ compiler checks empty; configure/validate compiler after product installation | Configure supported compiler and compile/export smoke model | T1, T7 |
+| E03 | Required | Simscape and Simscape Electrical available | Complete | Administrator-approved R2026aU4 installation completed; actual physical network compiles and simulates | Preserve version/installation evidence | T1, T6 |
+| E04 | Required | MATLAB standalone FMU export capability | Blocked | Exporter installed, but license test=0; two real smoke exports fail with license checkout error | Enable a valid FMU Builder license/trial, then rerun actual export smoke | T1, T7 |
+| E05 | Enabler | FMU build compiler configured | Complete | Verified official MinGW-w64 GCC 8.1 archive SHA256; C/C++ MEX configured in task-local directory | Actual licensed FMU export remains a separate gate | T1, T7 |
 | E06 | Enabler | Python/FMPy and report dependencies reproducible | Complete | Project virtual environment created; tested versions pinned in requirements.txt; SciPy/FMPy/report dependencies installed and Python checks pass | Preserve pinned environment for final pipeline | T1, T7, T8 |
 
 ## Required modeling, control and evaluation
@@ -53,12 +53,12 @@ This is a manually maintained review table. Update it after actual implementatio
 | M01 | Required · 2.1 | Physical constants, load inertia, governing equations and transfer function | Complete | T2: analytical checks, 4 scenario comparisons and saved-model CLI runs passed; generated SLX/CSV/diagrams | Verify J=0.03, B=0.001, transfer denominator `[0.015,0.0605,0.012]`, units and load sign in project tests | T2 |
 | M02 | Required · 2.1 | Differential-equation Simulink blocks | Complete | T2: analytical checks, 4 scenario comparisons and saved-model CLI runs passed; generated SLX/CSV/diagrams | Saved self-contained SLX, clean-session run, measured speed/current validation | T2 |
 | M03 | Required · 2.1 | State-space implementation | Complete | T2: analytical checks, 4 scenario comparisons and saved-model CLI runs passed; generated SLX/CSV/diagrams | Correct A/B and both outputs; generated SLX passes same scenarios as M02 | T2 |
-| M04 | Required · 2.1 / 2.6 | Physical Simscape motor and load | Blocked | Candidate builder exists but is unvalidated; physical libraries unavailable | Actual DC Motor + JL, sources/sensors/references/converters/solver; correct units and torque direction | T6 |
-| M05 | Required · 2.6 | Reusable Motor Model Subsystem | Partial | Equation and state-space subsystems share Vin/TL inputs and omega/i outputs; physical subsystem remains unavailable | All three plant versions expose Vin/TL inputs and omega/i outputs with matching units | T2, T6 |
-| M06 | Required · 2.1 / 2.6 | Numerical comparison of all three MATLAB models | Blocked | No verified three-way physical comparison; buddy report overstates agreement | Same scenarios/grid/initial conditions; measured error tables and passing tolerance checks including Simscape | T2, T6 |
+| M04 | Required · 2.1 / 2.6 | Physical Simscape motor and load | Complete | Real DC Motor plus external JL, sources, sensors, references and solver; units/sign verified; no equation fallback | Retain compiled SLX and physical trace evidence | T6 |
+| M05 | Required · 2.6 | Reusable Motor Model Subsystem | Complete | All three models expose Vin/TL inputs and omega/i outputs with matched SI units | Preserve reusable interface | T2, T6 |
+| M06 | Required · 2.1 / 2.6 | Numerical comparison of all three MATLAB models | Complete | Zero, 12 V and load-step cases compared on common grids/zero initial states; maximum physical speed/current errors 1.25e-6/1.45e-6 | Results in simscape_comparison.csv and physical plots | T2, T6 |
 | C01 | Required · 2.2 | Justified PID tuning method | Complete | T3: tuning, filter/scenario regressions and metric edge cases passed; pid_baseline_summary.csv records measured speed/current/voltage agreement | Reproduce chosen method, document ideal versus implemented filtered/saturated controller | T3 |
 | C02 | Required · 2.2 | Identical PID behavior in MATLAB and Simulink | Complete | T3: tuning, filter/scenario regressions and metric edge cases passed; pid_baseline_summary.csv records measured speed/current/voltage agreement | Shared Tf/anti-windup law, scenario isolation, automated equivalence checks pass | T3 |
-| C03 | Required · 2.2 | 100 rad/s within 2 s; low overshoot and steady error | Partial | Optimized K=[17.9595,45.0448,1.84810]: ts=1.675 s, OS=0.1627%, validated tail error=4.89e-7 rad/s; physical model remains blocked | Selected controller passes declared gates on validated implementations; report assumptions explicitly | T3, T4 |
+| C03 | Required · 2.2 | 100 rad/s within 2 s; low overshoot and steady error | Complete | Optimized physical PID: ts=1.675 s, OS=0.163%; validated equilibrium; required physical load case ts=1.690 s | Preserve declared voltage/OS/error assumptions and measured evidence | T3, T4, T6 |
 | O01 | Required · 2.3 | Executable PID optimizer | Complete | T4: real objective, 5 converged starts, seeded GA, 7 weights, source/config hashes and sensitivity data; Python dependencies installed/pinned | Fix schema, objective regression and optimizer smoke/full runs pass | T4 |
 | O02 | Required · 2.3 | Joint optimization of IAE and voltage effort | Complete | T4: real objective, 5 converged starts, seeded GA, 7 weights, source/config hashes and sensitivity data; Python dependencies installed/pinned | Explicit primary IAE/absolute-voltage objective, normalized weights, feasibility constraints and measured tradeoffs | T4 |
 | O03 | Required · 2.3 | Reproducible selected gains and before/after comparison | Complete | T4: real objective, 5 converged starts, seeded GA, 7 weights, source/config hashes and sensitivity data; Python dependencies installed/pinned | Successful run history, seed/config/source hashes, selected-gain artifact and independent reevaluation | T4 |
@@ -66,8 +66,8 @@ This is a manually maintained review table. Update it after actual implementatio
 | V02 | Required · 2.4 | Settling time, overshoot and static error | Complete | T3: tuning, filter/scenario regressions and metric edge cases passed; pid_baseline_summary.csv records measured speed/current/voltage agreement | Define first-entry/sustained settling and equilibrium-tail error; edge-case tests and output table | T3 |
 | V03 | Required · 2.4 | Total voltage effort and IAE | Complete | T3: tuning, filter/scenario regressions and metric edge cases passed; pid_baseline_summary.csv records measured speed/current/voltage agreement | Consistent fields, units, horizon and generated metrics for every compared controller | T3, T4 |
 | V04 | Required · 2.4 | Quantitative conclusions backed by results | Partial | Production comparisons enforce tolerances; optimization records measured tradeoffs and separates voltage effort from energy. Corrected final report and physical/FMU conclusions remain | Final conclusions reference measured tables; preserve documented defects in original buddy material | T4, T6–T8 |
-| L01 | Required · 2.6 | Closed-loop lag compensator versus PID | Partial | New stable lag design and saturated reference simulation verified; 12 s comparison: ts=2.330 s, error=0.160 rad/s. Physical comparison pending | Run lag and PID on actual Simscape with matching limits and scenario | T6 |
-| L02 | Required · 2.6 | Lead design and lag/lead tradeoff comparison | Partial | New lead design verified against lsim: ts=1.781 s, error=1.525 rad/s; measured effort slightly below lag. Physical comparison pending | Validate actual physical traces and report observed tradeoffs | T6 |
+| L01 | Required · 2.6 | Closed-loop lag compensator versus PID | Complete | Actual physical PID/lag comparison on identical 12 s scenarios; lag ts=2.330 s, error=0.160 rad/s | Measured table/plot in compensator_comparison.csv | T6 |
+| L02 | Required · 2.6 | Lead design and lag/lead tradeoff comparison | Complete | Actual physical lead ts=1.781 s, error=1.525 rad/s; lead uses slightly less absolute voltage effort for this tuning | Preserve observed tradeoff and failed chosen steady-error target | T6 |
 
 ## Python and FMU requirements
 
@@ -75,7 +75,7 @@ This is a manually maintained review table. Update it after actual implementatio
 |---|---|---|---|---|---|---|
 | X01 | Required | Independent Python motor/control simulation | Complete | Independent SciPy equations/PID implemented; 11 Python checks pass; six MATLAB comparisons, max speed error 9.18e-7 rad/s and settling difference 0 | Independent SciPy equations, matched controller, analytical tests and scenario runs | T7 |
 | X02 | Required | Python versus MATLAB comparison | Complete | Independent SciPy equations/PID implemented; 11 Python checks pass; six MATLAB comparisons, max speed error 9.18e-7 rad/s and settling difference 0 | Same event timing, parameters and states; trajectory/metric error tables and plots pass | T7 |
-| X03 | Required | Export actual FMU from MATLAB | Blocked | No FMU supplied; exporter unavailable in checked environment | CLI-generated executable FMU, metadata/I/O validation and checksum; plan includes plant and PID exports | T7 |
+| X03 | Required | Export actual FMU from MATLAB | Blocked | Actual exporter API and supported compiler installed; two smoke exports failed because FMU Builder license is unavailable | Enable valid license and export real plant/PID FMUs | T7 |
 | X04 | Required | Run FMU in Python and compare to Python model | Blocked | Depends on X03; no FMPy runner/results | FMPy executes real FMU with MATLAB closed; event/step refinement and comparison tolerances pass | T7 |
 
 ## Optional bonus and chosen enhancements
@@ -92,10 +92,10 @@ This is a manually maintained review table. Update it after actual implementatio
 | ID | Scope | Necessary element | Status | Current evidence / gap | Acceptance evidence needed / next action | Task |
 |---|---|---|---|---|---|---|
 | D01 | Required | Readable documented code and README instructions | Partial | Project README documents implemented MATLAB/Python CLI commands and prerequisites; modular code exists. Final end-to-end instructions await remaining features | Exact end-to-end CLI commands, dependencies, model conventions and results index | T1–T9 |
-| D02 | Required | Final report in Ukrainian as PDF | Partial | 11-page Ukrainian progress PDF and generator verified; final report intentionally rejects missing physical/FMU results | Complete mandatory comparisons, update narrative and build final PDF | T8 |
-| D03 | Enabler | Report accuracy and visual verification | Partial | Progress PDF rendered with Poppler; all 11 pages inspected; Ukrainian text/current values validated | Repeat checks on final PDF after remaining results | T8 |
-| D04 | Enabler | Regression tests and honest failure statuses | Partial | MATLAB 30/30 and Python 16/16 pass; required physical/FMU tests still unavailable | Tests cover F1–F6 and numerical acceptance; missing required capabilities cannot be silent skips | T2–T7 |
-| D05 | Enabler | One-command pipeline and clean-copy reproduction | Partial | Core CLI pipeline exit 0: regenerated MATLAB/Python evidence, 30 MATLAB checks, 16 Python/report checks and progress PDF; final/full and clean-copy checks remain | Complete full physical/FMU/report pipeline and validate clean extraction | T8, T9 |
+| D02 | Required | Final report in Ukrainian as PDF | Partial | 14-page Ukrainian progress PDF and generator verified; final report intentionally rejects missing physical/FMU results | Complete mandatory comparisons, update narrative and build final PDF | T8 |
+| D03 | Enabler | Report accuracy and visual verification | Partial | Progress PDF rendered with Poppler; all 14 pages inspected; Ukrainian text/current values validated | Repeat checks on final PDF after remaining results | T8 |
+| D04 | Enabler | Regression tests and honest failure statuses | Partial | MATLAB 37/37 and Python/report 16/16; physical missing-block/parameter/numerical failures covered; installed exporter is distinguished from licensed exporter | FMU regressions remain required | T2–T7 |
+| D05 | Enabler | One-command pipeline and clean-copy reproduction | Partial | Core/physical CLI pipeline implemented; full FMU and clean-copy validation remain | Complete licensed export/FMPy/final-report/package pipeline | T8, T9 |
 | D06 | Required | Submission ZIP: code, results and README | Not started | Buddy folder is source material, not validated final submission | ZIP contains final code/results/README/PDF/models/FMUs; checksums and clean-extraction checks pass | T9 |
 | D07 | Required | All code and PDF pushed to Git | Partial | Source milestones pushed and remote SHA verified at e649148; final PDF/ZIP remain incomplete | Commit allowlisted deliverables, push, verify remote SHA and downloadable code/PDF/ZIP paths | T9 |
 
@@ -128,9 +128,11 @@ No overall completion percentage is shown: these rows have unequal effort, and a
 |---|---|---|
 | 2026-10-11 | User assignment, spec/plan, local branch/worktree and artifact inventory, buddy source hashes, prior same-day CLI logs | Initial tracker created; source unchanged; no local coursework implementation yet; recorded current focus and prerequisite gaps |
 | 2026-10-11 | Setup milestone: managed worktree/branch, 30 source hashes, configuration, MATLAB/Simulink smoke, preflight tests | 2/2 tests PASS after RED; missing required capabilities fail clearly; pause requested for prerequisite decision |
-| 2026-10-11 | Disturbance and independent Python milestones; MATLAB 30/30, Python 11/11; six cross-language cases; remote source SHA verified | Source branch published at e649148; physical products require administrator installation; final PDF/FMU/ZIP not complete |
+| 2026-10-11 | Disturbance and independent Python milestones; MATLAB 37/37, Python 11/11; six cross-language cases; remote source SHA verified | Source branch published at e649148; physical products require administrator installation; final PDF/FMU/ZIP not complete |
 | 2026-10-11 | Status review against completed milestone artifacts and implementation ledger | Corrected stale queued/failing narrative entries; retained physical/FMU blockers and pending Ukrainian PDF/ZIP; installation approval still pending |
 
-| 2026-10-11 | Core runner exit 0, MATLAB 30/30, Python/report 16/16, SHA256 manifest and 11-page visual inspection | Ukrainian progress PDF verified; final report remains incomplete; simple milestone table maintained separately |
+| 2026-10-11 | Core runner exit 0, MATLAB 37/37, Python/report 16/16, SHA256 manifest and 14-page visual inspection | Ukrainian progress PDF verified; final report remains incomplete; simple milestone table maintained separately |
 
-| 2026-10-11 | Lag/lead reference synthesis, independent lsim, event-refinement tests, full core exit 0; MATLAB 30/30 and Python/report 16/16; all 11 PDF pages inspected | Reference compensator milestone verified; physical implementation, real FMU and final delivery still pending |
+| 2026-10-11 | Lag/lead reference synthesis, independent lsim, event-refinement tests, full core exit 0; MATLAB 37/37 and Python/report 16/16; all 11 PDF pages inspected | Reference compensator milestone verified; physical implementation, real FMU and final delivery still pending |
+
+| 2026-10-11 | Administrator install completed; portable compiler configured; actual three-model/physical-controller comparisons; 37 MATLAB and 16 Python/report checks | Simscape milestone complete; real FMU export still blocked by missing FMU Builder license, not missing installation |

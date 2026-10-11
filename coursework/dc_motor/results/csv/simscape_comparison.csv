@@ -1,0 +1,4 @@
+scenario,max_speed_error_diffeq,max_speed_error_statespace,max_speed_error_simscape,max_current_error_diffeq,max_current_error_statespace,max_current_error_simscape
+simscape_zero,0,0,0,0,0,0
+simscape_step,1.96783117578647e-10,1.96783117578647e-10,1.24971447590383e-06,2.23791873921186e-10,2.23791873921186e-10,1.44323854023298e-06
+simscape_load,1.96783117578647e-10,1.96783117578647e-10,1.24971447590383e-06,2.23791873921186e-10,2.23791873921186e-10,1.44323854023298e-06
