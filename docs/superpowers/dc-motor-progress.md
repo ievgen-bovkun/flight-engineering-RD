@@ -97,7 +97,7 @@ This is a manually maintained review table. Update it after actual implementatio
 | D04 | Enabler | Regression tests and honest failure statuses | Partial | MATLAB 26/26 and Python 11/11 pass; required physical/FMU tests still unavailable | Tests cover F1–F6 and numerical acceptance; missing required capabilities cannot be silent skips | T2–T7 |
 | D05 | Enabler | One-command pipeline and clean-copy reproduction | Not started | No final runner; dependencies and cached-gain provenance unresolved | Fail-fast MATLAB/Python/FMU/report pipeline works outside Downloads and previous workspace state | T8, T9 |
 | D06 | Required | Submission ZIP: code, results and README | Not started | Buddy folder is source material, not validated final submission | ZIP contains final code/results/README/PDF/models/FMUs; checksums and clean-extraction checks pass | T9 |
-| D07 | Required | All code and PDF pushed to Git | Partial | Verified source milestones committed on coursework branch; remote source push pending verification; final PDF/ZIP remain incomplete | Commit allowlisted deliverables, push, verify remote SHA and downloadable code/PDF/ZIP paths | T9 |
+| D07 | Required | All code and PDF pushed to Git | Partial | Source milestones pushed and remote SHA verified at e649148; final PDF/ZIP remain incomplete | Commit allowlisted deliverables, push, verify remote SHA and downloadable code/PDF/ZIP paths | T9 |
 
 ## Current focus and review order
 
@@ -129,3 +129,5 @@ No overall completion percentage is shown: these rows have unequal effort, and a
 | 2026-10-11 | User assignment, spec/plan, local branch/worktree and artifact inventory, buddy source hashes, prior same-day CLI logs | Initial tracker created; source unchanged; no local coursework implementation yet; recorded current focus and prerequisite gaps |
 
 | 2026-10-11 | Setup milestone: managed worktree/branch, 30 source hashes, configuration, MATLAB/Simulink smoke, preflight tests | 2/2 tests PASS after RED; missing required capabilities fail clearly; pause requested for prerequisite decision |
+
+| 2026-10-11 | Disturbance and independent Python milestones; MATLAB 26/26, Python 11/11; six cross-language cases; remote source SHA verified | Source branch published at e649148; physical products require administrator installation; final PDF/FMU/ZIP not complete |
