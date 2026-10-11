@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "complete": true,
-  "timestampUTC": "2026-10-11T22:28:21.075142+00:00",
+  "timestampUTC": "2026-10-11T22:32:14.420456+00:00",
   "sections": {
     "modeling": {
       "status": "passed"
@@ -381,7 +381,7 @@
     },
     {
       "path": "report/report_uk.md",
-      "sha256": "2e0ccf5dfebf012d2b1bf9487de4769a1e4cdd8ce551725baeee882d36fd9313"
+      "sha256": "f12d2c25479dee812e1b31f8f37beef6a4d66b1dc3efa1df86d2690b3d6aa0d1"
     },
     {
       "path": "requirements.txt",
@@ -665,7 +665,7 @@
     },
     {
       "path": "results/json/clean_copy.json",
-      "sha256": "d1a130c4fba0dc41f37720a4526f13fc207246dec9812c4778bc326f601e7420"
+      "sha256": "0f9f25b2e340e81723c23784dce27345686e2e1c0a1d97a93b62f8a278fdc7c0"
     },
     {
       "path": "results/json/compensator_reference.json",

@@ -426,7 +426,7 @@
     },
     {
       "path": "report/report_uk.md",
-      "sha256": "2e0ccf5dfebf012d2b1bf9487de4769a1e4cdd8ce551725baeee882d36fd9313"
+      "sha256": "f12d2c25479dee812e1b31f8f37beef6a4d66b1dc3efa1df86d2690b3d6aa0d1"
     },
     {
       "path": "requirements.txt",
@@ -956,7 +956,7 @@
       {
         "path": "report/report_uk.md",
         "previousSHA256": "f583d3652da45fe29ee26da9bf1a7a37324f67cfdcf3f844a5672ebbfac489ab",
-        "currentSHA256": "2e0ccf5dfebf012d2b1bf9487de4769a1e4cdd8ce551725baeee882d36fd9313"
+        "currentSHA256": "f12d2c25479dee812e1b31f8f37beef6a4d66b1dc3efa1df86d2690b3d6aa0d1"
       }
     ],
     "numericalSourcesUnchanged": true,
@@ -979,6 +979,13 @@
         "path": "report/report_uk.md",
         "previousSHA256": "725a828473fbfdbfade5e1e3a49e1c250bf5e68bc1a16f5e471d440618a7a9e8",
         "currentSHA256": "2e0ccf5dfebf012d2b1bf9487de4769a1e4cdd8ce551725baeee882d36fd9313",
+        "scope": "Report wording only; all numerical code, configurations and result data retained; no simulations repeated."
+      },
+      {
+        "timestampUTC": "2026-10-11T22:32:13.305162+00:00",
+        "path": "report/report_uk.md",
+        "previousSHA256": "2e0ccf5dfebf012d2b1bf9487de4769a1e4cdd8ce551725baeee882d36fd9313",
+        "currentSHA256": "f12d2c25479dee812e1b31f8f37beef6a4d66b1dc3efa1df86d2690b3d6aa0d1",
         "scope": "Report wording only; all numerical code, configurations and result data retained; no simulations repeated."
       }
     ]
