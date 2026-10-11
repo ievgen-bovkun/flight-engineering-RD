@@ -3,6 +3,10 @@ function [mdl,path,sub]=init_motor_model(name,p,modelDir)
 if nargin<3, modelDir=fullfile(dc_project_root(),'matlab','models'); end
 if ~isfolder(modelDir), mkdir(modelDir); end
 mdl=name; path=fullfile(modelDir,[name '.slx']);
+% Saved models are loaded by absolute path. Keeping their folder off the
+% MATLAB function path avoids name-shadow warnings during a fresh rebuild.
+folders=strsplit(matlabpath,pathsep);
+if any(strcmpi(folders,modelDir)), rmpath(modelDir); end
 if bdIsLoaded(mdl), close_system(mdl,0); end
 new_system(mdl);
 ws=get_param(mdl,'ModelWorkspace');

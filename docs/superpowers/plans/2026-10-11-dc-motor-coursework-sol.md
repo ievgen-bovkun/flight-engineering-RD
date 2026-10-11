@@ -115,13 +115,13 @@ if ($LASTEXITCODE -ne 0) { throw 'MATLAB preflight failed' }
 
 **Interfaces:** `out=simulate_closed_loop(p,K,opt)` returns `t,i,w,u,e,TL,opt,Tf,Tt`; `M=performance_metrics(out)` returns `t_first,ts,os,ess,iae,itae,effort,effort2,energy_net,copper_loss,settled,status,horizon`. `ess` is an equilibrium-validated tail estimate; also expose endpoint error. `build_model_pid(p,K,kind,scenario,modelDir)` returns a model with the same controller law.
 
-- [ ] Write regressions for F2: setting TL=0 remains zero after build, and the Simulink filtered derivative equals `Kd*s/(Tf*s+1)` by using block `N=1/Tf`. Cover ideal/no-saturation and saturated cases separately.
-- [ ] Write metrics fixtures: a response that enters, exits and later settles; a never-settling response; an end-of-run excursion; a zero/negative reference with documented absolute-band handling; NaN/Inf trajectories; constant-voltage integration. Nonfinite data must fail clearly, and a trace outside the band at its end must return `ts=Inf`.
-- [ ] Standardize `effort2` and remove all `M.eff2/M0.eff2/Mo.eff2/Mk.eff2` consumers. Benchmark structures may have a different schema only if deliberately mapped. Preserve required `effort=trapz(t,abs(u))` and IAE.
-- [ ] Port the Ziegler-Nichols reaction-curve and pole-placement baselines. Explain why ultimate-gain ZN is unsuitable for this particular stable second-order delay-free plant. Label ideal pole placement as nominal; the derivative filter adds a state and saturation changes the actual response.
-- [ ] Validate the supplied `[11.0456,21.89,1.3288]` gains as a **buddy baseline**, not newly optimized output. Reproduce approximately `ts=1.717 s, OS=0.137%, IAE=90.088 rad` over 5 s. No tolerance is to be derived solely from rounded report numbers.
-- [ ] Assert ODE versus both closed-loop Simulink models within `1e-4 rad/s` speed and `1e-3 V` voltage on a common grid, with a solver refinement check. Compare current too, using `1e-5 A`. Disable TL with zero amplitude/finite time; never set a Step time to Inf.
-- [ ] Compute 24/48 V feasibility and distinguish first reach of 100 from settling in 98-102 rad/s. Save measured baseline metrics and commit.
+- [x] Write regressions for F2: setting TL=0 remains zero after build, and the Simulink filtered derivative equals `Kd*s/(Tf*s+1)` by using block `N=1/Tf`. Cover ideal/no-saturation and saturated cases separately.
+- [x] Write metrics fixtures: a response that enters, exits and later settles; a never-settling response; an end-of-run excursion; a zero/negative reference with documented absolute-band handling; NaN/Inf trajectories; constant-voltage integration. Nonfinite data must fail clearly, and a trace outside the band at its end must return `ts=Inf`.
+- [x] Standardize `effort2` and remove all `M.eff2/M0.eff2/Mo.eff2/Mk.eff2` consumers. Benchmark structures may have a different schema only if deliberately mapped. Preserve required `effort=trapz(t,abs(u))` and IAE.
+- [x] Port the Ziegler-Nichols reaction-curve and pole-placement baselines. Explain why ultimate-gain ZN is unsuitable for this particular stable second-order delay-free plant. Label ideal pole placement as nominal; the derivative filter adds a state and saturation changes the actual response.
+- [x] Validate the supplied `[11.0456,21.89,1.3288]` gains as a **buddy baseline**, not newly optimized output. Reproduce approximately `ts=1.717 s, OS=0.137%, IAE=90.088 rad` over 5 s. No tolerance is to be derived solely from rounded report numbers.
+- [x] Assert ODE versus both closed-loop Simulink models within `1e-4 rad/s` speed and `1e-3 V` voltage on a common grid, with a solver refinement check. Compare current too, using `1e-5 A`. Disable TL with zero amplitude/finite time; never set a Step time to Inf.
+- [x] Compute 24/48 V feasibility and distinguish first reach of 100 from settling in 98-102 rad/s. Save measured baseline metrics and commit.
 
 **Run:** MATLAB `assertSuccess(runtests(.../test_pid_equivalence.m))` and `test_metrics.m`; runner must return nonzero if either fails.
 
