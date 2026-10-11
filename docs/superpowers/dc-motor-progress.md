@@ -1,6 +1,6 @@
 # DC motor coursework - milestone check
 
-Updated: 2026-10-11. Implementation: `codex/dc-motor-coursework`.
+Updated: 2026-10-12. Implementation: `codex/dc-motor-coursework`.
 
 | Milestone | Check | Evidence / remaining work |
 |---|---|---|
@@ -12,8 +12,8 @@ Updated: 2026-10-11. Implementation: `codex/dc-motor-coursework`.
 | 6. Simscape and lag/lead comparisons | Done | Actual physical motor/load and PID/lag/lead comparisons pass numerical gates |
 | 7. Python and FMU exchange | Done | Genuine MATLAB tool-coupling FMUs run in FMPy; five scenarios pass at 1 ms and 0.5 ms; local MATLAB/Simulink required |
 | 8. Ukrainian report | Done | Final 15-page Ukrainian PDF built from accepted results; all pages rendered and inspected |
-| 9. Final ZIP and Git delivery | In progress | Full and fresh-copy runs pass 41 MATLAB +27 Python checks; ZIP verified; final review/push pending |
+| 9. Final ZIP and Git delivery | Done | Primary 43 MATLAB/27 Python; prior clean-copy 41/27 retained with unchanged numerical sources; revised PDF/ZIP verified; remote 33fc7e6 confirmed |
 
-Current focus: milestone 9 - fresh whole-branch review and verified Git push. User authorized trial-only tool-coupling FMUs; standalone portability is not claimed.
+Current focus: all nine milestones complete. Trial-compatible tool-coupling FMUs require local MATLAB/Simulink R2026a. The missing historical course note remains a documented preparation limitation.
 
 [Detailed requirement checks](dc-motor-requirements.md) · [Approved implementation plan](plans/2026-10-11-dc-motor-coursework-sol.md)

@@ -219,9 +219,9 @@ if ($LASTEXITCODE -ne 0) { throw 'MATLAB preflight failed' }
 - [x] Extract to a fresh path, verify every hash, run the documented verification and regenerate the report there. Validate no dependency on the Downloads source, Obsidian vault, prior base workspace or an ignored MAT cache. Run the full pipeline from clean source before declaring reproducibility.
 - [x] Render the final extracted PDF and inspect it; check ZIP CRC/inventory and all model/FMU filenames. Ensure no handwritten metrics have diverged from the run manifest.
 - [x] Review the final diff and required source list. Stage only this project's files and the explicit README/spec/plan updates. Use `git check-ignore -v` to detect accidentally excluded deliverables and `git diff --cached --check` to validate the staged change.
-- [ ] Commit and push to `origin codex/dc-motor-coursework` using ordinary push, never force push. The user's request already authorizes delivery of the code and PDF to Git. Do not merge existing homework branches as part of delivery.
-- [ ] Verify remote SHA with `git ls-remote origin refs/heads/codex/dc-motor-coursework`, compare with local HEAD, and inspect committed paths for all `.m`, `.py`, `.slx`, `.fmu`, report source, PDF and ZIP. Observe host file-size limits; use the repository's supported artifact/LFS strategy if needed, preserving downloadable deliverables.
-- [ ] Return the branch/commit link, PDF link, ZIP link, final test counts, main performance metrics and any remaining limitations. Never report push success without a matching remote commit. If a PR is created, attach it to this chat using the app tool.
+- [x] Commit and push to `origin codex/dc-motor-coursework` using ordinary push, never force push. The user's request already authorizes delivery of the code and PDF to Git. Do not merge existing homework branches as part of delivery.
+- [x] Verify remote SHA with `git ls-remote origin refs/heads/codex/dc-motor-coursework`, compare with local HEAD, and inspect committed paths for all `.m`, `.py`, `.slx`, `.fmu`, report source, PDF and ZIP. Observe host file-size limits; use the repository's supported artifact/LFS strategy if needed, preserving downloadable deliverables.
+- [x] Return the branch/commit link, PDF link, ZIP link, final test counts, main performance metrics and any remaining limitations. Never report push success without a matching remote commit. If a PR is created, attach it to this chat using the app tool.
 
 ## Completion gate and handoff prompt
 
