@@ -3,7 +3,7 @@
 **Last reviewed:** 2026-10-11, Europe/Paris.
 **Overall state:** implementation started on `codex/dc-motor-coursework`; project setup verified, task T1 still has external prerequisites unresolved.
 **Implementation owner:** SOL; executing the approved plan in this chat.
-**Current focus:** T4: executable joint IAE/voltage-effort optimization and reproducible gain selection. T2/T3 verified.
+**Current focus:** T5: required disturbance rejection and live visualization. T2/T3/T4 verified; physical/FMU capabilities remain blocked.
 **Next focus:** validated optimization, then physical-model and cross-platform completion.
 **Dependency focus:** provision/verify Simscape, Simscape Electrical, standalone FMU exporter and C compiler; these need not stop the core MATLAB/Python work.
 
@@ -44,7 +44,7 @@ This is a manually maintained review table. Update it after actual implementatio
 | E03 | Required | Simscape and Simscape Electrical available | Blocked | Recorded `ver('simscape')`, `which('fl_lib')`, `which('ee_lib')` empty | Install/license as needed; library load and physical-network compilation pass | T1, T6 |
 | E04 | Required | MATLAB standalone FMU export capability | Blocked | Recorded `which('exportToFMU')` empty | Supported exporter available; trivial model exports successfully from CLI | T1, T7 |
 | E05 | Enabler | FMU build compiler configured | Blocked | No selected C compiler returned; this does not establish whether a compiler is installed | Configure supported compiler and compile/export smoke model | T1, T7 |
-| E06 | Enabler | Python/FMPy and report dependencies reproducible | Not started | No coursework requirements file or verified environment | Pin tested versions; imports and smoke checks pass | T1, T7, T8 |
+| E06 | Enabler | Python/FMPy and report dependencies reproducible | Complete | T4: real objective, 5 converged starts, seeded GA, 7 weights, source/config hashes and sensitivity data; Python dependencies installed/pinned | Pin tested versions; imports and smoke checks pass | T1, T7, T8 |
 
 ## Required modeling, control and evaluation
 
@@ -58,10 +58,10 @@ This is a manually maintained review table. Update it after actual implementatio
 | M06 | Required · 2.1 / 2.6 | Numerical comparison of all three MATLAB models | Blocked | No verified three-way physical comparison; buddy report overstates agreement | Same scenarios/grid/initial conditions; measured error tables and passing tolerance checks including Simscape | T2, T6 |
 | C01 | Required · 2.2 | Justified PID tuning method | Complete | T3: tuning, filter/scenario regressions and metric edge cases passed; pid_baseline_summary.csv records measured speed/current/voltage agreement | Reproduce chosen method, document ideal versus implemented filtered/saturated controller | T3 |
 | C02 | Required · 2.2 | Identical PID behavior in MATLAB and Simulink | Complete | T3: tuning, filter/scenario regressions and metric edge cases passed; pid_baseline_summary.csv records measured speed/current/voltage agreement | Shared Tf/anti-windup law, scenario isolation, automated equivalence checks pass | T3 |
-| C03 | Required · 2.2 | 100 rad/s within 2 s; low overshoot and steady error | Partial | Validated buddy baseline: settling 1.717 s, OS 0.137%, speed comparison error 3.46e-8 rad/s; new optimized gains and physical model remain | Selected controller passes declared gates on validated implementations; report assumptions explicitly | T3, T4 |
-| O01 | Required · 2.3 | Executable PID optimizer | Failing | `pid_cost` raises missing `eff2`; actual metric field is `effort2` | Fix schema, objective regression and optimizer smoke/full runs pass | T4 |
-| O02 | Required · 2.3 | Joint optimization of IAE and voltage effort | Partial | Buddy optimizes squared voltage and makes overbroad integral claims | Explicit primary IAE/absolute-voltage objective, normalized weights, feasibility constraints and measured tradeoffs | T4 |
-| O03 | Required · 2.3 | Reproducible selected gains and before/after comparison | Unverified | Hard-coded supplied gains work; source cannot regenerate claimed optimization | Successful run history, seed/config/source hashes, selected-gain artifact and independent reevaluation | T4 |
+| C03 | Required · 2.2 | 100 rad/s within 2 s; low overshoot and steady error | Partial | Optimized K=[17.9595,45.0448,1.84810]: ts=1.675 s, OS=0.1627%, validated tail error=4.89e-7 rad/s; physical model remains blocked | Selected controller passes declared gates on validated implementations; report assumptions explicitly | T3, T4 |
+| O01 | Required · 2.3 | Executable PID optimizer | Complete | T4: real objective, 5 converged starts, seeded GA, 7 weights, source/config hashes and sensitivity data; Python dependencies installed/pinned | Fix schema, objective regression and optimizer smoke/full runs pass | T4 |
+| O02 | Required · 2.3 | Joint optimization of IAE and voltage effort | Complete | T4: real objective, 5 converged starts, seeded GA, 7 weights, source/config hashes and sensitivity data; Python dependencies installed/pinned | Explicit primary IAE/absolute-voltage objective, normalized weights, feasibility constraints and measured tradeoffs | T4 |
+| O03 | Required · 2.3 | Reproducible selected gains and before/after comparison | Complete | T4: real objective, 5 converged starts, seeded GA, 7 weights, source/config hashes and sensitivity data; Python dependencies installed/pinned | Successful run history, seed/config/source hashes, selected-gain artifact and independent reevaluation | T4 |
 | V01 | Required · 2.4 | Speed versus reference and applied-voltage plots | Partial | Actual Ukrainian-labeled plant/PID plots regenerated from measured CSV; physical/optimized/cross-platform plots remain | Regenerate from successful runs; Ukrainian labels, units and reference/band markers | T4, T8 |
 | V02 | Required · 2.4 | Settling time, overshoot and static error | Complete | T3: tuning, filter/scenario regressions and metric edge cases passed; pid_baseline_summary.csv records measured speed/current/voltage agreement | Define first-entry/sustained settling and equilibrium-tail error; edge-case tests and output table | T3 |
 | V03 | Required · 2.4 | Total voltage effort and IAE | Complete | T3: tuning, filter/scenario regressions and metric edge cases passed; pid_baseline_summary.csv records measured speed/current/voltage agreement | Consistent fields, units, horizon and generated metrics for every compared controller | T3, T4 |
@@ -85,7 +85,7 @@ This is a manually maintained review table. Update it after actual implementatio
 | B01 | Bonus · 2.5 | 0.05 N m disturbance at t=1 s and rejection | Partial | Load/observer routines exist; not accepted as a final scenario | Required load run, speed/voltage metrics, loaded equilibrium and preserved performance | T5 |
 | B02 | Bonus · 2.5 | Live speed/voltage visualization | Unverified | `live_visualization.m` exists; runtime behavior not verified | Launch from CLI without interactions; show updates during integration and verify trajectory agreement | T5 |
 | B03 | Enhancement | Disturbance observer and recovery edge cases | Partial | Observer code exists; non-recovery indexing defect identified | Observer/sign checks and return Inf/status when recovery never occurs | T5 |
-| B04 | Enhancement | Gain/plant sensitivity and optional benchmark | Partial | Existing gain sweep mislabeled as plant robustness; benchmark claims too broad | Separate gain and plant perturbations; bounded, evidence-based conclusions | T4 |
+| B04 | Enhancement | Gain/plant sensitivity and optional benchmark | Complete | T4: real objective, 5 converged starts, seeded GA, 7 weights, source/config hashes and sensitivity data; Python dependencies installed/pinned | Separate gain and plant perturbations; bounded, evidence-based conclusions | T4 |
 
 ## Documentation, reproducibility and delivery
 

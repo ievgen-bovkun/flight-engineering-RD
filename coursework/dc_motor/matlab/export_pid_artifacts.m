@@ -25,7 +25,9 @@ f=figure('Visible','off','Position',[100,100,1000,720]); cleanup=onCleanup(@() c
 tiledlayout(2,1);
 nexttile; hold on; grid on;
 for k=1:3, plot(outs{k}.t,outs{k}.w,'LineWidth',1.5,'DisplayName',labels{k}); end
-yline(100,'k--','Уставка'); yline(98,'k:'); yline(102,'k:'); xline(2,'k:','Вимога 2 с');
+yline(100,'k--','Уставка','HandleVisibility','off');
+yline(98,'k:','HandleVisibility','off'); yline(102,'k:','HandleVisibility','off');
+xline(2,'k:','Вимога 2 с','HandleVisibility','off');
 xlabel('Час, с'); ylabel('Кутова швидкість, рад/с'); title('ПІД: відтворення базових налаштувань'); legend('Location','southeast');
 nexttile; hold on; grid on;
 for k=1:3, plot(outs{k}.t,outs{k}.u,'LineWidth',1.5,'DisplayName',labels{k}); end

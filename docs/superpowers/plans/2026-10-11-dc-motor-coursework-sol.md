@@ -131,14 +131,14 @@ if ($LASTEXITCODE -ne 0) { throw 'MATLAB preflight failed' }
 
 **Interfaces:** `[cost,M]=pid_cost(K,p,cfg)` has explicit fields `lambda,IAE_ref,effort_ref,penalty,simopt`; `R=optimize_pid(p,cfg,starts)` returns gains, score, feasibility, seed, evaluations, convergence history and independent final validation. Alternate squared-voltage objective uses a different named configuration.
 
-- [ ] Write a regression that calls the real objective with finite positive gains and verifies a finite score using the documented metric schema. Reject nonfinite gains/data. Verify the primary objective changes when either IAE or absolute-voltage effort changes; do not catch coding errors as infeasibility.
-- [ ] Implement the normalized two-objective cost with declared engineering feasibility penalties. Use a fixed common horizon. Run multistart `fminsearch` and the existing seeded GA (seed 7); bound gains to a documented domain for both methods. Do not require Global Optimization Toolbox.
-- [ ] Run a small optimizer smoke case before the full search. Save full configs and source hashes, not just hard-coded optimal gains. A stale or missing result must trigger regeneration or an explicit error in final mode.
-- [ ] Run the full search and a lambda sweep. Re-evaluate candidates with tight ode45 and Simulink using the same controller, then filter feasible/nondominated points before drawing a Pareto plot. Label it an empirical frontier.
-- [ ] Require selected gains to satisfy sustained settling <=2 s, chosen OS<=5% and steady error<=0.2 rad/s; report tradeoffs if voltage effort and IAE do not both improve. Do not manufacture a claim of dominance.
-- [ ] Keep gain sensitivity separate from motor-parameter sensitivity: test gains at 0.8/1/1.2, and separately perturb Ra/JL/Bm by +/-20% with gains fixed. Report failures as results rather than concealing them.
-- [ ] If retaining the bang-bang benchmark, align switching events exactly and call it a benchmark for terminal-state transfer. Remove universal claims about minimal IAE or 2% settling unless independently established. Correct the signed-integral identity and energy units in all narrative.
-- [ ] Export data/plots and commit after objective/optimizer tests and final cross-checks pass.
+- [x] Write a regression that calls the real objective with finite positive gains and verifies a finite score using the documented metric schema. Reject nonfinite gains/data. Verify the primary objective changes when either IAE or absolute-voltage effort changes; do not catch coding errors as infeasibility.
+- [x] Implement the normalized two-objective cost with declared engineering feasibility penalties. Use a fixed common horizon. Run multistart `fminsearch` and the existing seeded GA (seed 7); bound gains to a documented domain for both methods. Do not require Global Optimization Toolbox.
+- [x] Run a small optimizer smoke case before the full search. Save full configs and source hashes, not just hard-coded optimal gains. A stale or missing result must trigger regeneration or an explicit error in final mode.
+- [x] Run the full search and a lambda sweep. Re-evaluate candidates with tight ode45 and Simulink using the same controller, then filter feasible/nondominated points before drawing a Pareto plot. Label it an empirical frontier.
+- [x] Require selected gains to satisfy sustained settling <=2 s, chosen OS<=5% and steady error<=0.2 rad/s; report tradeoffs if voltage effort and IAE do not both improve. Do not manufacture a claim of dominance.
+- [x] Keep gain sensitivity separate from motor-parameter sensitivity: test gains at 0.8/1/1.2, and separately perturb Ra/JL/Bm by +/-20% with gains fixed. Report failures as results rather than concealing them.
+- [x] If retaining the bang-bang benchmark, align switching events exactly and call it a benchmark for terminal-state transfer. Remove universal claims about minimal IAE or 2% settling unless independently established. Correct the signed-integral identity and energy units in all narrative.
+- [x] Export data/plots and commit after objective/optimizer tests and final cross-checks pass.
 
 ### Task 5: Disturbance rejection and CLI-driven live visualization
 
