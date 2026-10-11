@@ -1,0 +1,281 @@
+{
+  "schemaVersion": 1,
+  "mode": "full",
+  "complete": false,
+  "corePassed": true,
+  "timestampUTC": "2026-10-11T22:13:06Z",
+  "matlabVersion": "26.1.0.3312084 (R2026a) Update 4",
+  "optimizationRegenerated": true,
+  "tests": {
+    "total": 43,
+    "passed": 43,
+    "failed": 0,
+    "incomplete": 0
+  },
+  "pending": [
+    "Tool-coupling MATLAB FMU export and Python execution",
+    "Final report and clean-copy packaging"
+  ],
+  "environment": {
+    "projectRoot": "C:\\Users\\ievge\\.codex\\worktrees\\dc-motor-coursework\\Flight Engineering\\coursework\\dc_motor",
+    "release": "2026a",
+    "version": "26.1.0.3312084 (R2026a) Update 4",
+    "platform": "PCWIN64",
+    "timestampUTC": "2026-10-11T22:13:06Z",
+    "products": [
+      "Aerospace Blockset",
+      "Aerospace Toolbox",
+      "Control System Toolbox",
+      "MATLAB",
+      "Simscape",
+      "Simscape Electrical",
+      "Simulink",
+      "Simulink FMU Builder",
+      "Symbolic Math Toolbox"
+    ],
+    "matlabSmoke": true,
+    "simulink": true,
+    "control": true,
+    "simscape": true,
+    "simscapeElectrical": true,
+    "fmuExporter": true,
+    "toolCouplingExporter": true,
+    "fmuRoute": "tool_coupling",
+    "fmuLicense": false,
+    "compiler": true,
+    "compilerNames": [
+      "MinGW64 Compiler (C)",
+      "MinGW64 Compiler (C++)"
+    ],
+    "simulinkSmoke": true,
+    "coreComplete": true,
+    "missingRequired": [],
+    "complete": true
+  },
+  "sources": [
+    {
+      "path": "matlab/export_coursework_fmu.m",
+      "sha256": "6f0b536554301d09e54cd5ddc77a4cb7533a1584f117eb303c84cb0695ed77ae"
+    },
+    {
+      "path": "matlab/export_modeling_artifacts.m",
+      "sha256": "cb6f42359cf5cc56746152c7ae8f7aca3d840f4bd6415f550a1b56d859bf7cfc"
+    },
+    {
+      "path": "matlab/export_physical_artifacts.m",
+      "sha256": "9d247ecd16c0aa0cbb7afa6346ffc0b93c7537e08a748bb42f79a60f983f93df"
+    },
+    {
+      "path": "matlab/export_pid_artifacts.m",
+      "sha256": "33d2779dc4a46b54d76e0be64bd14df51d7414a7b3382c1de7e2f1018be65d0e"
+    },
+    {
+      "path": "matlab/finalize_optimization_artifacts.m",
+      "sha256": "b4288306e816d1ea50634582fa545a8c2f38546a053e288d0ec878865b9cfad6"
+    },
+    {
+      "path": "matlab/preflight.m",
+      "sha256": "ba628d3892ea6c0f99a4deee07ffdb8f741d5c9e17badd8f8af421e7658e07dc"
+    },
+    {
+      "path": "matlab/run_compensator_study.m",
+      "sha256": "70f25a5b43155f8e7a1ad543beb67a46b3252396776279051724ac2d898eed48"
+    },
+    {
+      "path": "matlab/run_coursework.m",
+      "sha256": "29e99dcf45fb65b94fad81748c64fa2940203da883a9f64bf53fa2063bcf287e"
+    },
+    {
+      "path": "matlab/run_disturbance_study.m",
+      "sha256": "9ce330f933691e902368f3b57ea806aa35728bf2ee22b041156952ffcd668620"
+    },
+    {
+      "path": "matlab/run_optimization.m",
+      "sha256": "a66fc85e51a334d99d9c41a09bec24110f23a79f3576857e870fdb6dcf9c4604"
+    },
+    {
+      "path": "matlab/src/build_compensated_model.m",
+      "sha256": "a0081b0c322ff82bb74fe534dc94d3d71edec7465a091cf02e06f2bdd320a325"
+    },
+    {
+      "path": "matlab/src/build_fmu_harness.m",
+      "sha256": "c3c63f628cf954f48db1b9fb1b7c0c87754059d3b8398806b0a69eb339c81b78"
+    },
+    {
+      "path": "matlab/src/build_model_diffeq.m",
+      "sha256": "a6146319a9c785fead839c0eadcbee9c3d2f74a208d6b5fcb180b622a619158d"
+    },
+    {
+      "path": "matlab/src/build_model_pid.m",
+      "sha256": "4d91ba4705f3fba91ba27e46682c537aaf32edbcd53b700215200006b0289f77"
+    },
+    {
+      "path": "matlab/src/build_model_simscape.m",
+      "sha256": "4582dcfc2b64452d3c03cf5ea0527bcb08fda0d6ef7034d30f8e12995159a4ea"
+    },
+    {
+      "path": "matlab/src/build_model_statespace.m",
+      "sha256": "fe5c30c4dc50ae508ebd60fb2076354618045a32d452dc3f36067c63df57de47"
+    },
+    {
+      "path": "matlab/src/check_feasibility.m",
+      "sha256": "776f8cb9240394fe3bb7e5734c0abb1cb3ad27455716ec11109fd3411c70598d"
+    },
+    {
+      "path": "matlab/src/dc_project_root.m",
+      "sha256": "bb2afe2aefdc115c6c072d5be1588f812f504fc646677668105ad2e5ee9382d5"
+    },
+    {
+      "path": "matlab/src/design_compensator.m",
+      "sha256": "98e2d1a27c07fefb523b8864598a714fc875199c65e0d37e5464fa0062bbae34"
+    },
+    {
+      "path": "matlab/src/design_observer.m",
+      "sha256": "8bed6765f21e6e5404a45abdeb5ba6346d36cc283a070d817af7e59363de6453"
+    },
+    {
+      "path": "matlab/src/disturbance_recovery.m",
+      "sha256": "cbfbd9741ac94406cd8e5a495447c7cce104296c2a66148ae54c469dabba12e3"
+    },
+    {
+      "path": "matlab/src/file_sha256.m",
+      "sha256": "77e4b1975ba46625c0d21b4189c649e1f23dd01458db16348186baeb2d5732b7"
+    },
+    {
+      "path": "matlab/src/ga_simple.m",
+      "sha256": "3680a897ad1d4795f436dae6abf971ecd9a8adca47efa8c2c01a101851398c1f"
+    },
+    {
+      "path": "matlab/src/init_motor_model.m",
+      "sha256": "8f27136c5a9e40ea85835473533a32f70e00b7fd14bb872c64286aaac5b39ae1"
+    },
+    {
+      "path": "matlab/src/live_visualization.m",
+      "sha256": "005459bc8a88e5f5067515c1643c7cbc07008aff6b0d68b0f429d24ae5e5caa4"
+    },
+    {
+      "path": "matlab/src/load_optimized_gains.m",
+      "sha256": "832e5ece7ef136283b574341291e92035c21e92921568df099189fd0b23672d9"
+    },
+    {
+      "path": "matlab/src/motor_models.m",
+      "sha256": "8ef66e21152d2d745823ae28d55de8ff70fd62f655a6b235bbc4a7cd4960f5db"
+    },
+    {
+      "path": "matlab/src/motor_params.m",
+      "sha256": "4aa64eb0bd067ba72cdc36706f280536a21a68396c1d8c280d39826c6660c8c3"
+    },
+    {
+      "path": "matlab/src/optimize_pid.m",
+      "sha256": "17138eb9ca681e0e7f208c0e8d28e4c291100467daa3bc4d20e91ae1d586efe8"
+    },
+    {
+      "path": "matlab/src/performance_metrics.m",
+      "sha256": "b143af954174eddfc1efd419ccbaee08a23c966cc1255d0231a0934fe643037f"
+    },
+    {
+      "path": "matlab/src/pid_cost.m",
+      "sha256": "350a5d7130c7f0f08381c5eb3908512ce88a5ae2cdad93aea14993d28ca95d92"
+    },
+    {
+      "path": "matlab/src/pid_output.m",
+      "sha256": "5e0f34cb84349862fd475e87dce2af9acb7d4190bd60a6fa349bafb5e51b72ee"
+    },
+    {
+      "path": "matlab/src/pid_settings.m",
+      "sha256": "7397628dafcc90104c7ee89876c576bcf93343595a0bdaa6220aedfefaf0dfbc"
+    },
+    {
+      "path": "matlab/src/plant_reference.m",
+      "sha256": "f00d5d4bb5ce28761306ac90c3257d64604445b7527e1adb82c3461c8335abf9"
+    },
+    {
+      "path": "matlab/src/run_physical_controller_comparison.m",
+      "sha256": "9804c750aca5039f96a335180396faa69d7fa99b3d6ac612c3c2cc2af536c513"
+    },
+    {
+      "path": "matlab/src/run_pid_comparison.m",
+      "sha256": "e56bbf0afcbf27f54550a81f51ced3e40919348176a20fc51d48648920657ab7"
+    },
+    {
+      "path": "matlab/src/run_plant_comparison.m",
+      "sha256": "85d8a474fbfb58340b1ad1f28a237c0614cfdc6fae81ccc418b78ae3c7ae97d4"
+    },
+    {
+      "path": "matlab/src/run_simscape_comparison.m",
+      "sha256": "a34662f9cd828dd7d3089d9b424a4f3ffaebb2e34feeb044127cc322202b71c7"
+    },
+    {
+      "path": "matlab/src/simulate_closed_loop.m",
+      "sha256": "893daccf766fa0ca40d76b3df0bfb690c71f5fb915fb82adfbdf41b34ee18d27"
+    },
+    {
+      "path": "matlab/src/simulate_compensator.m",
+      "sha256": "35788da8547d46cb448e083820002d726c7003c89ac06194ff2817adbd95c122"
+    },
+    {
+      "path": "matlab/src/simulate_disturbance.m",
+      "sha256": "57e0bed07a3607c738f60cdcb713fee1613ca37dd92de1c4e1f5d9926a7f3d59"
+    },
+    {
+      "path": "matlab/src/tune_pole_placement.m",
+      "sha256": "8020198ad140b61c79eafa21fad4c1d0c03c88e05d55d61080be714764c34ae7"
+    },
+    {
+      "path": "matlab/src/tune_ziegler_nichols.m",
+      "sha256": "83fe8f74b6a34eb50f9004913925bdbdd96a42ce365c6bec0307ea06e585f8a0"
+    },
+    {
+      "path": "matlab/tests/test_compensators.m",
+      "sha256": "4cb87dc88093247ade08f607e9371df6b18be4cf87ecfa11013b0a0511382a66"
+    },
+    {
+      "path": "matlab/tests/test_disturbance.m",
+      "sha256": "964977d040a673bcf66b963ee1d5f38236d70d037f91a8fe0731b958bd77d733"
+    },
+    {
+      "path": "matlab/tests/test_fmu_export.m",
+      "sha256": "9f1e92daa3c94928561d998b196aac68b6922ef30219413b13d00e86ab8c45f8"
+    },
+    {
+      "path": "matlab/tests/test_metrics.m",
+      "sha256": "5c9183154e890102d80daa16c63a11fa6c0fb2d90b2eaeacfe344443d034bfdc"
+    },
+    {
+      "path": "matlab/tests/test_model_structure.m",
+      "sha256": "84c952951004d867023cee19401759a6e3c13779b4d9268d30d1decf9db325cc"
+    },
+    {
+      "path": "matlab/tests/test_motor_models.m",
+      "sha256": "c13ea7c5e84621b26e5db36d0d4f3cf0e3cc5bca036716411fb8d6e057311654"
+    },
+    {
+      "path": "matlab/tests/test_optimization.m",
+      "sha256": "46669f74403f73af9550ddfd96dcb59fbe972e6256cc88fa6a7c1b4184f92f1c"
+    },
+    {
+      "path": "matlab/tests/test_orchestration.m",
+      "sha256": "2589fad2f7397451120bf9c8421ef0939ca3417ac996f68f5c346028fad8c1b2"
+    },
+    {
+      "path": "matlab/tests/test_pid_equivalence.m",
+      "sha256": "50755d5cb9c2e2c1c157d6635231dd456fabb3c2c42602f4607bb644530b5fb1"
+    },
+    {
+      "path": "matlab/tests/test_preflight.m",
+      "sha256": "8ee857e810b554113e30ceb586fb734204bd961ae5ee86dc3c85dc6971ccd0e3"
+    },
+    {
+      "path": "matlab/tests/test_simscape.m",
+      "sha256": "e3f620589fe6fef06d48d2ff3d09be505cff1ae2f9744616e37f566c481530c6"
+    },
+    {
+      "path": "config/parameters.json",
+      "sha256": "c225653d97ab3e081de8d56dac46beec6cbf2520ca3f711aab754ef54255f4c7"
+    },
+    {
+      "path": "config/scenarios.json",
+      "sha256": "5d9266f2516e7a68fd6a1f069da415d4574e255d05011abe8cc551c668c817f6"
+    }
+  ]
+}

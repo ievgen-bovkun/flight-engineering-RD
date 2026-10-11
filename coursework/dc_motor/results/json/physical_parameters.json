@@ -1,0 +1,69 @@
+{
+  "Ra": 2,
+  "La": 0.5,
+  "Kt": 0.1,
+  "Ke": 0.1,
+  "Jm": 0.01,
+  "Bm": 0.001,
+  "JL": 0.02,
+  "J": 0.03,
+  "B": 0.001,
+  "w_ref": 100,
+  "Vmin": -48,
+  "Vmax": 48,
+  "beta": 1,
+  "gamma": 0,
+  "derivativeRatio": 20,
+  "minimumFilterTime": 0.001,
+  "ts_spec": 2,
+  "os_spec": 5,
+  "ess_spec": 0.2,
+  "band": 0.02,
+  "dt": 0.001,
+  "RelTol": 1E-8,
+  "AbsTol": 1E-10,
+  "seed": 7,
+  "Tsim": 5,
+  "Tsim_ol": 30,
+  "TL_step": 0.05,
+  "TL_time": 1,
+  "config": {
+    "schemaVersion": 1,
+    "physical": {
+      "Ra": 2,
+      "La": 0.5,
+      "Kt": 0.1,
+      "Ke": 0.1,
+      "Jm": 0.01,
+      "Bm": 0.001,
+      "JL": 0.02
+    },
+    "control": {
+      "reference": 100,
+      "Vmin": -48,
+      "Vmax": 48,
+      "beta": 1,
+      "gamma": 0,
+      "derivativeRatio": 20,
+      "minimumFilterTime": 0.001,
+      "antiWindup": "back-calculation"
+    },
+    "chosenTargets": {
+      "settlingBand": 0.02,
+      "settlingTime": 2,
+      "overshootPercent": 5,
+      "steadyError": 0.2
+    },
+    "numerics": {
+      "relativeTolerance": 1E-8,
+      "absoluteTolerance": 1E-10,
+      "outputStep": 0.001,
+      "seed": 7
+    },
+    "assumptions": [
+      "Bipolar +/-48 V is an engineering choice; the assignment specifies no voltage limit.",
+      "Overshoot <=5% and steady error <=0.2 rad/s are chosen targets, not instructor-specified limits.",
+      "The rigid load adds inertia only. Positive load torque opposes positive rotation."
+    ]
+  }
+}

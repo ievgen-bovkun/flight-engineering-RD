@@ -1,0 +1,747 @@
+{
+  "schemaVersion": 1,
+  "complete": true,
+  "timestampUTC": "2026-10-11T22:47:47.758311+00:00",
+  "sections": {
+    "modeling": {
+      "status": "passed"
+    },
+    "pid": {
+      "status": "passed"
+    },
+    "optimization": {
+      "status": "passed"
+    },
+    "disturbance": {
+      "status": "passed"
+    },
+    "python": {
+      "status": "passed"
+    },
+    "compensator_design": {
+      "status": "passed"
+    },
+    "simscape": {
+      "status": "passed"
+    },
+    "compensators": {
+      "status": "passed"
+    },
+    "fmu": {
+      "status": "passed",
+      "route": "tool_coupling",
+      "standalone": false
+    },
+    "clean_copy": {
+      "status": "passed"
+    }
+  },
+  "matlabTests": {
+    "total": 43,
+    "passed": 43,
+    "failed": 0,
+    "incomplete": 0
+  },
+  "files": [
+    {
+      "path": "config/parameters.json",
+      "sha256": "c225653d97ab3e081de8d56dac46beec6cbf2520ca3f711aab754ef54255f4c7"
+    },
+    {
+      "path": "config/scenarios.json",
+      "sha256": "5d9266f2516e7a68fd6a1f069da415d4574e255d05011abe8cc551c668c817f6"
+    },
+    {
+      "path": "matlab/export_coursework_fmu.m",
+      "sha256": "6f0b536554301d09e54cd5ddc77a4cb7533a1584f117eb303c84cb0695ed77ae"
+    },
+    {
+      "path": "matlab/export_modeling_artifacts.m",
+      "sha256": "cb6f42359cf5cc56746152c7ae8f7aca3d840f4bd6415f550a1b56d859bf7cfc"
+    },
+    {
+      "path": "matlab/export_physical_artifacts.m",
+      "sha256": "9d247ecd16c0aa0cbb7afa6346ffc0b93c7537e08a748bb42f79a60f983f93df"
+    },
+    {
+      "path": "matlab/export_pid_artifacts.m",
+      "sha256": "33d2779dc4a46b54d76e0be64bd14df51d7414a7b3382c1de7e2f1018be65d0e"
+    },
+    {
+      "path": "matlab/finalize_optimization_artifacts.m",
+      "sha256": "b4288306e816d1ea50634582fa545a8c2f38546a053e288d0ec878865b9cfad6"
+    },
+    {
+      "path": "matlab/models/dc_motor_diffeq.slx",
+      "sha256": "585865ce8833a821677cfac4770ae2b370558ea65cc6ab6ef0195768a4da88d0"
+    },
+    {
+      "path": "matlab/models/dc_motor_lag_simscape.slx",
+      "sha256": "c9171e87def6653ed5782154b697df6ce9bf162b173d90a971bf673abeac01f3"
+    },
+    {
+      "path": "matlab/models/dc_motor_lead_simscape.slx",
+      "sha256": "b6c4a7a047c518a70d706b49767b397e4d93a141b4a198b80cd99c4140246241"
+    },
+    {
+      "path": "matlab/models/dc_motor_pid.slx",
+      "sha256": "6b7c9b2ea104f04f086c9db399811a3b6e2968fc51ba298466260ece9bb1018d"
+    },
+    {
+      "path": "matlab/models/dc_motor_pid_diffeq.slx",
+      "sha256": "0e8bd92d71d61c35d7a6dda73f2f21527747d62f619ae61bb532be77aa630ba7"
+    },
+    {
+      "path": "matlab/models/dc_motor_pid_simscape.slx",
+      "sha256": "87b6519a19c99d5c0db013297ac9adc3496c95fa479af8cf22af96e3c43ecb3f"
+    },
+    {
+      "path": "matlab/models/dc_motor_pid_statespace.slx",
+      "sha256": "43002fd25e30e5d848944ecd4aa55578d8bb4a612206499acd7c37ba9d5c57e8"
+    },
+    {
+      "path": "matlab/models/dc_motor_plant.slx",
+      "sha256": "e2ccc5d38011170bfc8dd9529662fef6dafc4d6276ff1b38e72902899f06bd2c"
+    },
+    {
+      "path": "matlab/models/dc_motor_simscape.slx",
+      "sha256": "5776f84e601cc819ece5ab1a68cb661c56487e06fb2875476082883597ba8b12"
+    },
+    {
+      "path": "matlab/models/dc_motor_statespace.slx",
+      "sha256": "b3cfc068b4fecdf55bdc65663b24aee452284a0eb86b4540d75d47cb6ab4b2a8"
+    },
+    {
+      "path": "matlab/preflight.m",
+      "sha256": "ba628d3892ea6c0f99a4deee07ffdb8f741d5c9e17badd8f8af421e7658e07dc"
+    },
+    {
+      "path": "matlab/run_compensator_study.m",
+      "sha256": "70f25a5b43155f8e7a1ad543beb67a46b3252396776279051724ac2d898eed48"
+    },
+    {
+      "path": "matlab/run_coursework.m",
+      "sha256": "29e99dcf45fb65b94fad81748c64fa2940203da883a9f64bf53fa2063bcf287e"
+    },
+    {
+      "path": "matlab/run_disturbance_study.m",
+      "sha256": "9ce330f933691e902368f3b57ea806aa35728bf2ee22b041156952ffcd668620"
+    },
+    {
+      "path": "matlab/run_optimization.m",
+      "sha256": "a66fc85e51a334d99d9c41a09bec24110f23a79f3576857e870fdb6dcf9c4604"
+    },
+    {
+      "path": "matlab/src/build_compensated_model.m",
+      "sha256": "a0081b0c322ff82bb74fe534dc94d3d71edec7465a091cf02e06f2bdd320a325"
+    },
+    {
+      "path": "matlab/src/build_fmu_harness.m",
+      "sha256": "c3c63f628cf954f48db1b9fb1b7c0c87754059d3b8398806b0a69eb339c81b78"
+    },
+    {
+      "path": "matlab/src/build_model_diffeq.m",
+      "sha256": "a6146319a9c785fead839c0eadcbee9c3d2f74a208d6b5fcb180b622a619158d"
+    },
+    {
+      "path": "matlab/src/build_model_pid.m",
+      "sha256": "4d91ba4705f3fba91ba27e46682c537aaf32edbcd53b700215200006b0289f77"
+    },
+    {
+      "path": "matlab/src/build_model_simscape.m",
+      "sha256": "4582dcfc2b64452d3c03cf5ea0527bcb08fda0d6ef7034d30f8e12995159a4ea"
+    },
+    {
+      "path": "matlab/src/build_model_statespace.m",
+      "sha256": "fe5c30c4dc50ae508ebd60fb2076354618045a32d452dc3f36067c63df57de47"
+    },
+    {
+      "path": "matlab/src/check_feasibility.m",
+      "sha256": "776f8cb9240394fe3bb7e5734c0abb1cb3ad27455716ec11109fd3411c70598d"
+    },
+    {
+      "path": "matlab/src/dc_project_root.m",
+      "sha256": "bb2afe2aefdc115c6c072d5be1588f812f504fc646677668105ad2e5ee9382d5"
+    },
+    {
+      "path": "matlab/src/design_compensator.m",
+      "sha256": "98e2d1a27c07fefb523b8864598a714fc875199c65e0d37e5464fa0062bbae34"
+    },
+    {
+      "path": "matlab/src/design_observer.m",
+      "sha256": "8bed6765f21e6e5404a45abdeb5ba6346d36cc283a070d817af7e59363de6453"
+    },
+    {
+      "path": "matlab/src/disturbance_recovery.m",
+      "sha256": "cbfbd9741ac94406cd8e5a495447c7cce104296c2a66148ae54c469dabba12e3"
+    },
+    {
+      "path": "matlab/src/file_sha256.m",
+      "sha256": "77e4b1975ba46625c0d21b4189c649e1f23dd01458db16348186baeb2d5732b7"
+    },
+    {
+      "path": "matlab/src/ga_simple.m",
+      "sha256": "3680a897ad1d4795f436dae6abf971ecd9a8adca47efa8c2c01a101851398c1f"
+    },
+    {
+      "path": "matlab/src/init_motor_model.m",
+      "sha256": "8f27136c5a9e40ea85835473533a32f70e00b7fd14bb872c64286aaac5b39ae1"
+    },
+    {
+      "path": "matlab/src/live_visualization.m",
+      "sha256": "005459bc8a88e5f5067515c1643c7cbc07008aff6b0d68b0f429d24ae5e5caa4"
+    },
+    {
+      "path": "matlab/src/load_optimized_gains.m",
+      "sha256": "832e5ece7ef136283b574341291e92035c21e92921568df099189fd0b23672d9"
+    },
+    {
+      "path": "matlab/src/motor_models.m",
+      "sha256": "8ef66e21152d2d745823ae28d55de8ff70fd62f655a6b235bbc4a7cd4960f5db"
+    },
+    {
+      "path": "matlab/src/motor_params.m",
+      "sha256": "4aa64eb0bd067ba72cdc36706f280536a21a68396c1d8c280d39826c6660c8c3"
+    },
+    {
+      "path": "matlab/src/optimize_pid.m",
+      "sha256": "17138eb9ca681e0e7f208c0e8d28e4c291100467daa3bc4d20e91ae1d586efe8"
+    },
+    {
+      "path": "matlab/src/performance_metrics.m",
+      "sha256": "b143af954174eddfc1efd419ccbaee08a23c966cc1255d0231a0934fe643037f"
+    },
+    {
+      "path": "matlab/src/pid_cost.m",
+      "sha256": "350a5d7130c7f0f08381c5eb3908512ce88a5ae2cdad93aea14993d28ca95d92"
+    },
+    {
+      "path": "matlab/src/pid_output.m",
+      "sha256": "5e0f34cb84349862fd475e87dce2af9acb7d4190bd60a6fa349bafb5e51b72ee"
+    },
+    {
+      "path": "matlab/src/pid_settings.m",
+      "sha256": "7397628dafcc90104c7ee89876c576bcf93343595a0bdaa6220aedfefaf0dfbc"
+    },
+    {
+      "path": "matlab/src/plant_reference.m",
+      "sha256": "f00d5d4bb5ce28761306ac90c3257d64604445b7527e1adb82c3461c8335abf9"
+    },
+    {
+      "path": "matlab/src/run_physical_controller_comparison.m",
+      "sha256": "9804c750aca5039f96a335180396faa69d7fa99b3d6ac612c3c2cc2af536c513"
+    },
+    {
+      "path": "matlab/src/run_pid_comparison.m",
+      "sha256": "e56bbf0afcbf27f54550a81f51ced3e40919348176a20fc51d48648920657ab7"
+    },
+    {
+      "path": "matlab/src/run_plant_comparison.m",
+      "sha256": "85d8a474fbfb58340b1ad1f28a237c0614cfdc6fae81ccc418b78ae3c7ae97d4"
+    },
+    {
+      "path": "matlab/src/run_simscape_comparison.m",
+      "sha256": "a34662f9cd828dd7d3089d9b424a4f3ffaebb2e34feeb044127cc322202b71c7"
+    },
+    {
+      "path": "matlab/src/simulate_closed_loop.m",
+      "sha256": "893daccf766fa0ca40d76b3df0bfb690c71f5fb915fb82adfbdf41b34ee18d27"
+    },
+    {
+      "path": "matlab/src/simulate_compensator.m",
+      "sha256": "35788da8547d46cb448e083820002d726c7003c89ac06194ff2817adbd95c122"
+    },
+    {
+      "path": "matlab/src/simulate_disturbance.m",
+      "sha256": "57e0bed07a3607c738f60cdcb713fee1613ca37dd92de1c4e1f5d9926a7f3d59"
+    },
+    {
+      "path": "matlab/src/tune_pole_placement.m",
+      "sha256": "8020198ad140b61c79eafa21fad4c1d0c03c88e05d55d61080be714764c34ae7"
+    },
+    {
+      "path": "matlab/src/tune_ziegler_nichols.m",
+      "sha256": "83fe8f74b6a34eb50f9004913925bdbdd96a42ce365c6bec0307ea06e585f8a0"
+    },
+    {
+      "path": "matlab/tests/test_compensators.m",
+      "sha256": "4cb87dc88093247ade08f607e9371df6b18be4cf87ecfa11013b0a0511382a66"
+    },
+    {
+      "path": "matlab/tests/test_disturbance.m",
+      "sha256": "964977d040a673bcf66b963ee1d5f38236d70d037f91a8fe0731b958bd77d733"
+    },
+    {
+      "path": "matlab/tests/test_fmu_export.m",
+      "sha256": "9f1e92daa3c94928561d998b196aac68b6922ef30219413b13d00e86ab8c45f8"
+    },
+    {
+      "path": "matlab/tests/test_metrics.m",
+      "sha256": "5c9183154e890102d80daa16c63a11fa6c0fb2d90b2eaeacfe344443d034bfdc"
+    },
+    {
+      "path": "matlab/tests/test_model_structure.m",
+      "sha256": "84c952951004d867023cee19401759a6e3c13779b4d9268d30d1decf9db325cc"
+    },
+    {
+      "path": "matlab/tests/test_motor_models.m",
+      "sha256": "c13ea7c5e84621b26e5db36d0d4f3cf0e3cc5bca036716411fb8d6e057311654"
+    },
+    {
+      "path": "matlab/tests/test_optimization.m",
+      "sha256": "46669f74403f73af9550ddfd96dcb59fbe972e6256cc88fa6a7c1b4184f92f1c"
+    },
+    {
+      "path": "matlab/tests/test_orchestration.m",
+      "sha256": "2589fad2f7397451120bf9c8421ef0939ca3417ac996f68f5c346028fad8c1b2"
+    },
+    {
+      "path": "matlab/tests/test_pid_equivalence.m",
+      "sha256": "50755d5cb9c2e2c1c157d6635231dd456fabb3c2c42602f4607bb644530b5fb1"
+    },
+    {
+      "path": "matlab/tests/test_preflight.m",
+      "sha256": "8ee857e810b554113e30ceb586fb734204bd961ae5ee86dc3c85dc6971ccd0e3"
+    },
+    {
+      "path": "matlab/tests/test_simscape.m",
+      "sha256": "e3f620589fe6fef06d48d2ff3d09be505cff1ae2f9744616e37f566c481530c6"
+    },
+    {
+      "path": "python/dc_motor/__init__.py",
+      "sha256": "a388e0764013558fe801e2c33f2b998e2d11930cd1016519b4e0d46fd759c7cf"
+    },
+    {
+      "path": "python/dc_motor/controller.py",
+      "sha256": "070c7fa1162dbb596bed7b53586db0b848edec8123ea75adc7c6e27807bf82bf"
+    },
+    {
+      "path": "python/dc_motor/metrics.py",
+      "sha256": "10dc3b1baebd6640738874b64162a390809f4bdc06051aec2b3a470411b4646a"
+    },
+    {
+      "path": "python/dc_motor/model.py",
+      "sha256": "41adfb6ae2b86a6087eee29e4176039954e259af0756a59466b0217d9b7f82c7"
+    },
+    {
+      "path": "python/dc_motor/run_comparison.py",
+      "sha256": "7fc5231f95fe431d487e566ba5c5271535c95e37621b6d48ac2e9bfff6f8605a"
+    },
+    {
+      "path": "python/dc_motor/run_fmu.py",
+      "sha256": "7f5dc2f735f066dca15cc5df38e670408469c7db56c4b4b37268a5b2e600f297"
+    },
+    {
+      "path": "python/run_comparisons.py",
+      "sha256": "82d98e4c0b8c70de7d8cee0c09ae8bf0e7160a343b3cf92a9606be8ba63c644e"
+    },
+    {
+      "path": "python/tests/conftest.py",
+      "sha256": "8659c4f6af34a32f61ecc29774fd873cf628e7e0828ce9ff04773418357a6cc6"
+    },
+    {
+      "path": "python/tests/test_controller.py",
+      "sha256": "f46a35507ea14c1608e96285467b58d01cf3d04b43420240bc89adb4fc256718"
+    },
+    {
+      "path": "python/tests/test_cross_language.py",
+      "sha256": "4f2f30c2c405fbc7b6d7904864ee068539d5df8fb12948cca8c16684b8d6856f"
+    },
+    {
+      "path": "python/tests/test_delivery.py",
+      "sha256": "6317acdead49681b653d257d3e6887d764d16cd7f74de9ef2136b47ece25d888"
+    },
+    {
+      "path": "python/tests/test_fmu.py",
+      "sha256": "85e11625ecb772f1fbe40b88be66c2f04d786954fc7d7dd1eeca43603b7235aa"
+    },
+    {
+      "path": "python/tests/test_metrics.py",
+      "sha256": "e7a00c8b77bcbfd5fe3d9a19f9e7baa07211c0acc6549a5a5d46acf8ad0147f0"
+    },
+    {
+      "path": "python/tests/test_model.py",
+      "sha256": "139a905beb07412ebfb5458be0c7e158774e0aad5bc1f6df1b40715446ee3318"
+    },
+    {
+      "path": "python/tests/test_provenance.py",
+      "sha256": "aef8ddef499c2e210c86e1fe616fa4afbb92800aad3d3575b90617a0eb88d4ac"
+    },
+    {
+      "path": "python/tests/test_report.py",
+      "sha256": "b26a32a64136b1269cf9d604efde7f869669f7e4d7683cd7c7c64edd5fce5a64"
+    },
+    {
+      "path": "README.md",
+      "sha256": "542186b5707a16b0130831523f38a6e997dd9140876e50278d05259d428cb311"
+    },
+    {
+      "path": "report/build_report.py",
+      "sha256": "d79969bf393d92f723d8ef91bb2b581f5bfe5bb910431c355ffbb94a33fe75db"
+    },
+    {
+      "path": "report/report_uk.md",
+      "sha256": "b271817fc643ef75f379828a40924b2801ff2d4dd724848fdfc6e32b8711b25c"
+    },
+    {
+      "path": "requirements.txt",
+      "sha256": "7a6226a1607227025d2b1ddc1d61a01d98f67e49f51229ff492bb63b067c4783"
+    },
+    {
+      "path": "results/csv/compensator_comparison.csv",
+      "sha256": "f97be4a5e5dc3107135816b5006adc747df9a42259fdcd3eb747fffa468cae9b"
+    },
+    {
+      "path": "results/csv/compensator_reference_lag.csv",
+      "sha256": "d31bd9738b12f65b8a500d908405a13f5b8b7c868b924d6a416bae01171658f5"
+    },
+    {
+      "path": "results/csv/compensator_reference_lead.csv",
+      "sha256": "56232b062a1f60cf5b75a1e979526ec821c859dc0868ee9583eb75157c9fc1fd"
+    },
+    {
+      "path": "results/csv/compensator_reference_metrics.csv",
+      "sha256": "0875ba1f82a5ad07d881685f8bab7f18f62a0402b5924d5c7c2f410345527cb5"
+    },
+    {
+      "path": "results/csv/compensator_reference_PID.csv",
+      "sha256": "715a9da1d7758b83b72b7001d4bcb4aae3afba9cc76137237915f9a6c72e74ad"
+    },
+    {
+      "path": "results/csv/controller_metrics.csv",
+      "sha256": "502c08500209842f6b296c643883a3bf1d19cc49a557da14091e19c4b85b3497"
+    },
+    {
+      "path": "results/csv/disturbance_1_PID.csv",
+      "sha256": "ffe7e21da18a22f319e10208e9efad04bc78ad32a81d9890ec76c343a51821fe"
+    },
+    {
+      "path": "results/csv/disturbance_1_PID_observer.csv",
+      "sha256": "70b9668ede3b3caaa7e8d5e81aecdffa916248f76d6e09b98aa937796a02ff1e"
+    },
+    {
+      "path": "results/csv/disturbance_2_PID.csv",
+      "sha256": "42b46ba430fadb4bb5515c411a888415d612d232e6aaac23fe7fd941c51ec2b4"
+    },
+    {
+      "path": "results/csv/disturbance_2_PID_observer.csv",
+      "sha256": "6114c6c1d21d7d33fd5cb787349bfca39e0d6764e8cd517499538664d253168e"
+    },
+    {
+      "path": "results/csv/disturbance_3_PID.csv",
+      "sha256": "4931a0bc6c69211fe9ca70d9b02bebb74da3759ddc5f73a77c1e312e60b132fd"
+    },
+    {
+      "path": "results/csv/disturbance_3_PID_observer.csv",
+      "sha256": "9e51f322754f309f485cc098567bb774a7a28b891b36f086a2b2e8a675570982"
+    },
+    {
+      "path": "results/csv/disturbance_4_PID.csv",
+      "sha256": "57e6a344e69f157997df5ff5b0dda44d103e489d6472d4a3b8c2750d20719090"
+    },
+    {
+      "path": "results/csv/disturbance_4_PID_observer.csv",
+      "sha256": "f44bf906a0aea2f4489ce259fcf356a4dd518becc5217c89d757a93bf3e95511"
+    },
+    {
+      "path": "results/csv/disturbance_summary.csv",
+      "sha256": "4ce2e3096c4d1bbe7099ce852daa9e2547f33225c81750151e0ac1ea3b3f5d1c"
+    },
+    {
+      "path": "results/csv/fmu_comparison.csv",
+      "sha256": "bb2e891a8af037312cfebe134afd6e6b02917e2497b379386825ec59d2c47edf"
+    },
+    {
+      "path": "results/csv/fmu_open_loop_12V.csv",
+      "sha256": "2adafd1231662f24bdbfcfae8fadf22b135864bfd02f3d878566c5e67e00556e"
+    },
+    {
+      "path": "results/csv/fmu_pid_nominal.csv",
+      "sha256": "a7e8597fee781bb36732ea2e46682a6424894e20cdcd60af2c3b259863471b61"
+    },
+    {
+      "path": "results/csv/fmu_pid_required_load.csv",
+      "sha256": "44972f4696ac7882a458282d56d93a0f71902b2b6caa046457c364817b74b01f"
+    },
+    {
+      "path": "results/csv/fmu_plant_load_step.csv",
+      "sha256": "cd54dba09a093989b9bc8315da5d4dc8b4f02ed6e132f79ca0fc890ec3225c51"
+    },
+    {
+      "path": "results/csv/fmu_zero_input.csv",
+      "sha256": "9675abb3d88f58cf4fd3fbfb5429826541605d1e1abeb56b2b9ddb99a32b8c4b"
+    },
+    {
+      "path": "results/csv/nonzero_initial.csv",
+      "sha256": "458479badd90f4a2d85cf140c40389f5c5c1d99d68916427ec16090bfa6c2ac8"
+    },
+    {
+      "path": "results/csv/open_loop_12V.csv",
+      "sha256": "125d408a7c249dc6f108a4b23aed6f33917b31974e41f7566fbec96ff62d7490"
+    },
+    {
+      "path": "results/csv/optimization_tradeoffs.csv",
+      "sha256": "6c84b32d51db5c9b6007d54eba67e8e1df81981bb74ffc80835a8a7fd009e969"
+    },
+    {
+      "path": "results/csv/physical_lag.csv",
+      "sha256": "805a6ec48883deb3dc898de867308d3aa757930618b9f13d04f8cea1141fd5c6"
+    },
+    {
+      "path": "results/csv/physical_lead.csv",
+      "sha256": "a897546cb41bb70e2d6f0fb9bb8e2bbb1abd49692705c6893d67ea1c79dbedde"
+    },
+    {
+      "path": "results/csv/physical_PID.csv",
+      "sha256": "a13a0909f61e136eb9d12afa9207fab99ad9272b0f1b370cdf3265fdcf23a8d7"
+    },
+    {
+      "path": "results/csv/physical_PID_required_load.csv",
+      "sha256": "684bb68227924b29418f5b8cf705b83bf16e8e289c5a13cee1ddedaac3c457ff"
+    },
+    {
+      "path": "results/csv/pid_baseline_summary.csv",
+      "sha256": "28f1f507a3b8c44470675b8925903319c32603e3943b6dcf765462faf1134ba5"
+    },
+    {
+      "path": "results/csv/pid_buddy_baseline.csv",
+      "sha256": "8162354cabbafbd9963cf0e3167e9c9410e03def3e029194c9c6ab28953d2363"
+    },
+    {
+      "path": "results/csv/pid_optimized.csv",
+      "sha256": "1d9cc495e16d20085167c7565983637e1f7243322e865948b8984fbe55238912"
+    },
+    {
+      "path": "results/csv/pid_pole_placement.csv",
+      "sha256": "fc72e2e3490f4313e0147f6a74a30887844017537091fcf407db9467b43a5641"
+    },
+    {
+      "path": "results/csv/pid_ziegler_nichols.csv",
+      "sha256": "538576e9dcc6faab4d9c7b0f8344624b26afe408c2055cab5bdea89574d97606"
+    },
+    {
+      "path": "results/csv/plant_comparison_summary.csv",
+      "sha256": "8ab07ff913c75ed191c8f78b576a3cced23c4bfa52412ed88e32f7d03fecd7c3"
+    },
+    {
+      "path": "results/csv/plant_load_step.csv",
+      "sha256": "3d93cc3e283d487bf550af1afdb307f861895a1309f41b987ef42afd0c1e0e37"
+    },
+    {
+      "path": "results/csv/python_matlab_comparison.csv",
+      "sha256": "10e8c80443d865734c4805fc3159f8b238aedbbfa503e31b6175463190c59caa"
+    },
+    {
+      "path": "results/csv/python_nonzero_initial.csv",
+      "sha256": "1456faedbca84c72af070038647ed9ed3afc9de5bd5dec3d638cc2e29b658b84"
+    },
+    {
+      "path": "results/csv/python_open_loop_12V.csv",
+      "sha256": "97206b9504bb23b2fd4882a29a681e116f710124ce44f6446688a25c0620a9ab"
+    },
+    {
+      "path": "results/csv/python_pid_nominal.csv",
+      "sha256": "6c9b716d00a993258e3789dbf9144bc1c1996e56bd89df274ab0ce287afc2694"
+    },
+    {
+      "path": "results/csv/python_pid_required_load.csv",
+      "sha256": "d4dfcff186571cb80a3932f15507d10d1137ab837e202af2c34a82629433bf31"
+    },
+    {
+      "path": "results/csv/python_plant_load_step.csv",
+      "sha256": "a1b7de011d4b6aedbe3c8ba0bc28847c53ad5f648ed7247b3a2399dbe20951c2"
+    },
+    {
+      "path": "results/csv/python_zero_input.csv",
+      "sha256": "e8b156cbb95c8e4e6c0d22544b3a441e58c72a0ca5c520f040703302a45c2c2e"
+    },
+    {
+      "path": "results/csv/simscape_comparison.csv",
+      "sha256": "9fb675bce2fe5611aa5f522e281847eb7a1b6a22339b993145503b8c2aa9a329"
+    },
+    {
+      "path": "results/csv/simscape_load.csv",
+      "sha256": "055a5b6f7e0d3b81f0cb3281879cacaa27a8019fa7d5ff1c9208434fed84a572"
+    },
+    {
+      "path": "results/csv/simscape_step.csv",
+      "sha256": "b9590c806d47d95f51ebd937e6fa51fec390e44854fe022490c6fb7f70250528"
+    },
+    {
+      "path": "results/csv/simscape_zero.csv",
+      "sha256": "0803d556d10ff5bff578cc6a87050ffa15c589aed22b3983d86d21358a1a01d1"
+    },
+    {
+      "path": "results/csv/zero_input.csv",
+      "sha256": "8164a71b86cde1f751342a973340649ea216dbc11b50fe3b9f4a55b60fc7c62a"
+    },
+    {
+      "path": "results/figures/compensator_reference_comparison.png",
+      "sha256": "609f6024dd5960cfd46928a583f351a18c5b7db8d5fd450799529e6f9e0848ac"
+    },
+    {
+      "path": "results/figures/dc_motor_diffeq_diagram.png",
+      "sha256": "c331f0590741f2d487ada20bba527df1653f0f3154d3d25dc91a7bcbc5958992"
+    },
+    {
+      "path": "results/figures/dc_motor_diffeq_subsystem.png",
+      "sha256": "d272c77e58e5f508da9a6f921d54e874f93ee592835b4ed22e45c846cfcc9efe"
+    },
+    {
+      "path": "results/figures/dc_motor_lag_simscape_diagram.png",
+      "sha256": "347323d7980c11d752118ebdb3b4f7c06f579ef1acc0156642252eadbf023674"
+    },
+    {
+      "path": "results/figures/dc_motor_lead_simscape_diagram.png",
+      "sha256": "347323d7980c11d752118ebdb3b4f7c06f579ef1acc0156642252eadbf023674"
+    },
+    {
+      "path": "results/figures/dc_motor_pid_diffeq_diagram.png",
+      "sha256": "f812aabcb4f51cc5f5d8e9f200cc898a828e87ff147e843969a0e1d9cdf18933"
+    },
+    {
+      "path": "results/figures/dc_motor_pid_simscape_diagram.png",
+      "sha256": "91b3437543ff2cd1e79beb0e3ca7940462d9485cbfd6cec0453c3aa297d7de95"
+    },
+    {
+      "path": "results/figures/dc_motor_pid_statespace_diagram.png",
+      "sha256": "c2ea95be4f2fb61834dd32b4544f2d79950c622914b04a201ae7ad453379806e"
+    },
+    {
+      "path": "results/figures/dc_motor_simscape_diagram.png",
+      "sha256": "373a3b904ed20663e951de05a2308a3aa8d8fc8736deda5e43f376bba643a223"
+    },
+    {
+      "path": "results/figures/dc_motor_simscape_subsystem.png",
+      "sha256": "ec8c9079ac2f11190556e153f6ed66ee9714d4c0c3d86a090b8fd7107cb4d505"
+    },
+    {
+      "path": "results/figures/dc_motor_statespace_diagram.png",
+      "sha256": "c1faf7bf97d481ccfb54cc32a0ee42040330a6e3acc2ea68e1906063ab82f885"
+    },
+    {
+      "path": "results/figures/dc_motor_statespace_subsystem.png",
+      "sha256": "a3ae668360ba2831a1f9811a2960c616d4f40dbc0cfac8aa01bf546eb25be4b4"
+    },
+    {
+      "path": "results/figures/fmu_comparison.png",
+      "sha256": "64f909372e7e7390374636fb52b1c6a665901074563f81c8c6471acad2c78cb7"
+    },
+    {
+      "path": "results/figures/observer_disturbance.png",
+      "sha256": "548a46f67b312ee2ff8fa6cf07f2785c556ff8ccf93eeba2123d66c104625ca1"
+    },
+    {
+      "path": "results/figures/optimization_tradeoffs.png",
+      "sha256": "fb74c52188f2211826845788681610338f40e5259702cb5c5b8bfdc8568e3de4"
+    },
+    {
+      "path": "results/figures/optimized_pid_comparison.png",
+      "sha256": "ef3e3c461f167378e946428107d27a8bf81434ed1c0307e147e38ba01aaf7996"
+    },
+    {
+      "path": "results/figures/pid_baselines.png",
+      "sha256": "8e6294b46c60f2dd185e113658fbadeb8afd236000837cff20e9bac5fb57445b"
+    },
+    {
+      "path": "results/figures/plant_load_comparison.png",
+      "sha256": "73cb7b78069b2c68fdaa16c2525f694054afcfa8de4c422bc19521ecc3f3f977"
+    },
+    {
+      "path": "results/figures/python_matlab_comparison.png",
+      "sha256": "340e41d426d241d80ecacb5bd0f2971be17f1170946e7c1aa5f2b3e0d3a0eb8c"
+    },
+    {
+      "path": "results/figures/required_disturbance.png",
+      "sha256": "c8f324821cbf1f107a936753414476d5ae260b86ac398499ff54886f3e9a37bc"
+    },
+    {
+      "path": "results/figures/simscape_controller_comparison.png",
+      "sha256": "5d240f6013a360acd0d34cace3842f688fac4e72a30b99a298c2ea22454a3c17"
+    },
+    {
+      "path": "results/figures/simscape_open_loop_comparison.png",
+      "sha256": "740f270694c09b9295685982d5c19f57183e0ab9b3c252fe1776cec26e01c12a"
+    },
+    {
+      "path": "results/json/clean_copy.json",
+      "sha256": "925a4e43fdd377f568d68504b667fd89646ffb9f05232136443203459c1ff1a3"
+    },
+    {
+      "path": "results/json/compensator_reference.json",
+      "sha256": "98792831cf3a731e79919cd483ba1da5a943418018f26142670e0f35d361961d"
+    },
+    {
+      "path": "results/json/disturbance.json",
+      "sha256": "9fc5c27227e5ec5604eb8f603551a234fd52466d5b2ee424dc7011a67bcb2336"
+    },
+    {
+      "path": "results/json/environment.json",
+      "sha256": "fdad20346422efa1eb174c501560f25f3d1b7eb25a65109bafb9dd41dc680e37"
+    },
+    {
+      "path": "results/json/fmu_capability.json",
+      "sha256": "5097e976618868d4ac58460f583a39924e4c7c03b494e7e9535185612aa9e5ea"
+    },
+    {
+      "path": "results/json/fmu_comparison.json",
+      "sha256": "e9c7362349c79815529e93a3ce22f52f1ab7a2c3f7c8a32fd8c9b5f9387e7a63"
+    },
+    {
+      "path": "results/json/fmu_export.json",
+      "sha256": "f002ff1be642318c77893975150627cdcf29e74ebb992b6ee2b9e70ba58b77a1"
+    },
+    {
+      "path": "results/json/matlab_run.json",
+      "sha256": "ba83f7b6e19119fd43002025b90a9fe0839e32dae13275022d6b2d12053e8fa9"
+    },
+    {
+      "path": "results/json/optimization.json",
+      "sha256": "b184fb25c9f12a847f1f66ee7c5c1e8beed8c152ba650961c08f12359fd9907d"
+    },
+    {
+      "path": "results/json/physical_parameters.json",
+      "sha256": "479b5dacfb624b10779f29c0cea87a13ab3048ace4b076a34ca520a7ee68a628"
+    },
+    {
+      "path": "results/json/pid_baselines.json",
+      "sha256": "83f863c705e8067703d2fd4ae342def69cb67fbe573fda133c0ecd3817ce3338"
+    },
+    {
+      "path": "results/json/python_comparison.json",
+      "sha256": "7860871a47ea84062a1f682281a499b777231e0361e037ceee3ab3fa11bfff40"
+    },
+    {
+      "path": "results/json/simscape.json",
+      "sha256": "44d970f1db60a420680da8507ee16e203f47daf6e81f025a6b669ce8d03b1f93"
+    },
+    {
+      "path": "scripts/finish_submission.py",
+      "sha256": "849958a5ceb78b07b6764ad54b0bb8b30018b7e93a7533941a47de1eb8356012"
+    },
+    {
+      "path": "scripts/install_matlab_prerequisites.ps1",
+      "sha256": "03a1929ffb0d157ac76db7e46d7bc509db9431440f928d45127bee4d5ccd0b34"
+    },
+    {
+      "path": "scripts/package_submission.py",
+      "sha256": "74e359af2468f99e71af66f1513ecadbc4d8e901a614df5eafb07e15e736d539"
+    },
+    {
+      "path": "scripts/run_all.ps1",
+      "sha256": "400c786ccd22427a5ee8aaf745314b80fcb0b10c33f22df95b83051a5a24f263"
+    },
+    {
+      "path": "scripts/setup_compiler.ps1",
+      "sha256": "29838abc5b2326c51d3d3e83680537263417a71b979313bb9a7d7fc7e7a8864c"
+    },
+    {
+      "path": "fmu/dc_motor_pid.fmu",
+      "sha256": "8d63bfc2a8ef7dd035e7dacc2f78d1c70218b4761dd4b10edb38b27191b2d55b"
+    },
+    {
+      "path": "fmu/dc_motor_plant.fmu",
+      "sha256": "1f856659958fb03ce17c30d6bc9ab5ac3f37ad3ac4432e848e5270817239c1b9"
+    }
+  ]
+}

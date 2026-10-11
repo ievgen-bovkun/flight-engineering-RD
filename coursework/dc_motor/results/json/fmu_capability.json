@@ -1,0 +1,9 @@
+{
+  "timestampUTC": "2026-10-11T19:32:35.5889607Z",
+  "exporterInstalled": true,
+  "compilerConfigured": true,
+  "fmuBuilderLicenseAvailable": false,
+  "exportSmokePassed": false,
+  "exportAttempts": 2,
+  "error": "Unable to check out the Simulink FMU Builder license or its dependent licenses which are required to generate FMU target."
+}

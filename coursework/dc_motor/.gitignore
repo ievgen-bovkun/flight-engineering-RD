@@ -1,0 +1,11 @@
+.venv/
+__pycache__/
+.pytest_cache/
+slprj/
+**/slprj/
+*.slxc
+results/logs/*
+results/live/
+report/qa/
+fmu/build/
+.installer-cache/

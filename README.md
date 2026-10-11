@@ -98,3 +98,10 @@ runtests({'homework5/task1_integrators/tests', ...
 
 - GitHub: <https://github.com/ievgen-bovkun/flight-engineering-RD>
 - ДЗ 1-5: [`main`](https://github.com/ievgen-bovkun/flight-engineering-RD/tree/main)
+
+## Курсовий проєкт: двигун постійного струму
+
+[Код, результати, український звіт та інструкції](coursework/dc_motor/README.md).
+[Перевірка етапів виконання](docs/superpowers/dc-motor-progress.md).
+FMU використовують доступний у пробній ліцензії Simulink tool-coupling:
+для виконання потрібні локальні ліцензовані MATLAB/Simulink R2026a.

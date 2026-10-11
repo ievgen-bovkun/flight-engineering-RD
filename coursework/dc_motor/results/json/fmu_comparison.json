@@ -1,0 +1,115 @@
+{
+  "passed": true,
+  "route": "tool_coupling",
+  "standalone": false,
+  "runtimeRequired": "Licensed local MATLAB/Simulink R2026a",
+  "coarseCommunicationStep": 0.001,
+  "acceptedCommunicationStep": 0.0005,
+  "localSolverStep": 1e-05,
+  "coarse": [
+    {
+      "scenario": "zero_input",
+      "communication_step_s": 0.001,
+      "max_speed_error_python": 0.0,
+      "max_current_error_python": 0.0,
+      "max_speed_error_matlab": 0.0,
+      "max_current_error_matlab": 0.0,
+      "max_voltage_error": 0.0,
+      "settling_difference_s": 0.0
+    },
+    {
+      "scenario": "open_loop_12V",
+      "communication_step_s": 0.001,
+      "max_speed_error_python": 5.016431714466307e-12,
+      "max_current_error_python": 2.5224267119483557e-13,
+      "max_speed_error_matlab": 1.967833118676765e-10,
+      "max_current_error_matlab": 2.2379409436723563e-10,
+      "max_voltage_error": 0.0,
+      "settling_difference_s": 0.0
+    },
+    {
+      "scenario": "plant_load_step",
+      "communication_step_s": 0.001,
+      "max_speed_error_python": 1.66661085483355e-05,
+      "max_current_error_python": 7.367403265234884e-07,
+      "max_speed_error_matlab": 1.666609810158093e-05,
+      "max_current_error_matlab": 7.367395742363669e-07,
+      "max_voltage_error": 0.0,
+      "settling_difference_s": 0.0
+    },
+    {
+      "scenario": "pid_nominal",
+      "communication_step_s": 0.001,
+      "max_speed_error_python": 4.4478895233623916e-08,
+      "max_current_error_python": 6.202579712066836e-07,
+      "max_speed_error_matlab": 8.731135068273943e-07,
+      "max_current_error_matlab": 5.2386081428323905e-06,
+      "max_voltage_error": 9.317257507746035e-07,
+      "settling_difference_s": 0.0
+    },
+    {
+      "scenario": "pid_required_load",
+      "communication_step_s": 0.001,
+      "max_speed_error_python": 1.666610902617549e-05,
+      "max_current_error_python": 1.6195750447423052e-05,
+      "max_speed_error_matlab": 1.666610899775378e-05,
+      "max_current_error_matlab": 1.6195860652601368e-05,
+      "max_voltage_error": 0.00013837615210832155,
+      "settling_difference_s": 0.0
+    }
+  ],
+  "fine": [
+    {
+      "scenario": "zero_input",
+      "communication_step_s": 0.0005,
+      "max_speed_error_python": 0.0,
+      "max_current_error_python": 0.0,
+      "max_speed_error_matlab": 0.0,
+      "max_current_error_matlab": 0.0,
+      "max_voltage_error": 0.0,
+      "settling_difference_s": 0.0
+    },
+    {
+      "scenario": "open_loop_12V",
+      "communication_step_s": 0.0005,
+      "max_speed_error_python": 5.016431714466307e-12,
+      "max_current_error_python": 2.5224267119483557e-13,
+      "max_speed_error_matlab": 1.967833118676765e-10,
+      "max_current_error_matlab": 2.2379409436723563e-10,
+      "max_voltage_error": 0.0,
+      "settling_difference_s": 0.0
+    },
+    {
+      "scenario": "plant_load_step",
+      "communication_step_s": 0.0005,
+      "max_speed_error_python": 1.6666390454389557e-05,
+      "max_current_error_python": 7.367403265234884e-07,
+      "max_speed_error_matlab": 1.666609810158093e-05,
+      "max_current_error_matlab": 7.367395742363669e-07,
+      "max_voltage_error": 0.0,
+      "settling_difference_s": 0.0
+    },
+    {
+      "scenario": "pid_nominal",
+      "communication_step_s": 0.0005,
+      "max_speed_error_python": 4.447902313131635e-08,
+      "max_current_error_python": 6.202579712066836e-07,
+      "max_speed_error_matlab": 8.731135068273943e-07,
+      "max_current_error_matlab": 5.2386081428323905e-06,
+      "max_voltage_error": 9.317257507746035e-07,
+      "settling_difference_s": 0.0
+    },
+    {
+      "scenario": "pid_required_load",
+      "communication_step_s": 0.0005,
+      "max_speed_error_python": 1.6666390926900476e-05,
+      "max_current_error_python": 1.6195750447423052e-05,
+      "max_speed_error_matlab": 1.666610899775378e-05,
+      "max_current_error_matlab": 1.6195860652601368e-05,
+      "max_voltage_error": 0.00013837615210832155,
+      "settling_difference_s": 0.0
+    }
+  ],
+  "sourceSHA256": "7f5dc2f735f066dca15cc5df38e670408469c7db56c4b4b37268a5b2e600f297",
+  "configSHA256": "c225653d97ab3e081de8d56dac46beec6cbf2520ca3f711aab754ef54255f4c7"
+}
