@@ -3,7 +3,7 @@
 **Last reviewed:** 2026-10-11, Europe/Paris.
 **Overall state:** implementation started on `codex/dc-motor-coursework`; project setup verified, task T1 still has external prerequisites unresolved.
 **Implementation owner:** SOL; executing the approved plan in this chat.
-**Current focus:** T7 independent Python simulation/comparison; T6 physical model remains blocked by unavailable Simscape products. T2–T5 verified.
+**Current focus:** pause for administrator product-installation decision. T2–T5 and the independent Python portion of T7 verified; T6 and FMU export remain blocked.
 **Next focus:** actual MATLAB/Python numerical comparisons, then resolution of physical-model and FMU dependencies.
 **Dependency focus:** provision/verify Simscape, Simscape Electrical, standalone FMU exporter and C compiler; these need not stop the core MATLAB/Python work.
 
@@ -41,9 +41,9 @@ This is a manually maintained review table. Update it after actual implementatio
 | P03 | Enabler | SOL implementation plan | Complete | Nine-task plan with file responsibilities and checks exists | Keep plan and this tracker synchronized | — |
 | E01 | Required | MATLAB CLI execution | Complete | Normal-user R2026a Update 4 batch audit succeeded; Simulink and Control System Toolbox available | Use CLI throughout; no manual UI dependency | T1 |
 | E02 | Enabler | Isolated project, source provenance and shared configuration | Complete | App-managed branch created; physical/scenario JSON, 30-file source snapshot and SHA256 manifest verified | Commit milestone evidence; final source delivery follows T9 | T1 |
-| E03 | Required | Simscape and Simscape Electrical available | Blocked | Recorded `ver('simscape')`, `which('fl_lib')`, `which('ee_lib')` empty | Install/license as needed; library load and physical-network compilation pass | T1, T6 |
+| E03 | Required | Simscape and Simscape Electrical available | Blocked | Simscape/Electrical license checks returned 1, but libraries absent; official installer requires administrator token, current token false | Install/license as needed; library load and physical-network compilation pass | T1, T6 |
 | E04 | Required | MATLAB standalone FMU export capability | Blocked | Recorded `which('exportToFMU')` empty | Supported exporter available; trivial model exports successfully from CLI | T1, T7 |
-| E05 | Enabler | FMU build compiler configured | Blocked | No selected C compiler returned; this does not establish whether a compiler is installed | Configure supported compiler and compile/export smoke model | T1, T7 |
+| E05 | Enabler | FMU build compiler configured | Blocked | Installed and selected C/C++ compiler checks empty; configure/validate compiler after product installation | Configure supported compiler and compile/export smoke model | T1, T7 |
 | E06 | Enabler | Python/FMPy and report dependencies reproducible | Complete | T4: real objective, 5 converged starts, seeded GA, 7 weights, source/config hashes and sensitivity data; Python dependencies installed/pinned | Pin tested versions; imports and smoke checks pass | T1, T7, T8 |
 
 ## Required modeling, control and evaluation
@@ -73,8 +73,8 @@ This is a manually maintained review table. Update it after actual implementatio
 
 | ID | Scope | Necessary element | Status | Current evidence / gap | Acceptance evidence needed / next action | Task |
 |---|---|---|---|---|---|---|
-| X01 | Required | Independent Python motor/control simulation | Not started | No Python implementation in buddy package or final project | Independent SciPy equations, matched controller, analytical tests and scenario runs | T7 |
-| X02 | Required | Python versus MATLAB comparison | Not started | No cross-language numerical data | Same event timing, parameters and states; trajectory/metric error tables and plots pass | T7 |
+| X01 | Required | Independent Python motor/control simulation | Complete | Independent SciPy equations/PID implemented; 11 Python checks pass; six MATLAB comparisons, max speed error 9.18e-7 rad/s and settling difference 0 | Independent SciPy equations, matched controller, analytical tests and scenario runs | T7 |
+| X02 | Required | Python versus MATLAB comparison | Complete | Independent SciPy equations/PID implemented; 11 Python checks pass; six MATLAB comparisons, max speed error 9.18e-7 rad/s and settling difference 0 | Same event timing, parameters and states; trajectory/metric error tables and plots pass | T7 |
 | X03 | Required | Export actual FMU from MATLAB | Blocked | No FMU supplied; exporter unavailable in checked environment | CLI-generated executable FMU, metadata/I/O validation and checksum; plan includes plant and PID exports | T7 |
 | X04 | Required | Run FMU in Python and compare to Python model | Blocked | Depends on X03; no FMPy runner/results | FMPy executes real FMU with MATLAB closed; event/step refinement and comparison tolerances pass | T7 |
 
@@ -94,10 +94,10 @@ This is a manually maintained review table. Update it after actual implementatio
 | D01 | Required | Readable documented code and README instructions | Partial | Buddy README/comments useful but include manual fallback and unsupported completion claims | Exact end-to-end CLI commands, dependencies, model conventions and results index | T1–T9 |
 | D02 | Required | Final report in Ukrainian as PDF | Not started | Ukrainian DOCX exists, but no final PDF or corrected report generator | Ukrainian narrative/tables/captions/plots, source-based values, citations, reproducible PDF build | T8 |
 | D03 | Enabler | Report accuracy and visual verification | Not started | Current DOCX technical defects reviewed; final PDF absent | Render/inspect every final page; no clipping or missing Cyrillic; numbers match run manifest | T8 |
-| D04 | Enabler | Regression tests and honest failure statuses | Partial | Preflight 2/2 and motor/model checks 7/7 pass; controller/optimization/cross-platform tests follow | Tests cover F1–F6 and numerical acceptance; missing required capabilities cannot be silent skips | T2–T7 |
+| D04 | Enabler | Regression tests and honest failure statuses | Partial | MATLAB 26/26 and Python 11/11 pass; required physical/FMU tests still unavailable | Tests cover F1–F6 and numerical acceptance; missing required capabilities cannot be silent skips | T2–T7 |
 | D05 | Enabler | One-command pipeline and clean-copy reproduction | Not started | No final runner; dependencies and cached-gain provenance unresolved | Fail-fast MATLAB/Python/FMU/report pipeline works outside Downloads and previous workspace state | T8, T9 |
 | D06 | Required | Submission ZIP: code, results and README | Not started | Buddy folder is source material, not validated final submission | ZIP contains final code/results/README/PDF/models/FMUs; checksums and clean-extraction checks pass | T9 |
-| D07 | Required | All code and PDF pushed to Git | Unverified | No local coursework branch/commit; no matching remote delivery verified | Commit allowlisted deliverables, push, verify remote SHA and downloadable code/PDF/ZIP paths | T9 |
+| D07 | Required | All code and PDF pushed to Git | Partial | Verified source milestones committed on coursework branch; remote source push pending verification; final PDF/ZIP remain incomplete | Commit allowlisted deliverables, push, verify remote SHA and downloadable code/PDF/ZIP paths | T9 |
 
 ## Current focus and review order
 

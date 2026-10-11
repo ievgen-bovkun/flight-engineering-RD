@@ -1,0 +1,44 @@
+[
+  {
+    "scenario": "zero_input",
+    "max_speed_error": 0.0,
+    "max_current_error": 0.0,
+    "max_voltage_error": 0.0,
+    "settling_difference_s": 0.0
+  },
+  {
+    "scenario": "open_loop_12V",
+    "max_speed_error": 1.967831453342228e-10,
+    "max_current_error": 2.2379142983197653e-10,
+    "max_voltage_error": 0.0,
+    "settling_difference_s": 0.0
+  },
+  {
+    "scenario": "plant_load_step",
+    "max_speed_error": 1.967831453342228e-10,
+    "max_current_error": 2.2379142983197653e-10,
+    "max_voltage_error": 0.0,
+    "settling_difference_s": 0.0
+  },
+  {
+    "scenario": "nonzero_initial",
+    "max_speed_error": 6.280309605699586e-11,
+    "max_current_error": 7.147349379010848e-11,
+    "max_voltage_error": 0.0,
+    "settling_difference_s": 0.0
+  },
+  {
+    "scenario": "pid_nominal",
+    "max_speed_error": 9.175924020610182e-07,
+    "max_current_error": 5.858866114039074e-06,
+    "max_voltage_error": 1.9220757103255437e-05,
+    "settling_difference_s": 0.0
+  },
+  {
+    "scenario": "pid_required_load",
+    "max_speed_error": 1.5484711468616297e-07,
+    "max_current_error": 8.141030392039283e-07,
+    "max_voltage_error": 3.2422471250015406e-06,
+    "settling_difference_s": 0.0
+  }
+]
