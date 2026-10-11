@@ -181,6 +181,129 @@ def validate_manifest(root=ROOT, draft=False):
     return manifest
 
 
+def draw_cover(canvas, doc, draft=False):
+    """Draw an editable vector title page, separate from the report body."""
+    canvas.saveState()
+    page_width, page_height = A4
+    left, right = 48, page_width - 48
+    navy = colors.HexColor('#142F3B')
+    teal = colors.HexColor('#117F83')
+    copper = colors.HexColor('#B36D42')
+    muted = colors.HexColor('#50666F')
+    paper = colors.HexColor('#F6F5F0')
+    pale = colors.HexColor('#DCE9EB')
+    canvas.setFillColor(paper)
+    canvas.rect(0, 0, page_width, page_height, stroke=0, fill=1)
+    canvas.setFillColor(teal)
+    canvas.rect(0, 0, 7, page_height, stroke=0, fill=1)
+
+    def text(value, x, y, size, color=navy, bold=False, tracking=0):
+        label = canvas.beginText(x, y)
+        label.setFont('Coursework-Bold' if bold else 'Coursework', size)
+        label.setFillColor(color)
+        label.setCharSpace(tracking)
+        label.textOut(value)
+        canvas.drawText(label)
+
+    def centered(value, x, y, size, color=pale, bold=False):
+        font = 'Coursework-Bold' if bold else 'Coursework'
+        text(value, x - pdfmetrics.stringWidth(value, font, size) / 2, y,
+             size, color, bold)
+
+    def arrow(x1, y1, x2, y2, color=pale):
+        canvas.setStrokeColor(color)
+        canvas.setFillColor(color)
+        canvas.setLineWidth(1.2)
+        canvas.line(x1, y1, x2, y2)
+        angle = math.atan2(y2 - y1, x2 - x1)
+        path = canvas.beginPath()
+        path.moveTo(x2, y2)
+        for offset in (-.45, .45):
+            path.lineTo(x2 - 6 * math.cos(angle + offset),
+                        y2 - 6 * math.sin(angle + offset))
+        path.close()
+        canvas.drawPath(path, fill=1, stroke=0)
+
+    text('ІНЖЕНЕРІЯ ПОЛЬОТУ', left, 787, 9, muted, tracking=1.5)
+    canvas.setStrokeColor(copper)
+    canvas.setLineWidth(1)
+    canvas.line(left, 766, right, 766)
+    text('ПРОМІЖНИЙ ЗВІТ' if draft else 'КУРСОВА РОБОТА',
+         left, 718, 9.5, teal, bold=True, tracking=2.2)
+    for line, baseline in zip(('Система керування', 'двигуном',
+                               'постійного струму'), (674, 634, 594)):
+        text(line, left - 1, baseline, 31, bold=True)
+    text('Моделювання, оптимізація та оцінка', left, 550, 12, muted)
+    text('системи керування швидкістю', left, 531, 12, muted)
+
+    panel_x, panel_y, panel_w, panel_h = left, 235, right - left, 253
+    canvas.setFillColor(navy)
+    canvas.roundRect(panel_x, panel_y, panel_w, panel_h, 8, fill=1, stroke=0)
+    canvas.setStrokeColor(colors.HexColor('#244450'))
+    canvas.setLineWidth(.35)
+    for x in range(66, int(right - 16), 23):
+        canvas.line(x, panel_y + 18, x, panel_y + panel_h - 18)
+    for y in range(253, 471, 23):
+        canvas.line(panel_x + 18, y, right - 18, y)
+    text('КОНТУР КЕРУВАННЯ ШВИДКІСТЮ', 68, 460, 8, pale, tracking=1.1)
+
+    arrow(71, 354, 103, 354)
+    text('ωref', 72, 370, 10, pale)
+    canvas.setStrokeColor(pale)
+    canvas.setFillColor(navy)
+    canvas.setLineWidth(1.2)
+    canvas.circle(113, 354, 9, stroke=1, fill=1)
+    centered('+', 113, 351, 9)
+    text('-', 125, 339, 10, pale)
+    arrow(122, 354, 148, 354)
+    canvas.setStrokeColor(pale)
+    canvas.roundRect(148, 330, 88, 48, 4, stroke=1, fill=0)
+    centered('ПІД', 192, 348, 15, bold=True)
+    centered('Регулятор', 192, 314, 8)
+    arrow(236, 354, 296, 354)
+    text('Vin', 254, 369, 9, pale)
+    canvas.setStrokeColor(pale)
+    canvas.setLineWidth(1.4)
+    canvas.circle(325, 354, 28, stroke=1, fill=0)
+    canvas.circle(325, 354, 21, stroke=1, fill=0)
+    centered('M', 325, 347, 18, bold=True)
+    centered('ДПС', 325, 404, 9)
+    canvas.line(317, 381, 317, 387)
+    canvas.line(333, 381, 333, 387)
+    canvas.setLineWidth(2.5)
+    canvas.line(353, 354, 384, 354)
+    canvas.setLineWidth(1.1)
+    canvas.rect(384, 334, 40, 40, stroke=1, fill=0)
+    canvas.setStrokeColor(copper)
+    for x in (392, 400, 408, 416):
+        canvas.line(x, 340, x, 368)
+    centered('JL', 404, 391, 9)
+    centered('Навантаження', 404, 314, 8)
+    arrow(424, 354, 508, 354)
+    text('ω', 481, 370, 12, pale)
+    feedback = colors.HexColor('#61C1BF')
+    canvas.setStrokeColor(feedback)
+    canvas.setFillColor(feedback)
+    canvas.circle(458, 354, 2.4, stroke=0, fill=1)
+    canvas.line(458, 354, 458, 284)
+    canvas.line(458, 284, 113, 284)
+    arrow(113, 284, 113, 345, feedback)
+    text("Зворотний зв'язок за кутовою швидкістю", 68, 253, 8.5, pale)
+
+    text('MATLAB  ·  SIMULINK  ·  SIMSCAPE  ·  PYTHON',
+         left, 207, 8.5, teal, tracking=.5)
+    canvas.setStrokeColor(colors.HexColor('#CBD4D3'))
+    canvas.setLineWidth(.6)
+    canvas.line(left, 174, right, 174)
+    text('ВИКОНАВ', left, 143, 8, muted, tracking=1.2)
+    text('Євген Бовкун', left, 118, 17, bold=True)
+    canvas.setFont('Coursework-Bold', 19)
+    canvas.setFillColor(navy)
+    canvas.drawRightString(right, 118, '2026')
+    text('Моделювання  ·  Керування  ·  Оптимізація', left, 69, 8, muted)
+    canvas.restoreState()
+
+
 def build_report(root=ROOT, draft=False, output=None):
     root = Path(root).resolve()
     manifest = validate_manifest(root, draft)
@@ -249,7 +372,7 @@ def build_report(root=ROOT, draft=False, output=None):
     figures["physical_controllers"] = ("simscape_controller_comparison.png", "Порівняння ПІД, lag та lead на Simscape", 290)
     figures["fmu"] = ("fmu_comparison.png", "FMU MATLAB у FMPy та прямі рівняння", 285)
     width = A4[0] - 88
-    story = []
+    story = [Spacer(1, 1)]
     figure_number = 0
     table_number = 0
 
@@ -288,7 +411,7 @@ def build_report(root=ROOT, draft=False, output=None):
         elif block.startswith("## "):
             story.extend([PageBreak(), paragraph(block[3:], "HeadingUA")])
         elif block.startswith("# "):
-            story.extend([Spacer(1, 24), paragraph(block[2:], "TitleUA")])
+            continue  # The title is drawn on the dedicated vector cover.
         else:
             story.append(paragraph(block.replace("\n", " ")))
 
@@ -301,7 +424,8 @@ def build_report(root=ROOT, draft=False, output=None):
         canvas.restoreState()
 
     doc = SimpleDocTemplate(str(output), pagesize=A4, rightMargin=44, leftMargin=44, topMargin=40, bottomMargin=44, title="Система керування ДПС - проміжний звіт" if draft else "Система керування ДПС", author="Ievgen Bovkun")
-    doc.build(story, onFirstPage=footer, onLaterPages=footer)
+    doc.build(story, onFirstPage=lambda canvas, doc: draw_cover(canvas, doc, draft),
+              onLaterPages=footer)
     return output
 
 

@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "complete": true,
-  "timestampUTC": "2026-10-11T22:32:14.420456+00:00",
+  "timestampUTC": "2026-10-11T22:38:39.637586+00:00",
   "sections": {
     "modeling": {
       "status": "passed"
@@ -377,11 +377,11 @@
     },
     {
       "path": "report/build_report.py",
-      "sha256": "4b1fb768aac70e4a67f9f9078baeaa3c42acebad4219aad4ccc1d7cf62bb52b5"
+      "sha256": "7b7cd0393e4de800d5aadf7398180b0131140d2c377896855df1be1a065233af"
     },
     {
       "path": "report/report_uk.md",
-      "sha256": "f12d2c25479dee812e1b31f8f37beef6a4d66b1dc3efa1df86d2690b3d6aa0d1"
+      "sha256": "12b4743d4dfa7b0d4cf822a9b8c930e0f22745596670402f944ae07003cac493"
     },
     {
       "path": "requirements.txt",
@@ -665,7 +665,7 @@
     },
     {
       "path": "results/json/clean_copy.json",
-      "sha256": "0f9f25b2e340e81723c23784dce27345686e2e1c0a1d97a93b62f8a278fdc7c0"
+      "sha256": "5c2fcd7c052e765ade969143290fae984f518daf2459eae54513f3e746b2ba0e"
     },
     {
       "path": "results/json/compensator_reference.json",
