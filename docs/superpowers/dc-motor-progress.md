@@ -3,8 +3,8 @@
 **Last reviewed:** 2026-10-11, Europe/Paris.
 **Overall state:** implementation started on `codex/dc-motor-coursework`; project setup verified, task T1 still has external prerequisites unresolved.
 **Implementation owner:** SOL; executing the approved plan in this chat.
-**Current focus:** T5: required disturbance rejection and live visualization. T2/T3/T4 verified; physical/FMU capabilities remain blocked.
-**Next focus:** validated optimization, then physical-model and cross-platform completion.
+**Current focus:** T7 independent Python simulation/comparison; T6 physical model remains blocked by unavailable Simscape products. T2–T5 verified.
+**Next focus:** actual MATLAB/Python numerical comparisons, then resolution of physical-model and FMU dependencies.
 **Dependency focus:** provision/verify Simscape, Simscape Electrical, standalone FMU exporter and C compiler; these need not stop the core MATLAB/Python work.
 
 This is a manually maintained review table. Update it after actual implementation and verification milestones, not automatically with elapsed time. Do not mark the selected focus “In progress” until execution begins.
@@ -82,9 +82,9 @@ This is a manually maintained review table. Update it after actual implementatio
 
 | ID | Scope | Necessary element | Status | Current evidence / gap | Acceptance evidence needed / next action | Task |
 |---|---|---|---|---|---|---|
-| B01 | Bonus · 2.5 | 0.05 N m disturbance at t=1 s and rejection | Partial | Load/observer routines exist; not accepted as a final scenario | Required load run, speed/voltage metrics, loaded equilibrium and preserved performance | T5 |
-| B02 | Bonus · 2.5 | Live speed/voltage visualization | Unverified | `live_visualization.m` exists; runtime behavior not verified | Launch from CLI without interactions; show updates during integration and verify trajectory agreement | T5 |
-| B03 | Enhancement | Disturbance observer and recovery edge cases | Partial | Observer code exists; non-recovery indexing defect identified | Observer/sign checks and return Inf/status when recovery never occurs | T5 |
+| B01 | Bonus · 2.5 | 0.05 N m disturbance at t=1 s and rejection | Complete | T5: 4 tests pass; required disturbance settles in 1.690 s; observer/load tables and live-update evidence generated | Required load run, speed/voltage metrics, loaded equilibrium and preserved performance | T5 |
+| B02 | Bonus · 2.5 | Live speed/voltage visualization | Complete | T5: 4 tests pass; required disturbance settles in 1.690 s; observer/load tables and live-update evidence generated | Launch from CLI without interactions; show updates during integration and verify trajectory agreement | T5 |
+| B03 | Enhancement | Disturbance observer and recovery edge cases | Complete | T5: 4 tests pass; required disturbance settles in 1.690 s; observer/load tables and live-update evidence generated | Observer/sign checks and return Inf/status when recovery never occurs | T5 |
 | B04 | Enhancement | Gain/plant sensitivity and optional benchmark | Complete | T4: real objective, 5 converged starts, seeded GA, 7 weights, source/config hashes and sensitivity data; Python dependencies installed/pinned | Separate gain and plant perturbations; bounded, evidence-based conclusions | T4 |
 
 ## Documentation, reproducibility and delivery

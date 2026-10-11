@@ -146,11 +146,11 @@ if ($LASTEXITCODE -ne 0) { throw 'MATLAB preflight failed' }
 
 **Interfaces:** `R=run_disturbance_study(p,K)` returns clean/PID/observer paired traces and recovery metrics. `live_visualization(p,K,opt)` consumes the exact same RHS/controller, with `opt.realTime=false` by default.
 
-- [ ] Write tests for TL=0.05 at t=1, a larger post-settling load, and a load that does not recover by the end of the run. Recovery must return Inf/status instead of indexing past the final sample (F6).
-- [ ] Run required disturbance using the selected optimized gains; compare with the no-load run. Validate sustained speed criteria and the loaded equilibrium `i=1.5 A, V=13 V`. Split integration at the load discontinuity.
-- [ ] Retain the optional augmented-state observer only with observability rank 3, stable error poles and correctly signed feedforward. Compare it to PID alone at t=1 and t=3; explicitly report when saturation prevents benefit.
-- [ ] Implement live updates through an ODE OutputFcn/shared simulation loop launched from CLI. Automated runs update a hidden plot and write speed/voltage preview PNG plus progress data during integration. A separate CLI demo flag may show the updating figure automatically with real-time pacing; it must need no clicks, menus or MATLAB desktop interaction. Keep visibility and pacing off for automated validation. Also produce a recorded animation if useful for submission.
-- [ ] Verify more than one preview update occurs before completion and its terminal state matches the nonvisual run within solver tolerance. Save the actual required-scenario plots and commit.
+- [x] Write tests for TL=0.05 at t=1, a larger post-settling load, and a load that does not recover by the end of the run. Recovery must return Inf/status instead of indexing past the final sample (F6).
+- [x] Run required disturbance using the selected optimized gains; compare with the no-load run. Validate sustained speed criteria and the loaded equilibrium `i=1.5 A, V=13 V`. Split integration at the load discontinuity.
+- [x] Retain the optional augmented-state observer only with observability rank 3, stable error poles and correctly signed feedforward. Compare it to PID alone at t=1 and t=3; explicitly report when saturation prevents benefit.
+- [x] Implement live updates through an ODE OutputFcn/shared simulation loop launched from CLI. Automated runs update a hidden plot and write speed/voltage preview PNG plus progress data during integration. A separate CLI demo flag may show the updating figure automatically with real-time pacing; it must need no clicks, menus or MATLAB desktop interaction. Keep visibility and pacing off for automated validation. Also produce a recorded animation if useful for submission.
+- [x] Verify more than one preview update occurs before completion and its terminal state matches the nonvisual run within solver tolerance. Save the actual required-scenario plots and commit.
 
 ### Task 6: Complete physical Simscape and lag/lead comparisons
 

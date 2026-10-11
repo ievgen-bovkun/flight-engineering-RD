@@ -1,0 +1,314 @@
+{
+  "gains": [
+    17.959454757506993,
+    45.044801041711935,
+    1.8480983069838675
+  ],
+  "observer": {
+    "A": [
+      [
+        -4,
+        -0.2,
+        0
+      ],
+      [
+        3.3333333333333335,
+        -0.033333333333333333,
+        -33.333333333333336
+      ],
+      [
+        0,
+        0,
+        0
+      ]
+    ],
+    "B": [
+      2,
+      0,
+      0
+    ],
+    "C": [
+      0,
+      1,
+      0
+    ],
+    "rank_obsv": 3,
+    "L": [
+      -2176.3999999997072,
+      100.96666666666243,
+      -314.99999999996243
+    ],
+    "poles": [
+      -34.999999999984936,
+      -30.000000000004579,
+      -40.000000000006345
+    ]
+  },
+  "scenarios": [
+    {
+      "scenario": 1,
+      "controller": "PID",
+      "metrics": {
+        "ts": 1.69,
+        "t_first": 1.69,
+        "os": 0.15753657205773663,
+        "endpointError": 1.2867786836068262E-9,
+        "essValidated": true,
+        "ess": 5.0613238045116304E-9,
+        "iae": 90.139770997390016,
+        "ise": 6469.8122064851077,
+        "itae": 50.385206390748181,
+        "effort": 126.94151446569067,
+        "effort2": 4138.3539817318933,
+        "energy_net": 1438.3686669854951,
+        "copper_loss": 1215.0598374148235,
+        "settled": true,
+        "status": "settled",
+        "horizon": 6,
+        "Tsim": 6,
+        "umax": 48,
+        "umin": 0.42415150730380446,
+        "imax": 21.667929146534409,
+        "tsat": 1.4615
+      },
+      "recovery": {
+        "dip": 0.75790604067071854,
+        "recovered": true,
+        "recoveryTime": 0,
+        "additionalIAE": 0.34252566638550658
+      }
+    },
+    {
+      "scenario": 1,
+      "controller": "PID_observer",
+      "metrics": {
+        "ts": 1.69,
+        "t_first": 1.69,
+        "os": 0.15647457465036041,
+        "endpointError": 1.2931593573739519E-9,
+        "essValidated": true,
+        "ess": 5.0870028189820005E-9,
+        "iae": 90.14000115358823,
+        "ise": 6469.8142595161889,
+        "itae": 50.385546768727494,
+        "effort": 126.94140865177684,
+        "effort2": 4138.2408232692324,
+        "energy_net": 1438.3406233146002,
+        "copper_loss": 1215.0320909554107,
+        "settled": true,
+        "status": "settled",
+        "horizon": 6,
+        "Tsim": 6,
+        "umax": 48,
+        "umin": 0.4314033264850925,
+        "imax": 21.667929146534409,
+        "tsat": 1.4615
+      },
+      "recovery": {
+        "dip": 0.757946121086718,
+        "recovered": true,
+        "recoveryTime": 0,
+        "additionalIAE": 0.34300434295534993
+      }
+    },
+    {
+      "scenario": 2,
+      "controller": "PID",
+      "metrics": {
+        "ts": 1.675,
+        "t_first": 1.675,
+        "os": 0.16269626990418828,
+        "endpointError": 3.2560691920480167E-8,
+        "essValidated": true,
+        "ess": 1.181368389779891E-7,
+        "iae": 89.829291154525748,
+        "ise": 6460.2341815917371,
+        "itae": 49.980654659119431,
+        "effort": 125.09465007873997,
+        "effort2": 4076.69334365777,
+        "energy_net": 1409.5156459824893,
+        "copper_loss": 1195.4455844369381,
+        "settled": true,
+        "status": "settled",
+        "horizon": 6,
+        "Tsim": 6,
+        "umax": 48,
+        "umin": -0.9348372015577624,
+        "imax": 21.667929146534409,
+        "tsat": 1.4445000000000001
+      },
+      "recovery": {
+        "dip": 0.08871782816203222,
+        "recovered": true,
+        "recoveryTime": 0,
+        "additionalIAE": 0.024764393371196583
+      }
+    },
+    {
+      "scenario": 2,
+      "controller": "PID_observer",
+      "metrics": {
+        "ts": 1.675,
+        "t_first": 1.675,
+        "os": 0.16269626990415986,
+        "endpointError": 1.8222209519080934E-8,
+        "essValidated": true,
+        "ess": 7.2675121032261814E-8,
+        "iae": 89.819018619956225,
+        "ise": 6460.233095397366,
+        "itae": 49.948198407111541,
+        "effort": 125.09731409542846,
+        "effort2": 4077.3628857799285,
+        "energy_net": 1409.5219672101182,
+        "copper_loss": 1195.4463568221347,
+        "settled": true,
+        "status": "settled",
+        "horizon": 6,
+        "Tsim": 6,
+        "umax": 48,
+        "umin": -0.93483720155799155,
+        "imax": 21.667929146534409,
+        "tsat": 1.4445000000000001
+      },
+      "recovery": {
+        "dip": 0.060711921443726169,
+        "recovered": true,
+        "recoveryTime": 0,
+        "additionalIAE": 0.014620331338555967
+      }
+    },
+    {
+      "scenario": 3,
+      "controller": "PID",
+      "metrics": {
+        "ts": 1.675,
+        "t_first": 1.675,
+        "os": 0.16269626990418828,
+        "endpointError": 3.365805838484448E-7,
+        "essValidated": true,
+        "ess": 1.2245323262050078E-6,
+        "iae": 90.0521705848221,
+        "ise": 6460.3869160665436,
+        "itae": 50.697089133882713,
+        "effort": 154.32020274825123,
+        "effort2": 5161.8192593657732,
+        "energy_net": 1757.3723498200493,
+        "copper_loss": 1400.0150665079159,
+        "settled": true,
+        "status": "settled",
+        "horizon": 6,
+        "Tsim": 6,
+        "umax": 48,
+        "umin": -0.9348372015577624,
+        "imax": 21.667929146534409,
+        "tsat": 1.4445000000000001
+      },
+      "recovery": {
+        "dip": 0.88717828161973955,
+        "recovered": true,
+        "recoveryTime": 0,
+        "additionalIAE": 0.24764393371264615
+      }
+    },
+    {
+      "scenario": 3,
+      "controller": "PID_observer",
+      "metrics": {
+        "ts": 1.675,
+        "t_first": 1.675,
+        "os": 0.16269626990415986,
+        "endpointError": 2.2829044610261917E-7,
+        "essValidated": true,
+        "ess": 9.3322186955902E-7,
+        "iae": 89.9443987295497,
+        "ise": 6460.2924066991582,
+        "itae": 50.348585963255175,
+        "effort": 154.33777328773053,
+        "effort2": 5195.7142230798427,
+        "energy_net": 1757.4540751363893,
+        "copper_loss": 1399.9945662463956,
+        "settled": true,
+        "status": "settled",
+        "horizon": 6,
+        "Tsim": 6,
+        "umax": 48,
+        "umin": -0.93483720155799155,
+        "imax": 21.667929146534409,
+        "tsat": 1.5215
+      },
+      "recovery": {
+        "dip": 0.71588230723688184,
+        "recovered": true,
+        "recoveryTime": 0,
+        "additionalIAE": 0.13995309267091133
+      }
+    },
+    {
+      "scenario": 4,
+      "controller": "PID",
+      "metrics": {
+        "ts": 4.181,
+        "t_first": 1.675,
+        "os": 0.16269626990418828,
+        "endpointError": 4.7381640143839832E-5,
+        "essValidated": true,
+        "ess": 0.00027899224669170053,
+        "iae": 96.567641030818791,
+        "ise": 6500.89727166904,
+        "itae": 74.155272357003255,
+        "effort": 218.53517628142097,
+        "effort2": 9461.2611057481772,
+        "energy_net": 3467.6151918996652,
+        "copper_loss": 2766.5419291076187,
+        "settled": true,
+        "status": "settled",
+        "horizon": 6,
+        "Tsim": 6,
+        "umax": 48,
+        "umin": -0.9348372015577624,
+        "imax": 21.667929146534409,
+        "tsat": 2.6195
+      },
+      "recovery": {
+        "dip": 7.8078240529075913,
+        "recovered": true,
+        "recoveryTime": 1.181,
+        "additionalIAE": 6.7630624807401647
+      }
+    },
+    {
+      "scenario": 4,
+      "controller": "PID_observer",
+      "metrics": {
+        "ts": 4.181,
+        "t_first": 1.675,
+        "os": 0.16269626990415986,
+        "endpointError": 4.90749704766813E-5,
+        "essValidated": true,
+        "ess": 0.00028514651693001269,
+        "iae": 96.56678331094372,
+        "ise": 6500.8869087761987,
+        "itae": 74.152131367939646,
+        "effort": 218.53534160007496,
+        "effort2": 9461.2537188869464,
+        "energy_net": 3467.6030494249944,
+        "copper_loss": 2766.5289621090915,
+        "settled": true,
+        "status": "settled",
+        "horizon": 6,
+        "Tsim": 6,
+        "umax": 48,
+        "umin": -0.93483720155799155,
+        "imax": 21.667929146534409,
+        "tsat": 2.6185
+      },
+      "recovery": {
+        "dip": 7.80700290788252,
+        "recovered": true,
+        "recoveryTime": 1.181,
+        "additionalIAE": 6.7622047563587637
+      }
+    }
+  ],
+  "liveUpdates": 6
+}
