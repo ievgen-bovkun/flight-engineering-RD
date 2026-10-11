@@ -1,0 +1,32 @@
+{
+  "projectRoot": "C:\\Users\\ievge\\.codex\\worktrees\\dc-motor-coursework\\Flight Engineering\\coursework\\dc_motor",
+  "release": "2026a",
+  "version": "26.1.0.3312084 (R2026a) Update 4",
+  "platform": "PCWIN64",
+  "timestampUTC": "2026-10-11T17:45:16Z",
+  "products": [
+    "Aerospace Blockset",
+    "Aerospace Toolbox",
+    "Control System Toolbox",
+    "MATLAB",
+    "Simulink",
+    "Symbolic Math Toolbox"
+  ],
+  "matlabSmoke": true,
+  "simulink": true,
+  "control": true,
+  "simscape": false,
+  "simscapeElectrical": false,
+  "fmuExporter": false,
+  "compiler": false,
+  "compilerNames": [],
+  "simulinkSmoke": true,
+  "coreComplete": true,
+  "missingRequired": [
+    "Simscape",
+    "Simscape Electrical",
+    "Standalone FMU exporter",
+    "Selected supported C/C++ compiler"
+  ],
+  "complete": false
+}

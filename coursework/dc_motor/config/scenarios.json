@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "stateOrder": ["i", "omega"],
+  "signalSemantics": "Right-continuous steps; split integration exactly at event times. Values before a step are zero unless specified.",
+  "scenarios": [
+    {"id": "zero_input", "kind": "plant", "voltage": 0, "loadTorque": 0, "eventTimes": [], "x0": [0,0], "tEnd": 1, "outputStep": 0.001},
+    {"id": "open_loop_12V", "kind": "plant", "voltage": 12, "loadTorque": 0, "eventTimes": [0], "x0": [0,0], "tEnd": 30, "outputStep": 0.001},
+    {"id": "plant_load_step", "kind": "plant", "voltage": 12, "loadTorque": 0.05, "loadTime": 1, "eventTimes": [0,1], "x0": [0,0], "tEnd": 30, "outputStep": 0.001},
+    {"id": "nonzero_initial", "kind": "plant", "voltage": 0, "loadTorque": 0, "eventTimes": [], "x0": [1,10], "tEnd": 5, "outputStep": 0.001},
+    {"id": "pid_nominal", "kind": "closed_loop", "reference": 100, "loadTorque": 0, "eventTimes": [0], "x0": [0,0], "tEnd": 5, "outputStep": 0.001},
+    {"id": "pid_required_load", "kind": "closed_loop", "reference": 100, "loadTorque": 0.05, "loadTime": 1, "eventTimes": [0,1], "x0": [0,0], "tEnd": 6, "outputStep": 0.001},
+    {"id": "pid_post_settling_load", "kind": "closed_loop", "reference": 100, "loadTorque": 0.5, "loadTime": 3, "eventTimes": [0,3], "x0": [0,0], "tEnd": 6, "outputStep": 0.001},
+    {"id": "compensator_comparison", "kind": "closed_loop", "reference": 100, "loadTorque": 0, "eventTimes": [0], "x0": [0,0], "tEnd": 12, "outputStep": 0.001}
+  ]
+}

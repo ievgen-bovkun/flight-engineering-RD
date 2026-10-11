@@ -1,0 +1,152 @@
+[
+  {
+    "name": "add_block_any.m",
+    "originalPath": "C:\\Users\\ievge\\Downloads\\Курсовий проект\\dc_motor_project\\dc_motor_project\\src\\add_block_any.m",
+    "sha256": "DF7A559F799ADAEB2B0C3516342A7A9DADC36D4CCCF4AD84A68C8F28E208DED5"
+  },
+  {
+    "name": "build_model_diffeq.m",
+    "originalPath": "C:\\Users\\ievge\\Downloads\\Курсовий проект\\dc_motor_project\\dc_motor_project\\src\\build_model_diffeq.m",
+    "sha256": "6A365C0D4E048E20EBD72D7ADA9C9889862951D64A91FE3C8D3321708301454C"
+  },
+  {
+    "name": "build_model_pid.m",
+    "originalPath": "C:\\Users\\ievge\\Downloads\\Курсовий проект\\dc_motor_project\\dc_motor_project\\src\\build_model_pid.m",
+    "sha256": "AF3947F36900EE31113BE139E0A9FC9B31FF87A28B7DDA6BC3940FFFF7EF5085"
+  },
+  {
+    "name": "build_model_simscape.m",
+    "originalPath": "C:\\Users\\ievge\\Downloads\\Курсовий проект\\dc_motor_project\\dc_motor_project\\src\\build_model_simscape.m",
+    "sha256": "E3FFF998A03F7626DD8D4612E7EF639407021173CA5BBF696ADEDE025339E890"
+  },
+  {
+    "name": "build_model_statespace.m",
+    "originalPath": "C:\\Users\\ievge\\Downloads\\Курсовий проект\\dc_motor_project\\dc_motor_project\\src\\build_model_statespace.m",
+    "sha256": "2EA53467106410B8D97EF92150F0B648C05AB2B416BFBAD98C8782D58A2C0BD3"
+  },
+  {
+    "name": "check_feasibility.m",
+    "originalPath": "C:\\Users\\ievge\\Downloads\\Курсовий проект\\dc_motor_project\\dc_motor_project\\src\\check_feasibility.m",
+    "sha256": "BDDEF34A5E7F4360A96396269C6E7A89400F456FDD4A1FDBBD92DE1DEA1BE758"
+  },
+  {
+    "name": "design_compensator.m",
+    "originalPath": "C:\\Users\\ievge\\Downloads\\Курсовий проект\\dc_motor_project\\dc_motor_project\\src\\design_compensator.m",
+    "sha256": "C509C61333351826299E7A262921EC1C3176E9ABE57A750573A7406B17F48A1B"
+  },
+  {
+    "name": "design_observer.m",
+    "originalPath": "C:\\Users\\ievge\\Downloads\\Курсовий проект\\dc_motor_project\\dc_motor_project\\src\\design_observer.m",
+    "sha256": "EF11A0F0BE5C321065AAA33CE3B7A2E8B379C286F62707459246796386833FEC"
+  },
+  {
+    "name": "ga_simple.m",
+    "originalPath": "C:\\Users\\ievge\\Downloads\\Курсовий проект\\dc_motor_project\\dc_motor_project\\src\\ga_simple.m",
+    "sha256": "3680A897AD1D4795F436DAE6ABF971ECD9A8ADCA47EFA8C2C01A101851398C1F"
+  },
+  {
+    "name": "live_visualization.m",
+    "originalPath": "C:\\Users\\ievge\\Downloads\\Курсовий проект\\dc_motor_project\\dc_motor_project\\src\\live_visualization.m",
+    "sha256": "77A4A79AA7790DA0AB1C5C73DB298C2591EC4E0F7AECFE8B26A4E6A463DCD75A"
+  },
+  {
+    "name": "motor_models.m",
+    "originalPath": "C:\\Users\\ievge\\Downloads\\Курсовий проект\\dc_motor_project\\dc_motor_project\\src\\motor_models.m",
+    "sha256": "346A3C082A1CBC5F04813873A2D106596AF06011B5CA339182132D4E352029BA"
+  },
+  {
+    "name": "motor_params.m",
+    "originalPath": "C:\\Users\\ievge\\Downloads\\Курсовий проект\\dc_motor_project\\dc_motor_project\\src\\motor_params.m",
+    "sha256": "680696575634F9F0308CCF4AF1F992DEBC778C9C79D095E17B8B9880A5A51AF3"
+  },
+  {
+    "name": "optimize_pid.m",
+    "originalPath": "C:\\Users\\ievge\\Downloads\\Курсовий проект\\dc_motor_project\\dc_motor_project\\src\\optimize_pid.m",
+    "sha256": "CF0C8E24CAB7C6D23A95BFFD72DA51510EBFAE45CFE2DDBAE888D64908354115"
+  },
+  {
+    "name": "part1_modeling.m",
+    "originalPath": "C:\\Users\\ievge\\Downloads\\Курсовий проект\\dc_motor_project\\dc_motor_project\\src\\part1_modeling.m",
+    "sha256": "AB9A89E1720FEF2699AB8699C058924090FEC68010C111B55AC652348120B358"
+  },
+  {
+    "name": "part2_pid_design.m",
+    "originalPath": "C:\\Users\\ievge\\Downloads\\Курсовий проект\\dc_motor_project\\dc_motor_project\\src\\part2_pid_design.m",
+    "sha256": "D61504388933FA6BF25D6782D9481C53B79DDCA7ED68BE7B29C5B1B5234039E1"
+  },
+  {
+    "name": "part3_optimization.m",
+    "originalPath": "C:\\Users\\ievge\\Downloads\\Курсовий проект\\dc_motor_project\\dc_motor_project\\src\\part3_optimization.m",
+    "sha256": "5A4B9F44F5B3153EAC9C1EF6941CBB1A76E457DA04657BAD6689215A2CC3A3B8"
+  },
+  {
+    "name": "part4_evaluation.m",
+    "originalPath": "C:\\Users\\ievge\\Downloads\\Курсовий проект\\dc_motor_project\\dc_motor_project\\src\\part4_evaluation.m",
+    "sha256": "38D0638C8D6AD726466A5ADE27F97BF913921F26803EDBF235A3EAE8BEBECB94"
+  },
+  {
+    "name": "part5_disturbance.m",
+    "originalPath": "C:\\Users\\ievge\\Downloads\\Курсовий проект\\dc_motor_project\\dc_motor_project\\src\\part5_disturbance.m",
+    "sha256": "DC8B779DFC3B4B0DB052A57DA9EAC4D1D0658C3ABFB9C64073A089C7DB29B426"
+  },
+  {
+    "name": "part6_simscape.m",
+    "originalPath": "C:\\Users\\ievge\\Downloads\\Курсовий проект\\dc_motor_project\\dc_motor_project\\src\\part6_simscape.m",
+    "sha256": "4463BBBFA90A99A19F992E5C6D41BBB25B81AD96AC3CF311A64F5A5AE3529EBA"
+  },
+  {
+    "name": "performance_metrics.m",
+    "originalPath": "C:\\Users\\ievge\\Downloads\\Курсовий проект\\dc_motor_project\\dc_motor_project\\src\\performance_metrics.m",
+    "sha256": "B9847AD5CC56B23C95F5DA129E310DBF57EF0087C38F98039F372229F69C399B"
+  },
+  {
+    "name": "pid_cost.m",
+    "originalPath": "C:\\Users\\ievge\\Downloads\\Курсовий проект\\dc_motor_project\\dc_motor_project\\src\\pid_cost.m",
+    "sha256": "9020B3AD135F475FF5738221E6D58D90626CDA5B1E36FBD34BA5681D6BC5C4B3"
+  },
+  {
+    "name": "pid_output.m",
+    "originalPath": "C:\\Users\\ievge\\Downloads\\Курсовий проект\\dc_motor_project\\dc_motor_project\\src\\pid_output.m",
+    "sha256": "2F83A23FB54CEC891AE1150A2BED39085B3F8EF3967DD2398065A0DD4F19DF4D"
+  },
+  {
+    "name": "plot_response.m",
+    "originalPath": "C:\\Users\\ievge\\Downloads\\Курсовий проект\\dc_motor_project\\dc_motor_project\\src\\plot_response.m",
+    "sha256": "DC8911567E543F4E3B840C5131E3E1FB697FCA154F5B62199A97EE10DB677DA5"
+  },
+  {
+    "name": "push_params.m",
+    "originalPath": "C:\\Users\\ievge\\Downloads\\Курсовий проект\\dc_motor_project\\dc_motor_project\\src\\push_params.m",
+    "sha256": "C8243F8EC820B7FCBC48DA5B5BE8F822E0D79C197091215C568B05750E5BFC71"
+  },
+  {
+    "name": "report_metrics.m",
+    "originalPath": "C:\\Users\\ievge\\Downloads\\Курсовий проект\\dc_motor_project\\dc_motor_project\\src\\report_metrics.m",
+    "sha256": "E5D052EA2D428B5FB32D57C7F46CA4A9859D2ADEE7FDA478875028288BFC2B6E"
+  },
+  {
+    "name": "simulate_closed_loop.m",
+    "originalPath": "C:\\Users\\ievge\\Downloads\\Курсовий проект\\dc_motor_project\\dc_motor_project\\src\\simulate_closed_loop.m",
+    "sha256": "8011C31191011E32251FBB058D9444FC8AD979C138692C4E56116708B7AE5BF3"
+  },
+  {
+    "name": "simulate_compensator.m",
+    "originalPath": "C:\\Users\\ievge\\Downloads\\Курсовий проект\\dc_motor_project\\dc_motor_project\\src\\simulate_compensator.m",
+    "sha256": "015A82F9FBF2DAA6E4358BF333242AF6E14E0F5A9E2D92CB2BC68B1500D04225"
+  },
+  {
+    "name": "time_optimal_benchmark.m",
+    "originalPath": "C:\\Users\\ievge\\Downloads\\Курсовий проект\\dc_motor_project\\dc_motor_project\\src\\time_optimal_benchmark.m",
+    "sha256": "23BD5DB50B2D25ED3E8042D8E6F682ECA43A2CA700E05BCC067432BD3762F9DF"
+  },
+  {
+    "name": "tune_pole_placement.m",
+    "originalPath": "C:\\Users\\ievge\\Downloads\\Курсовий проект\\dc_motor_project\\dc_motor_project\\src\\tune_pole_placement.m",
+    "sha256": "458B29D77254AA3EF56BD2C890DD44A1148FF3796596BF4AE0E2B3CEBCAEC194"
+  },
+  {
+    "name": "tune_ziegler_nichols.m",
+    "originalPath": "C:\\Users\\ievge\\Downloads\\Курсовий проект\\dc_motor_project\\dc_motor_project\\src\\tune_ziegler_nichols.m",
+    "sha256": "A011BE23DAA2C0C72779B3E6A8BB672C92DCB124322091161EA599DC3C504C1A"
+  }
+]

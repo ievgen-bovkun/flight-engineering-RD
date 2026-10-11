@@ -1,0 +1,8 @@
+{
+  "schemaVersion": 1,
+  "physical": {"Ra": 2.0, "La": 0.5, "Kt": 0.1, "Ke": 0.1, "Jm": 0.01, "Bm": 0.001, "JL": 0.02},
+  "control": {"reference": 100.0, "Vmin": -48.0, "Vmax": 48.0, "beta": 1.0, "gamma": 0.0, "derivativeRatio": 20.0, "minimumFilterTime": 0.001, "antiWindup": "back-calculation"},
+  "chosenTargets": {"settlingBand": 0.02, "settlingTime": 2.0, "overshootPercent": 5.0, "steadyError": 0.2},
+  "numerics": {"relativeTolerance": 1e-8, "absoluteTolerance": 1e-10, "outputStep": 0.001, "seed": 7},
+  "assumptions": ["Bipolar +/-48 V is an engineering choice; the assignment specifies no voltage limit.", "Overshoot <=5% and steady error <=0.2 rad/s are chosen targets, not instructor-specified limits.", "The rigid load adds inertia only. Positive load torque opposes positive rotation."]
+}
